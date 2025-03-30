@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file -->
+</head>
+<body>
+    <h2>Send a Message</h2>
+    <form action="send_message.php" method="POST">
+        <!-- Sender ID -->
+        <label for="sender_id">Sender ID:</label>
+        <input type="number" id="sender_id" name="sender_id" required>
+        <br>
+
+        <!-- Receiver ID -->
+        <label for="receiver_id">Receiver ID:</label>
+        <input type="number" id="receiver_id" name="receiver_id" required>
+        <br>
+
+        <!-- Listing ID -->
+        <label for="listing_id">Listing ID:</label>
+        <input type="number" id="listing_id" name="listing_id" required>
+        <br>
+
+        <!-- Message Content -->
+        <label for="content">Message:</label>
+        <textarea id="content" name="content" rows="4" required></textarea>
+        <br>
+        
+        <!-- Submit Button -->
+        <button type="submit">Send Message</button>
+    </form>
+</body>
+</html>

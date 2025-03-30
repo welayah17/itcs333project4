@@ -1,0 +1,113 @@
+.listing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-bar {
+    padding-left: 30px; /* Space for the icons */
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust the position of the icons */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filter-icon {
+    position: absolute;
+    right: 10px; /* Adjust the position of the icons */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+  .add-item-btn {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sorting-controls select {
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .item-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .item-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .view-item-btn {
+    padding: 10px;
+    background-color: #28A745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    display: inline;
+    margin: 0 2px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+    text-decoration: none;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        font-size: 12px;
+    }
+}
+  

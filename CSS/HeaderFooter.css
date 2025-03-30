@@ -1,0 +1,35 @@
+/*======== Header ========*/
+.favorite-button {
+    border: none;
+    background-color: transparent;
+    color: aliceblue;
+    padding: 0;
+    cursor: pointer;
+  }
+  .shopping-cart-button {
+    border: none;
+    background-color: transparent;
+    color: aliceblue;
+    margin-left: 10px;
+    padding: 0;
+    cursor: pointer;
+  }
+  i {
+    color: aliceblue;
+  }
+  footer {
+    width: 100%;
+    border-top: solid lightslategrey 1px;
+    background-color: lightslategray;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  footer a {
+    display: inline-block;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }

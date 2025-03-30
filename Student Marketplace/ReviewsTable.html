@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Review</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file -->
+</head>
+<body>
+    <h2>Submit a Review</h2>
+    <form action="submit_review.php" method="POST">
+        <!-- Reviewer ID -->
+        <label for="reviewer_id">Your User ID:</label>
+        <input type="number" id="reviewer_id" name="reviewer_id" required>
+        <br>
+        
+        <!-- Reviewed User ID -->
+        <label for="reviewed_user_id">User ID of the Person You're Reviewing:</label>
+        <input type="number" id="reviewed_user_id" name="reviewed_user_id" required>
+        <br>
+
+        <!-- Rating -->
+        <label for="rating">Rating (1-5):</label>
+        <select id="rating" name="rating" required>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+        </select> 
+        <br>
+
+        <!-- Comment -->
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="4"></textarea>
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
