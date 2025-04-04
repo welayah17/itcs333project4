@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Activity - Campus Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>Campus Hub</header>
+    
+    <nav>
+        <ul>
+            <li><a href="create.html" class="add-group">+ Add Activity</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <h1>Add New Activity</h1>
+        <form>
+            <label>Title*
+                <input type="text" required placeholder="e.g., Photo Exhibition">
+            </label>
+            
+            <label>Date*
+                <input type="date" required>
+            </label>
+            
+            <label>Club*
+                <select required>
+                    <option value="" disabled selected>Select club</option>
+                    <option>Photography Club</option>
+                    <option>Reading Club</option>
+                    <option>Spanish Club</option>
+                </select>
+            </label>
+            
+            <label>Location
+                <input type="text" placeholder="e.g., Library Room 203">
+            </label>
+            
+            <label>Description*
+                <textarea required placeholder="Activity details..."></textarea>
+            </label>
+            
+            <div class="form-actions">
+                <button type="submit">Submit</button>
+                <a href="clubActivities.html" class="secondary">Cancel</a>
+            </div>
+        </form>
+    </main>
+    
+    <footer>Campus Hub &copy; 2025</footer>
+</body>
+</html>
