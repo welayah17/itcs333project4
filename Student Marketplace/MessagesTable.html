@@ -5,33 +5,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Message</title>
-    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h2>Send a Message</h2>
-    <form action="send_message.php" method="POST">
-        <!-- Sender ID -->
-        <label for="sender_id">Sender ID:</label>
-        <input type="number" id="sender_id" name="sender_id" required>
-        <br>
+     <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campus Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+              <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+              <li><a class="dropdown-item" href="#">Course Reviews</a></li>
+              <li><a class="dropdown-item" href="#">Course Notes</a></li>
+              <li><a class="dropdown-item" href="#">Campus News</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        <!-- Receiver ID -->
-        <label for="receiver_id">Receiver ID:</label>
-        <input type="number" id="receiver_id" name="receiver_id" required>
-        <br>
+    <div class="container form-container">
+        <h2 class="text-center mb-4">Send a Message</h2>
+        <form action="send_message.php" method="POST">
+            <div class="mb-3">
+                <label for="sender_id" class="form-label">Sender ID</label>
+                <input type="number" id="sender_id" name="sender_id" class="form-control" required>
+            </div>
 
-        <!-- Listing ID -->
-        <label for="listing_id">Listing ID:</label>
-        <input type="number" id="listing_id" name="listing_id" required>
-        <br>
+            <div class="mb-3">
+                <label for="receiver_id" class="form-label">Receiver ID</label>
+                <input type="number" id="receiver_id" name="receiver_id" class="form-control" required>
+            </div>
 
-        <!-- Message Content -->
-        <label for="content">Message:</label>
-        <textarea id="content" name="content" rows="4" required></textarea>
-        <br>
-        
-        <!-- Submit Button -->
-        <button type="submit">Send Message</button>
-    </form>
+            <div class="mb-3">
+                <label for="listing_id" class="form-label">Listing ID</label>
+                <input type="number" id="listing_id" name="listing_id" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Message</label>
+                <textarea id="content" name="content" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+
+ <!-- Bootstrap 5 Footer -->
+ <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

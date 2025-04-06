@@ -1,71 +1,178 @@
+<!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Listing Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <style>
-        /* Add any custom CSS styles here */
-    </style>
+         <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../CSS/HeaderFooter.css">
+        <link rel="stylesheet" href="../CSS/ML.css">
+        <title>SM: Main Listing Page</title>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="#">Campus Hub</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+   <!-- Header -->
+       <!-- Navigation Bar-->
+       <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+        <a class="navbar-brand" href="#"> Campus Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-
+  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <!-- Your navbar items here -->
-            </ul>
+          <ul class="navbar-nav ml-auto float-none">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#services" role="button" data-toggle="dropdown" aria-expanded="false">
+                Services
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="../Events Calendar/EventsCalendar.html"> Events Calendar </a>
+                <a class="dropdown-item" href="#"> Study Group Finder </a>
+                <a class="dropdown-item" href="#"> Course Reviews </a>
+                <a class="dropdown-item" href="#"> Course Notes </a>
+                <a class="dropdown-item" href="#"> Campus News </a>
+                <a class="dropdown-item" href="../Club Activities/page1.html"> Club Activities </a>
+                <a class="dropdown-item" href="../Student Marketplace/MainListingPage.html"> Student Marketplace </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Booking</a>
+            </li>
+            <li class="nav-item dropdown mr-5">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="Account/Profile/profile.html">Profile</a>
+                <a class="dropdown-item" href="Account/signout.html">Sign out</a>
+                <a class="dropdown-item" href="Account/login.html">Sign in</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="Account/register.html">Register Now</a>
+            </div>
+            </li>
+            <button class="favorite-button"><i class="far fa-heart"></i></button>
+            <button class="shopping-cart-button"><a href="#"> <i class="fas fa-shopping-cart"></i> </a> </button>
+          </ul>
         </div>
-    </nav>
-
-    <div class="listing-container">
-        <header class="listing-header">
-            <div class="search-container input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Search for items...">
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-filter"></i></span>
-                </div>
+      </nav>
+      
+      <div class="container">
+    <div class="listing-container mt-3">
+        <header class="listing-header d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div class="search-container input-group w-25">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="search-icon fas fa-search"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Search for items...">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="filter-icon fas fa-filter"></i></span>
+              </div>
             </div>
-
-            <div class="sorting-controls mb-3">
-                <select class="custom-select">
-                    <option selected>Sort by Price</option>
-                    <option value="date">Sort by Date</option>
-                    <option value="popularity">Sort by Popularity</option>
-                </select>
+          
+            <div class="sorting-controls">
+              <select class="custom-select">
+                <option selected>Sort by Price</option>
+                <option value="date">Sort by Date</option>
+                <option value="popularity">Sort by Popularity</option>
+              </select>
             </div>
-
+          
             <a href="AddNewItem.html" class="btn btn-info">Add New Item</a>
-        </header>
+          </header>
+          
 
-        <div class="container">
             <h2 class="mt-3">Items</h2>
-            <div class="row">
+            <div class="row justify-content-center row-cols-md-3 ">
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="../images/" class="card-img-top" alt="Item image" style="height: 200px; width: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Item Title</h5>
-                            <p class="card-text">Item Description</p>
-                            <p class="card-text">Price</p>
-                            <a href="../Student Marketplace/ItemDetailView.html" class="btn btn-info">View Details</a>
-                        </div>
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
                     </div>
+                  </div>
                 </div>
-                <!-- Add more card elements as needed -->
-            </div>
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title </h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>  <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>  <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>  <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="../images/" alt="Item image" height="200" width="200" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title"> Item title</h5>
+                      <p class="card-text"> Item Description </p>
+                      <p class="card-text"> Price  </p>
+                      <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                    </div>
+                  </div>
+                </div>
+  </div>
 
             <div class="pagination-controls mt-3">
                 <ul class="pagination pagination-sm">

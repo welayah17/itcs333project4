@@ -78,11 +78,11 @@
 
 .pagination-controls {
   text-align: center;
-  margin-top: 20px;
+ 
 }
 
 .pagination {
-  display: inline-block;
+  justify-content: center;
   padding: 0;
   margin: 0;
   color: #8c2776;
@@ -90,15 +90,13 @@
 
 .pagination li {
   display: inline;
-  margin: 0 2px;
 }
 
 .pagination a {
   text-decoration: none;
-  padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  color: #333;
+  color: #5a1840;
 }
 
 .pagination a:hover {
