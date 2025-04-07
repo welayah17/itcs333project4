@@ -12,12 +12,65 @@
 
 </head>
 <body>
+    <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campus Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+              <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+              <li><a class="dropdown-item" href="#">Course Reviews</a></li>
+              <li><a class="dropdown-item" href="#">Course Notes</a></li>
+              <li><a class="dropdown-item" href="#">Campus News</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <section class="Item">
+  <section class="Item my-4 ">
     <div class="Item_image">
       <div class="image-container">
         <div class="image-main">
-          <img src="../Images/p3.jpg" class="img-thumbnail" alt="Item Image">
+          <img src="../Images/56063.jpg" class="img-thumbnail" alt="Item Image">
         </div>
       </div>
     </div>
@@ -96,6 +149,22 @@
   </div>
 
   </div>
+
+    <!-- Bootstrap 5 Footer -->
+    <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+      <div class="container">
+        <div class="mb-3">
+          <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+          <a href="#" class="text-white me-4"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="text-white me-4"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div>
+          <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+        </div>
+      </div>
+    </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
