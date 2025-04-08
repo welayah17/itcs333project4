@@ -2,153 +2,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SM: Item Details View</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../CSS/HeaderFooter.css">
-    <link rel="stylesheet" href="../CSS/vfdg.css">
-    <title>SM: Item Details View</title>
+  <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../CSS/HeaderFooter.css">
+  <link rel="stylesheet" href="../CSS/vfdg.css">
+  <style>
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .product .details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .rating i {
+      color: gold;
+    }
+  </style>
 </head>
 <body>
-
-   <!-- Header -->
-       <!-- Navigation Bar-->
-       <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-3" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Campus Hub</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../Homepage.html">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Services
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                  <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
-                  <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
-                  <li><a class="dropdown-item" href="#">Course Reviews</a></li>
-                  <li><a class="dropdown-item" href="#">Course Notes</a></li>
-                  <li><a class="dropdown-item" href="#">Campus News</a></li>
-                  <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
-                  <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Booking</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Account
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                  <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
-                  <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
-                  <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="Account/register.html">Register Now</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
-              </li>
+  <!-- Bootstrap 5 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campus Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../Homepage.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+              <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+              <li><a class="dropdown-item" href="#">Course Reviews</a></li>
+              <li><a class="dropdown-item" href="#">Course Notes</a></li>
+              <li><a class="dropdown-item" href="#">Campus News</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
             </ul>
-          </div>
-        </div>
-      </nav>
-
-  <section class="Item">
-    <div class="Item_image">
-      <div class="image-container">
-        <div class="photo-main">
-          <img src="../Images/3902762.jpg" class="img-thumbnail" alt="Item Image">
-        </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div class="Item_info">
+  <!-- Responsive Product Detail Section -->
+  <section class="product">
+    <div>
+      <img src="../Images/56063.jpg" class="img-thumbnail" alt="Item image">
+    </div>
+    <div class="details">
       <div class="title">
         <h1>Item Title</h1>
         <span>ID: 123456</span>
       </div>
-
-      <div class="price">
-        BD <span>49.99</span>
-      </div>
-
       <div class="description">
-        <h2>Details</h2>
-        <div class="rating">
-            <a href="ReviewsTable.html">
-            87 rating 4.5 out of 5 <br>
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i>
-            </a>
-          </div>
-        <ul>
-          <li>Name: Sample Item</li>
-          <li>Category: Electronics</li>
-          <li>Status: Available</li>
-          <li>On Stock: 24</li>
-          <li>Detailed description...</li>
-        </ul>
+        <p class="price item-price">Price: BD <span>49.99</span></p>
+        <p class="item-description">Detailed description of the item...</p>
+        <p class="item-category">Category: Example Category</p>
+        <p class="item-status">Status: Available</p>
       </div>
-      <div class="item-actions d-flex gap-2">
-        <button class="btn-style" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-        <button class="btn-style delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
-          <!-- Button to open the offcanvas sidebar -->
-  <button class="btn-style" type="button" title="Comments" data-bs-toggle="offcanvas" data-bs-target="#demo">
-    <i class="fa-solid fa-comment"></i>
-  </button>
-  <a href="MessagesTable.html"> <button class="btn-style" title="Contact to the buyer"> <i class="fa-solid fa-comments"></i> </button></a>
-  <a href="MainListingPage.html" class="back-link"><button class="btn-style back-to-listing" title="Back To Listing"><i class="fa-solid fa-list"></i></button> </a>
-      </div>
-<!-- Comments display part -->
-        <!-- Offcanvas Sidebar -->
-<div class="offcanvas offcanvas-start" id="demo">
-    <div class="offcanvas-header">
-      <h1 class="offcanvas-title"><i class="fa-solid fa-comment"></i> Comments</h1>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <p>Display the comments from the dataset</p>
-      <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#cartModal">Add your comment</button>
-    </div>
-  </div>
-  
 
-<!-- End of comments part-->
-     
+
+      <div class="rating">
+        <a href="Review.html">
+        <p>87 ratings - 4.5 out of 5</p>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+          <button class="btn btn-outline-info btn-sm mt-2">Add Review</button>
+        </a>
+      </div>
+
+      <div class="mt-3">
+        <button class="btn-style" title="Edit" >Edit</button>
+        <button class="btn-style delete-btn" title="Delete">Delete</button>
+      </div>
+
+      <div class="mt-4">
+        <h5>Comments</h5>
+        <textarea class="form-control mb-2" rows="3" placeholder="Add a comment..."></textarea>
+        <button class="btn-style btn btn-primary">Submit Comment</button>
+      </div>
+
+      <a href="MainListingPage.html" class="btn-style btn btn-secondary mt-4"><i class="fa-solid fa-list"></i> Back to Listing</a>
     </div>
   </section>
-
-  <!-- Modal -->
-  <div class="modal fade" id="cartModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-secondary"> <i class="fa-solid fa-comment"></i> Add your comment.</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body fs-5">
-            <div class="comments-section">
-                <textarea placeholder="Add a comment..."></textarea> <br>
-                <button class="comment-btn mt-2 btn btn-info text-white">Submit Comment</button>
-              </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  </div>
 
   <!-- Bootstrap 5 Footer -->
   <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
@@ -165,6 +159,7 @@
       </div>
     </div>
   </footer>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
