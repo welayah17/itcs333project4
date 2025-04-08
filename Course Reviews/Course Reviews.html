@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Reviews</title>
+  <style>
+    body {
+      background-color: #f3f4f6;
+      color: #1f2937;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1d4ed8;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    .section-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media(min-width: 768px) {
+      .section-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(min-width: 1024px) {
+      .section-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .search-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media(min-width: 768px) {
+      .search-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    input[type="search"],
+    select,
+    textarea,
+    input[type="text"],
+    input[type="number"] {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      width: 100%;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+    }
+
+    .btn-add {
+      background-color: #16a34a;
+      color: white;
+    }
+
+    .btn-submit {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .btn-cancel {
+      border: 1px solid #9ca3af;
+      background: none;
+      color: #1f2937;
+    }
+
+    .btn-edit {
+      background-color: #f59e0b;
+      color: white;
+    }
+
+    .btn-delete {
+      background-color: #dc2626;
+      color: white;
+    }
+
+    .card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .pagination button {
+      border: 1px solid #9ca3af;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.375rem;
+    }
+
+    .highlight {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .form-container, .detail-container {
+      max-width: 768px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background-color: #e5e7eb;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .comment {
+      background-color: #f3f4f6;
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a.back-link {
+      border: 1px solid #d1d5db;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Course Reviews</h1>
+  </header>
+
+  <!-- Main Listing Page -->
+  <main>
+    
+    <!-- Search & Filters -->
+    <section class="search-section">
+      <input type="search" placeholder="Search courses...">
+      <select>
+        <option>Filter by Collages</option>
+        <option>Collage of Information Technology</option>
+        <option>Collage of Art</option>
+        <option>Collage of Law</option>
+        <option>Collage of Engineering</option>
+      </select>
+      <select>
+        <option>Sort by Rating</option>
+        <option>Newest First</option>
+        <option>Oldest First</option>
+      </select>
+      <button class="btn-add">+ Add Review</button>
+    </section>
+
+    <!-- Reviews Grid -->
+    <section class="section-grid">
+      <article class="card">
+        <h2>Introduction to AI</h2>
+        <p>By Dr. Alaa | 4.76 / 5</p>
+        <p>Great overview of AI concepts and hands-on projects.</p>
+        <a href="#">Read More</a>
+      </article>
+      <article class="card">
+        <h2>Electrical Circuit</h2>
+        <p>By Dr. Ali Hussain | 3.55 / 5</p>
+        <p>Good overview of Electrical Cercuit </p>
+        <a href="#">Read More</a>
+      </article>
+      <article class="card">
+        <h2>Internet Web Devlopment</h2>
+        <p>By Dr. Jalal Mohammed | 4.03 / 5</p>
+        <p>Great overview of coding language</p>
+        <a href="#">Read More</a>
+      </article>
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button>1</button>
+      <button class="highlight">2</button>
+      <button>3</button>
+    </div>
+  </main>
+
+  <!-- Item Creation Form -->
+  <section class="form-container">
+    <h2>Add New Course Review</h2>
+    <form>
+      <div class="form-group">
+        <label>Course Name <span style="color: red;">*</span></label>
+        <input type="text" required placeholder="e.g., Data Structures">
+      </div>
+      <div class="form-group">
+        <label>Instructor <span style="color: red;">*</span></label>
+        <input type="text" required placeholder="e.g., Prof. Johnson">
+      </div>
+      <div class="form-group">
+        <label>Rating (1–5) <span style="color: red;">*</span></label>
+        <input type="number" required min="1" max="5">
+      </div>
+      <div class="form-group">
+        <label>Your Review <span style="color: red;">*</span></label>
+        <textarea required rows="4" placeholder="Share your experience..."></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Item Detail View -->
+  <section class="detail-container">
+    <h2>Introduction to AI</h2>
+    <p><strong>Instructor:</strong> Dr. Alaa</p>
+    <p><strong>Rating:</strong> ★★★★☆</p>
+    <p>This course covered fundamental concepts in Artificial Intelligence including machine learning, neural networks, and natural language processing. Projects were engaging and helped reinforce concepts.</p>
+    <h2>Electrical Circuit</h2>
+    <p><strong>Instructor:</strong> Dr. Ali Hussain</p>
+    <p><strong>Rating:</strong> ★★★☆☆</p>
+    <p>This coursecover all the base of the electrical circuit thet help the student to be knowlege in this major and can bulid a good circuit</p>
+    <p><strong>Instructor:</strong> Dr. Jalal Mohammed</p>
+    <p><strong>Rating:</strong> ★★★★☆</p>
+    <p>This course should be as contiue for cs student to there background about coding and let the student starting bulding there own web pages and devlop there pages easily by using many language such as HTML, CSS, JS and PHP  , be more knowlege & useability with data SQL to add and Edit in there data </p>
+    
+    <!-- Action Buttons -->
+    <div class="form-group">
+      <button class="btn-edit">Edit</button>
+      <button class="btn-delete">Delete</button>
+      <a href="#" class="back-link">← Back to listing</a>
+    </div>
+
+    <!-- Comments Section -->
+    <div>
+      <h3>Comments</h3>
+      <div class="comment">
+        <p><strong>Hassan Jassim:</strong> I also enjoyed this course. The instructor was great and the way was he do it to explain to us </p>
+      </div>
+      <div class="comment">
+        <p><strong>Fatema Salman :</strong> Would love more real-world examples though to let the student never forget the information and keep it always in her mind </p>
+      </div>
+      <div class="comment">
+        <p><strong>Mariam Mohammed :</strong>Am very happy that i get the course with Dr.jalal because he is very good to explain the idea as simple way and easy for the student to understand  </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Campus Hub</p>
+  </footer>
+
+</body>
+</html>
