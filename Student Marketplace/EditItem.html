@@ -181,23 +181,7 @@
       </div>
     </div>
   </footer>
-      <script>
-        const editBtn = document.getElementById('editBtn');
-        const form = document.getElementById('itemForm');
-      
-        editBtn.addEventListener('click', () => {
-          const inputs = form.querySelectorAll('input, textarea');
-          const isDisabled = inputs[0].disabled;
-      
-          inputs.forEach(input => input.disabled = !isDisabled);
-      
-          editBtn.innerHTML = isDisabled
-            ? '<i class="fa-solid fa-floppy-disk"></i> Save'
-            : '<i class="fa-solid fa-pen-to-square"></i> Edit';
-          editBtn.classList.toggle('btn-success');
-          editBtn.classList.toggle('btn-warning');
-        });
-      </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
       
 </body>
