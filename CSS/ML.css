@@ -10,6 +10,28 @@
     align-items: center;
   }
   
+  .search-bar-responsive {
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .search-bar-responsive {
+      width: 50%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .search-bar-responsive {
+      width: 35%;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .search-bar-responsive {
+      width: 25%;
+    }
+  }
+  
   .search-bar {
     padding-left: 30px; /* Space for the icons */
   }
@@ -82,7 +104,7 @@
     display: inline;
   }
   
-  .pagination a {
+  .pagination a,   .pagination i {
     text-decoration: none;
     border: 1px solid #ccc;
     border-radius: 3px;
