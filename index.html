@@ -7,6 +7,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
      <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     <link rel="stylesheet" href="CSS/Main.css">
     <title>Home Page</title>
     <style>
         a, h1{
@@ -30,29 +31,101 @@
         height: 250px;
       }
     }
+    body {
+  background: linear-gradient(135deg, #f0f0ff, #ffffff);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+    main h2 {
+  
+  color: #5b0dcb;
+  margin-bottom: 40px;
+}
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+}
+.card:hover {
+    transform: translateY(-4px);
+  }
+
+.card h5 {
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+  margin-top: 0;
+  color: #5b0dcb;
+  display: block;
+}
+
+.card-btn button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  transition: background-color 0.2s ease;
+}
+.collapse-content a {
+    display: block;
+    padding: 0.25rem 0;
+    color: #0d6efd;
+    text-decoration: none;
+  }
+
+  .collapse-content a:hover {
+    text-decoration: none;
+  }
+
+  .explore-btn {
+    background-color: #f8f2e4;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-family: 'Georgia', serif;
+    padding: 0.4rem 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .collapse-content {
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
   
     </style>
 </head>
 <body>
-    <!-- Header -->
+     <!-- Header -->
        <!-- Navigation Bar-->
    <!-- Bootstrap 5 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Campus Hub</a>
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold fs-4" href="index.html">Campus Hub</a>
+  
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+  
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Homepage.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
+  
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#Services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Services
             </a>
-            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="servicesDropdown">
               <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
               <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
               <li><a class="dropdown-item" href="#">Course Reviews</a></li>
@@ -62,14 +135,17 @@
               <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
             </ul>
           </li>
+  
           <li class="nav-item">
-            <a class="nav-link" href="#Services">Booking</a>
+            <a class="nav-link" href="#About">About</a>
           </li>
+  
+          <!-- Account Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Account
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
               <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
               <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
               <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
@@ -78,11 +154,12 @@
             </ul>
           </li>
           <li class="nav-item">
-            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+           <div class="search-bar">
+             <input type="text" placeholder="Search Campus Hub..." />
+             <button title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+         </div>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -163,126 +240,203 @@
       </div>
       
       
+   
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="Services">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="Services"> <!-- Start of Card row -->
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5>Events Calendar</h5>
+                    <p>Stay updated with campus events and activities.</p>
+                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseOne">
+                    <button>Explore</button>
+                    </a>
+                    <div id="collapseOne" class="collapse collapse-content show" data-bs-parent="#Services">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5>Study Group Finder</h5>
+                    <p>Find and join study groups on your campus.</p>
+                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseTwo"><button>Explore</button></a>
+                    <div id="collapseTwo" class="collapse collapse-content" data-bs-parent="#Services">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5>Course Reviews</h5>
+                    <p>Read and share reviews on campus courses.</p>
+                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseThree"><button>Explore</button></a>
+                    <div id="collapseThree" class="collapse collapse-content" data-bs-parent="#Services">
+
+                    </div>
+               </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5>Course Notes</h5>
+                    <p>Access and contribute course notes and materials.</p>
+                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseFour"><button>Explore</button></a>
+                    <div id="collapseFour" class="collapse collapse-content" data-bs-parent="#Services">
+
+                    </div>
+               </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5>Campus News</h5>
+                    <p>Stay informed with the latest campus news and updates.</p>
+                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseFive"><button>Explore</button></a>
+                    <div id="collapseFive" class="collapse collapse-content" data-bs-parent="#Services">
+
+                    </div>
+               </div> 
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                   <h5>Club Activities</h5>
+                   <p>Discover and join student clubs and activities.</p>
+                   <a class="card-btn" data-bs-toggle="collapse" href="#collapseSix"><button>Explore</button></a>
+                   <div id="collapseSix" class="collapse collapse-content" data-bs-parent="#Services">
+                    <a href="Club Activities/page1.html"> 📌 Club Activities </a>
+                    <a href="Club Activities/page2.html"> ➕ Add new activity</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                   <h5>Student Marketplace</h5>
+                   <p>Buy, sell, and exchange items with fellow students.</p>
+                   <a class="card-btn" data-bs-toggle="collapse" href="#collapseSeven"><button>Explore</button></a>
+                   <div id="collapseSeven" class="collapse collapse-content" data-bs-parent="#Services">
+                    <a href="Student Marketplace/MainListingPage.html"> 🛒 Student Marketplace Listing</a>
+                    <a href="Student Marketplace/ItemCreationForm.html"> ➕ Add Item</a>
+                    <a href="Student Marketplace/EditItem.html"> ✏️ Edit Item </a>
+                   </div>
+            </div>
+            </div>
+        </div>
   
-      <!-- Card 1 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseOne">
-                Events Calendar
-            </a>
+    </div> <!-- End of Card row -->
+    <hr class="hr mt-5">
+    <h1 class="display-4 text-center mb-4 mt-4"> Services </h1> <br>
+    <div class="listing-container">
+        <header class="listing-header">
+          <div class="search-container">
+            <i class="search-icon fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="search-bar" placeholder="Search for items... ">
+            <i class="filter-icon fa-solid fa-filter"></i>
+        </div>
+
+        <div class="sorting-controls">
+          <select>
+            <option value="price">Sort by Price</option>
+            <option value="date">Sort by Date</option>
+            <option value="category">Sort by category</option>
+          </select>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+              <img src="../Images/3902762.jpg" class="note-img img-fluid mb-3" alt="Textbook">
+              <div class="note-meta">April 12, 2025 • Marketplace</div>
+              <div class="note-title">Used Biology Textbook (BIO101)</div>
+              <div class="note-price">$25.00</div>
+              <div class="note-body mb-3">
+                Lightly used. No markings inside. Great for first-year students taking intro to biology. Pick up on campus or request delivery.
+              </div>
+              <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                <a href="#" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                <a href="#" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+              </div>
+              
+            </div>
           </div>
-          <div id="collapseOne" class="collapse show" data-bs-parent="#Services">
-            <div class="card-body">
-              Content for card 1
+          <div class="col">
+            <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+              <img src="../Images/2452376.jpg" class="note-img img-fluid mb-3" alt="Library photo">
+              <div class="note-meta">April 12, 2025 • Campus News</div>
+              <div class="note-title">New Study Spaces Open in Library</div>
+              <div class="note-price">$45.00</div>
+              <div class="note-body mb-3">
+                The university has unveiled newly renovated study areas on the second floor of the library, aimed at encouraging collaborative learning...
+              </div>
+              <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                <a href="#" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                <a href="#" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+              </div>
+              
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+              <img src="../Images/4163433.jpg" class="note-img img-fluid mb-3" alt="Earth Week">
+              <div class="note-meta">April 11, 2025 • Events</div>
+              <div class="note-title">Earth Week Festival This Weekend</div>
+              <div class="note-price">$45.00</div>
+              <div class="note-body  mb-3">
+                Join student clubs and faculty for a weekend of eco-friendly fun, food, and workshops. Activities include plant swaps, talks, and art booths...
+              </div>
+              <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                <a href="#" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                <a href="#" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+              <img src="../Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="note-img img-fluid mb-3" alt="Earth Week">
+              <div class="note-meta">April 10, 2025 • Course Reviews</div>
+              <div class="note-title">Top-Rated Spring Courses by Students</div>
+              <div class="note-price">$45.00</div>
+              <div class="note-body  mb-3">
+                Curious what classes your peers love most this semester? Here's a roundup of the top-rated electives and required courses by department...
+              </div>
+              <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                <a href="#" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                <a href="#" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col">
+            <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+              <img src="../Images/56063.jpg" class="note-img img-fluid mb-3" alt="Calculator">
+              <div class="note-meta">April 11, 2025 • Marketplace</div>
+              <div class="note-title">TI-84 Plus Graphing Calculator</div>
+              <div class="note-price">$45.00</div>
+              <div class="note-body mb-3">
+                Barely used and in perfect condition. Essential for most STEM classes. Battery included.
+              </div>
+              <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                <a href="#" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                <a href="#" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+              </div>
+              
             </div>
           </div>
         </div>
-      </div>
-  
-      <!-- Card 2 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo">
-                Study Group Finder
-            </a>
-          </div>
-          <div id="collapseTwo" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-              Content for card 2
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 3 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseThree">
-                Course Reviews
-            </a>
-          </div>
-          <div id="collapseThree" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-              Content for card 3
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 4 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseFour">
-                Course Notes
-            </a>
-          </div>
-          <div id="collapseFour" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-              Content for card 4
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 5 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseFive">
-                Campus News
-            </a>
-          </div>
-          <div id="collapseFive" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-              Content for card 5
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 6 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseSix">
-                Club Activities
-            </a>
-          </div>
-          <div id="collapseSix" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-             <a href="Club Activities/page1.html"> Club Activities </a> <br>
-             <a href="Club Activities/page2.html"> Add new activity</a> <br>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 7 -->
-      <div class="col">
-        <div class="card h-100 text-center">
-          <div class="card-header">
-            <a class="btn w-100" data-bs-toggle="collapse" href="#collapseSeven">
-                Student Marketplace
-            </a>
-          </div>
-          <div id="collapseSeven" class="collapse" data-bs-parent="#Services">
-            <div class="card-body">
-              <a href="Student Marketplace/MainListingPage.html"> Student Marketplace Listing Page </a> <br>
-              <a href="Student Marketplace/ItemCreationForm.html"> Student Marketplace Add Item Page </a> <br>
-              <a href="Student Marketplace/EditItem.html"> Student Marketplace Edit Item Page</a> <br>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-    </div>
-  </div>
+
+    
+  </div> <!-- End of Container -->
   
 <!-- Bootstrap 5 Footer -->
 <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
