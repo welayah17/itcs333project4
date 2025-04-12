@@ -64,14 +64,21 @@
     <div class="container custom-box">
       <h1 class="main-title mb-4 text-center">Study Group Finder</h1>
 
-      <!-- Search Box -->
+      <!-- Search Form -->
       <div class="row justify-content-center mb-4">
-        <div class="col-md-6 mb-2">
-          <input type="text" class="form-control" id="search-box" placeholder="Search study groups..." />
+        <div class="col-md-4 mb-2">
+          <form action="" method="get" onsubmit="checkGroupExistence(this.subject.value.toLowerCase()); return false;">
+            <input type="text" class="form-control" placeholder="Search study groups..." name="subject" id="subject" required />
+          </form>
         </div>
         <div class="col-md-2 mb-2">
-          <button class="btn btn-primary w-100" id="search-btn">Search</button>
+          <button class="btn btn-primary w-100" type="submit">Search</button>
         </div>
+      </div>
+
+      <!-- Group Found Message -->
+      <div id="message" class="alert alert-danger text-center" style="display:none;">
+        Sorry, no study group is available for this subject. Please check back later.
       </div>
 
       <!-- Add Group Button -->
@@ -81,7 +88,7 @@
         </a>
       </div>
 
-      <!-- Scheduled Study Groups -->
+      <!-- Cards (Study Groups) -->
       <div class="row g-4 justify-content-center">
         <div class="col-md-5">
           <div class="card h-100 shadow-sm border-0">
@@ -101,24 +108,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body bg-light rounded">
-              <h5 class="card-title text-primary fw-bold">📖 History Study Group</h5>
-              <p class="card-text text-muted">Meeting Time: Fridays at 4 PM</p>
-              <a href="join-history.html" class="btn btn-outline-primary">Join</a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more cards here if needed -->
       </div>
-
-      <!-- Message for Subjects without Pages -->
-      <div class="alert alert-info mt-5 text-center" id="subject-message" style="display: none;">
-        <strong>مادة [اسم المادة] لا توجد لها محاضرة حالياً!</strong><br />
-        الطالب يحتاج إلى مجموعة دراسة لهذه المادة قريبًا. سيتم إضافتها قريبًا.
-      </div>
-
     </div>
   </section>
 
@@ -141,20 +131,21 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JavaScript to handle search -->
   <script>
-    // Search functionality
-    document.getElementById("search-btn").addEventListener("click", function () {
-      var searchValue = document.getElementById("search-box").value.toLowerCase();
-      var availableSubjects = ["math", "science", "history", "computer-science", "english"];
-      
-      // Check if search value matches any of the available subjects
-      if (availableSubjects.includes(searchValue)) {
-        window.location.href = searchValue + ".html";
+    function checkGroupExistence(subject) {
+      // Check if the group exists for the subject
+      var availableGroups = ['math', 'science', 'history', 'computerscience', 'english']; // Add available groups here
+      if (!availableGroups.includes(subject.toLowerCase())) {
+        document.getElementById("message").style.display = 'block';
       } else {
-        document.getElementById("subject-message").style.display = "block";
-        document.getElementById("subject-message").innerHTML = "<strong>مادة " + searchValue.charAt(0).toUpperCase() + searchValue.slice(1) + " لا توجد لها محاضرة حالياً!</strong><br /> الطالب يحتاج إلى مجموعة دراسة لهذه المادة قريبًا.";
+        document.getElementById("message").style.display = 'none';
+        // Redirect to the specific subject page if it exists
+        location.href = subject + '.html';
       }
-    });
+    }
   </script>
+
 </body>
 </html>
