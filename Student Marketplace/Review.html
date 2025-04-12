@@ -133,59 +133,17 @@
     </div>
   </div>
 
-    <!-- Bootstrap 5 Footer -->
-    <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-        <div class="container">
-          <div class="mb-3">
-            <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
-            <a href="#" class="text-white me-4"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-white me-4"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
-          </div>
-          <div>
-            <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
-          </div>
-        </div>
-      </footer>
-      
-  <script>
-    const stars = document.querySelectorAll('#starRating i');
-    const ratingSelect = document.getElementById('rating');
-    let currentRating = 0;
-  
-    // Handle star click (set rating)
-    stars.forEach((star, index) => {
-      star.addEventListener('click', () => {
-        currentRating = index + 1;
-        ratingSelect.value = currentRating;
-        updateStarColors(currentRating);
-      });
-  
-      // Hover effect
-      star.addEventListener('mouseover', () => {
-        updateStarColors(index + 1);
-      });
-  
-      // Remove hover effect
-      star.addEventListener('mouseout', () => {
-        updateStarColors(currentRating);
-      });
-    });
-  
-    // Handle dropdown change
-    ratingSelect.addEventListener('change', () => {
-      currentRating = parseInt(ratingSelect.value);
-      updateStarColors(currentRating);
-    });
-  
-    // Update star colors
-    function updateStarColors(value) {
-      stars.forEach((star, idx) => {
-        star.classList.toggle('active', idx < value);
-      });
-    }
-  </script>
+  <!-- Bootstrap 5 Footer -->
+  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
   
 
 
