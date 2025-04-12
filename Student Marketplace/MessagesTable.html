@@ -7,6 +7,7 @@
     <title>Send Message</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../CSS/Main.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -87,22 +88,27 @@
     <div class="container form-container">
         <h2 class="text-center mb-4">Send a Message</h2>
         <form action="send_message.php" method="POST">
-            <div class="mb-3">
+            <div class="form-group mb-3">
                 <label for="sender_id" class="form-label">Sender ID</label>
-                <input type="number" id="sender_id" name="sender_id" class="form-control" required>
+                <input type="number" id="sender_id" name="sender_id" class="form-control" value="Sender ID" disabled>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group mb-3">
                 <label for="receiver_id" class="form-label">Receiver ID</label>
-                <input type="number" id="receiver_id" name="receiver_id" class="form-control" required>
+                <input type="number" id="receiver_id" name="receiver_id" class="form-control" value="Receiver ID" disabled>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group mb-3">
                 <label for="listing_id" class="form-label">Listing ID</label>
-                <input type="number" id="listing_id" name="listing_id" class="form-control" required>
+                <input type="number" id="listing_id" name="listing_id" class="form-control" value="Listing ID" disabled>
             </div>
+            <!-- Phone Number -->
+            <div class="form-group mb-3">
+              <label for="phone" class="form-label">Phone Number:</label>
+              <input type="tel" id="phone" class="form-control" name="phone" placeholder="Seller phone number .." value="Seller phone number .." disabled>
+              </div>
 
-            <div class="mb-3">
+            <div class="form-group mb-3">
                 <label for="content" class="form-label">Message</label>
                 <textarea id="content" name="content" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
             </div>

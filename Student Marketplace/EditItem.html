@@ -95,37 +95,38 @@
         <!-- Title -->
         <div class="mb-3">
           <label for="itemTitle" class="form-label">Item Title</label>
-          <input type="text" class="form-control" id="itemTitle" placeholder="Item Title" value="Item Title" disabled title="Item Title">
+          <input type="text" class="form-control" id="itemTitle" placeholder="Item Title" value="Item Title" title="Item Title">
         </div>
       
         <!-- Price -->
         <div class="mb-3">
           <label for="itemPrice" class="form-label">Price (BD)</label>
-          <input type="text" class="form-control" id="itemPrice" placeholder="49.99" value="49.99" disabled title="Item Price">
+          <input type="text" class="form-control" id="itemPrice" placeholder="49.99" value="49.99" title="Item Price">
         </div>
       
         <!-- Category -->
         <div class="mb-3">
           <label for="itemCategory" class="form-label">Category</label>
-          <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics" disabled title="Item Category">
+          <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics" title="Item Category">
         </div>
       
         <!-- Status -->
         <div class="mb-3">
           <label for="itemStatus" class="form-label">Status</label>
-          <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available" disabled title="Availability Status">
+          <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available" title="Availability Status">
         </div>
       
-        <!-- Stock -->
-        <div class="mb-3">
-          <label for="itemStock" class="form-label">On Stock</label>
-          <input type="number" class="form-control" id="itemStock" placeholder="24" value="24" disabled title="Stock Quantity">
-        </div>
+         <!-- Phone Number -->
+         <div class="form-group">
+          <label for="phone" class="form-label">Phone Number:</label>
+          <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" value="Seller phone number .." pattern="[0-9]{10,15}" required>
+          <small class="form-text text-muted">Include only numbers, e.g., 1234567890</small>
+          </div>
       
         <!-- Description -->
         <div class="mb-3">
           <label for="itemDescription" class="form-label">Detailed Description</label>
-          <textarea class="form-control" id="itemDescription" placeholder="Enter detailed description..." rows="4" disabled title="Item Description">Detailed description...</textarea>
+          <textarea class="form-control" id="itemDescription" placeholder="Enter detailed description..." rows="4" title="Item Description">Detailed description...</textarea>
         </div>
       
         <!-- Action Buttons -->
