@@ -1,11 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="course review .css">
+  <title>Course Reviews</title>
 </head>
 <body>
-    
+  <header>
+    <h1>Course Reviews</h1>
+  </header>
+  <main>
+    <section class="search-section">
+      <input type="search" placeholder="Search courses...">
+      <select>
+        <option>Filter by Collages</option>
+        <option>Collage of Information Technology</option>
+        <option>Collage of Art</option>
+        <option>Collage of Law</option>
+        <option>Collage of Engineering</option>
+      </select>
+      <select>
+        <option>Sort by Rating</option>
+        <option>Newest First</option>
+        <option>Oldest First</option>
+      </select>
+      <button class="btn-add">+ Add Review</button>
+    </section>
+    <section class="section-grid">
+      <article class="card">
+        <h2>Introduction to AI</h2>
+        <p>By Dr. Alaa | 4.76 / 5</p>
+        <p>Great overview of AI concepts and hands-on projects.</p>
+        <a href="#">Read More</a>
+      </article>
+      <article class="card">
+        <h2>Electrical Circuit</h2>
+        <p>By Dr. Ali Hussain | 3.55 / 5</p>
+        <p>Good overview of Electrical Cercuit </p>
+        <a href="#">Read More</a>
+      </article>
+      <article class="card">
+        <h2>Internet Web Devlopment</h2>
+        <p>By Dr. Jalal Mohammed | 4.03 / 5</p>
+        <p>Great overview of coding language</p>
+        <a href="#">Read More</a>
+      </article>
+    </section>
+
+    <div class="pagination">
+      <button>1</button>
+      <button class="highlight">2</button>
+      <button>3</button>
+    </div>
+  </main>
+
+  <section class="form-container">
+    <h2>Add New Course Review</h2>
+    <form>
+      <div class="form-group">
+        <label>Course Name <span style="color: red;">*</span></label>
+        <input type="text" required placeholder="e.g., Data Structures">
+      </div>
+      <div class="form-group">
+        <label>Instructor <span style="color: red;">*</span></label>
+        <input type="text" required placeholder="e.g., Prof. Johnson">
+      </div>
+      <div class="form-group">
+        <label>Rating (1–5) <span style="color: red;">*</span></label>
+        <input type="number" required min="1" max="5">
+      </div>
+      <div class="form-group">
+        <label>Your Review <span style="color: red;">*</span></label>
+        <textarea required rows="4" placeholder="Share your experience..."></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="detail-container">
+    <h2>Introduction to AI</h2>
+    <p><strong>Instructor:</strong> Dr. Alaa</p>
+    <p><strong>Rating:</strong> ★★★★☆</p>
+    <p>This course covered fundamental concepts in Artificial Intelligence including machine learning, neural networks, and natural language processing. Projects were engaging and helped reinforce concepts.</p>
+    <h2>Electrical Circuit</h2>
+    <p><strong>Instructor:</strong> Dr. Ali Hussain</p>
+    <p><strong>Rating:</strong> ★★★☆☆</p>
+    <p>This coursecover all the base of the electrical circuit thet help the student to be knowlege in this major and can bulid a good circuit</p>
+    <p><strong>Instructor:</strong> Dr. Jalal Mohammed</p>
+    <p><strong>Rating:</strong> ★★★★☆</p>
+    <p>This course should be as contiue for cs student to there background about coding and let the student starting bulding there own web pages and devlop there pages easily by using many language such as HTML, CSS, JS and PHP  , be more knowlege & useability with data SQL to add and Edit in there data </p>
+
+    <div class="form-group">
+      <button class="btn-edit">Edit</button>
+      <button class="btn-delete">Delete</button>
+      <a href="#" class="back-link">← Back to listing</a>
+    </div>
+
+    <div>
+      <h3>Comments</h3>
+      <div class="comment">
+        <p><strong>Hassan Jassim:</strong> I also enjoyed this course. The instructor was great and the way was he do it to explain to us </p>
+      </div>
+      <div class="comment">
+        <p><strong>Fatema Salman :</strong> Would love more real-world examples though to let the student never forget the information and keep it always in her mind </p>
+      </div>
+      <div class="comment">
+        <p><strong>Mariam Mohammed :</strong>Am very happy that i get the course with Dr.jalal because he is very good to explain the idea as simple way and easy for the student to understand  </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Campus Hub</p>
+  </footer>
+
 </body>
 </html>
