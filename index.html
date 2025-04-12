@@ -8,8 +8,13 @@
      <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
      <link rel="stylesheet" href="CSS/Main.css">
+     <link rel="stylesheet" href="CSS/MLP.css">
     <title>Home Page</title>
     <style>
+        html {
+  scroll-behavior: smooth;
+}
+
         a, h1{
             text-decoration: none;
             color: #6a11cb;
@@ -241,7 +246,19 @@
       
       
    
-
+      <div class="row justify-content-center text-center mb-4">
+        <div class="col-lg-8">
+            <section  id="About">
+          <h2 class="fw-bold">About Campus Hub</h2>
+          <p class="text-muted mt-3">
+            Campus Hub is your all-in-one platform for staying connected, informed, and involved on campus.
+            Whether you're looking for upcoming events, academic resources, student clubs, or a vibrant marketplace—
+            we bring it all together in one place.
+          </p>
+        </section>
+        </div>
+      </div>
+      
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="Services"> <!-- Start of Card row -->
         <div class="col">
@@ -336,21 +353,56 @@
     </div> <!-- End of Card row -->
     <hr class="hr mt-5">
     <h1 class="display-4 text-center mb-4 mt-4"> Services </h1> <br>
-    <div class="listing-container">
-        <header class="listing-header">
-          <div class="search-container">
-            <i class="search-icon fa-solid fa-magnifying-glass"></i>
-            <input type="text" class="search-bar" placeholder="Search for items... ">
-            <i class="filter-icon fa-solid fa-filter"></i>
+    <header class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-3">
+        <!-- Search and Filter -->
+        <div class="input-group search-bar-responsive">
+          <span class="input-group-text"><i class="search-icon fas fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Search for items...">
+          <span class="input-group-text">
+            <div class="dropdown">
+              <button type="button" data-bs-toggle="dropdown" class="btn p-0 border-0 bg-transparent">
+                <i class="filter-icon fas fa-filter"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">Events Calendar</li>
+                <li class="dropdown-item">Study Group Finder</li>
+                <li class="dropdown-item">Course Reviews</li>
+                <li class="dropdown-item">Course Notes</li>
+                <li class="dropdown-item">Campus News</li>
+                <li class="dropdown-item">Club Activities</li>
+                <li class="dropdown-item">Student Marketplace</li>
+              </ul>
+            </div>
+          </span>
+          
         </div>
-
+    
+        <!-- Sort Dropdown -->
         <div class="sorting-controls">
-          <select>
-            <option value="price">Sort by Price</option>
-            <option value="date">Sort by Date</option>
-            <option value="category">Sort by category</option>
-          </select>
+        <select class="form-select w-auto">
+          <option selected>Sort by Price</option>
+          <option value="date">Sort by Date</option>
+          <option value="popularity">Sort by Popularity</option>
+        </select>
         </div>
+    
+        <!-- Add New Item -->
+            <div class="dropdown btn btn-info">
+                <button type="button" data-bs-toggle="dropdown" class="btn text-white p-0 border-0 bg-transparent">
+                    Add New Item
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="Events Calendar/EventsCalendar.html">Add New Event</a></li>
+                    <li><a class="dropdown-item" href="Study Group Finder/add-group.html">Add New Study Group</a></li>
+                    <li><a class="dropdown-item" href="Course Reviews/CourseReviews.html">Add New Course Reviews</a></li>
+                    <li><a class="dropdown-item" href="Course Notes/Cours-notes.html">Add New Course Note</a></li>
+                    <li><a class="dropdown-item" href="Campus News/phase1/add-news.html">Add New Campus News</a></li>
+                    <li><a class="dropdown-item" href="Club Activities/page2.html">Add New Club Activities</a></li>
+                    <li><a class="dropdown-item" href="Student Marketplace/ItemCreationForm.html">Add New Item in Student Marketplace</a></li>
+                </ul>
+              </div>
+        
+      </header>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
@@ -434,25 +486,33 @@
             </div>
           </div>
         </div>
-
+      <!-- Pagination -->
+      <nav class="pagination-controls mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#"><i class="pagination fa-solid fa-backward"></i></a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" href="#"><i class="pagination fa-solid fa-forward"></i></a></li>
+        </ul>
+      </nav>
+    </div>
     
   </div> <!-- End of Container -->
   
 <!-- Bootstrap 5 Footer -->
-<footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-<div class="container">
-  <div class="mb-3">
-    <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
-    <a href="#" class="text-white me-4"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#" class="text-white me-4"><i class="fa-brands fa-twitter"></i></a>
-    <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
-  </div>
-  <div>
-    <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
-  </div>
-</div>
-</footer>
+  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
