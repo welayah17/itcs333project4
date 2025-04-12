@@ -1,0 +1,163 @@
+.header {
+    background-color: #6b46c1;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main-nav {
+    background-color: #f3e8ff;
+    padding: 1rem;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #4c1d95;
+    font-weight: 500;
+}
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+}
+
+.search-bar button {
+    padding: 0.5rem 1rem;
+    background-color: #6b46c1;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+}
+
+.intro-section {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.intro-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4c1d95;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #4c1d95;
+}
+
+.feature-card p {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.read-more-btn {
+    background-color: #6b46c1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background-color: #553c9a;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    background-color: #6b46c1;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #e9d8fd;
+    color: #4c1d95;
+    margin-top: 2rem;
+}
+
+.news-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.news-detail .date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.news-detail .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #6b46c1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.news-detail .back-link:hover {
+    text-decoration: underline;
+}
