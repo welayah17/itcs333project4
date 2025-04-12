@@ -87,7 +87,7 @@
       <div class="container form-container"> <!-- Start of Container -->
         <div class="row justify-content-center"> <!-- Start of row -->
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12"> <!-- Responsive width --> <!-- Start of col -->
-    <form id="AddItem" action="submit_listing.php" method="POST" enctype="multipart/form-data">
+    <form id="AddItem" action="ItemCreationActions.html" method="POST" enctype="multipart/form-data">
       <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
         <h6 class="mb-0">Students Marketplace:</h6>
         <h2 class="fw-bold mb-0">Add a New Item</h2>
@@ -115,7 +115,7 @@
             <!-- Phone Number -->
             <div class="form-group">
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10,15}" required>
+            <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" pattern="[0-9]{8}" required>
             <small class="form-text text-muted">Include only numbers, e.g., 1234567890</small>
             </div>
 
@@ -152,7 +152,7 @@
             
 <!-- Submit Button -->
 <div class="form-group d-flex">
-  <button type="submit" class="btn btn-info me-2 text-white">Add Item</button>
+  <a href="ItemCreationActions.html"><button type="submit" class="btn btn-info me-2 text-white">Add Item</button></a>
   <button type="reset" class="btn btn-secondary me-2 cancel-btn">Cancel</button>
   <button type="button" class="btn btn-dark back-btn" onclick="history.back()">Back</button>
 </div>
