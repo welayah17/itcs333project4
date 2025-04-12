@@ -1,1 +1,206 @@
+<!-- 202004468 NOOR AHMED MOHAMED ALMARAAJ -->
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background for a soft look */
+}
 
+.header {
+    background-color: #ffcc00; /* Soft butter yellow */
+    color: #333; /* Darker text for contrast */
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.navbar {
+    background-color: #fff; /* White background for navbar */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #ffcc00; /* Match the header color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.navbar a:hover {
+    color: #e6b800; /* Darker yellow on hover */
+}
+
+.container {
+    padding: 20px;
+}
+
+h2, h3 {
+    margin: 10px 0;
+    color: #333; /* Darker text for headings */
+}
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-bar input,
+.search-bar select {
+    padding: 10px;
+    margin-right: 10px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-button {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.add-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 10px; /* More rounded corners */
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s; /* Added shadow transition */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+.view-button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.view-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.pagination a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.form-section, .detail-section {
+    margin-top: 40px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Darker text for labels */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.required {
+    color: red;
+}
+
+.submit-button {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.submit-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.cancel-button {
+    background-color: #6c757d; /* Gray button */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.cancel-button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+.edit-button, .delete-button, .back-button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.edit-button:hover, .delete-button:hover, .back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.comments-section {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.footer {
+    background-color: #f8f9fa; /* Light gray background */
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
