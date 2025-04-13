@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="../CSS/Main.css">
     <link rel="stylesheet" href="../CSS/EI.css">
  
-    <title>Document</title>
+    <title>SM: Edit Item</title>
 </head>
 <body>
-    <!-- Bootstrap 5 Navbar -->
      <!-- Header -->
        <!-- Navigation Bar-->
    <!-- Bootstrap 5 Navbar -->
@@ -87,48 +86,60 @@
             </a>
         </div>
       
-        <!-- Image Preview -->
-        <div class="mb-4 text-center">
-          <img src="../Images/56063.jpg" class="img-thumbnail" alt="Item Image" id="itemImage" title="Item Image" style="max-width: 200px;">
-        </div>
-      
-        <!-- Title -->
-        <div class="mb-3">
-          <label for="itemTitle" class="form-label">Item Title</label>
-          <input type="text" class="form-control" id="itemTitle" placeholder="Item Title" value="Item Title" title="Item Title">
-        </div>
-      
-        <!-- Price -->
-        <div class="mb-3">
-          <label for="itemPrice" class="form-label">Price (BD)</label>
-          <input type="text" class="form-control" id="itemPrice" placeholder="49.99" value="49.99" title="Item Price">
-        </div>
-      
-        <!-- Category -->
-        <div class="mb-3">
-          <label for="itemCategory" class="form-label">Category</label>
-          <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics" title="Item Category">
-        </div>
-      
-        <!-- Status -->
-        <div class="mb-3">
-          <label for="itemStatus" class="form-label">Status</label>
-          <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available" title="Availability Status">
-        </div>
-      
-         <!-- Phone Number -->
-         <div class="form-group">
-          <label for="phone" class="form-label">Phone Number:</label>
-          <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" value="Seller phone number .." pattern="[0-9]{8}" required>
-          <small class="form-text text-muted">Include only numbers, e.g., 1234567890</small>
-          </div>
-      
-        <!-- Description -->
-        <div class="mb-3">
-          <label for="itemDescription" class="form-label">Detailed Description</label>
-          <textarea class="form-control" id="itemDescription" placeholder="Enter detailed description..." rows="4" title="Item Description">Detailed description...</textarea>
-        </div>
-      
+    <!-- Image Preview -->
+<div class="mb-4 text-center">
+  <img src="../Images/56063.jpg" class="img-thumbnail" alt="Item Image" id="itemImage" title="Item Image" style="max-width: 200px;">
+</div>
+
+<!-- Title -->
+<div class="mb-3">
+  <label for="itemTitle" class="form-label">Item Title</label>
+  <input type="text" class="form-control" id="itemTitle" placeholder="Item Title" value="Item Title"
+         pattern="^[A-Za-z0-9 ,.?!'-]{3,100}$"
+         title="Title should be 3–100 characters and can include letters, numbers, and basic punctuation.">
+</div>
+
+<!-- Price -->
+<div class="mb-3">
+  <label for="itemPrice" class="form-label">Price (BD)</label>
+  <input type="text" class="form-control" id="itemPrice" placeholder="itemPrice" value="49.99"
+         pattern="^\d+(\.\d{1,2})?$"
+         title="Enter a valid price (e.g., 10 or 49.99)">
+</div>
+
+<!-- Category -->
+<div class="mb-3">
+  <label for="itemCategory" class="form-label">Category</label>
+  <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics"
+         pattern="^[A-Za-z\s]{3,50}$"
+         title="Category should be 3–50 letters only.">
+</div>
+
+<!-- Status -->
+<div class="mb-3">
+  <label for="itemStatus" class="form-label">Status</label>
+  <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available"
+         pattern="^(Available|Sold|Pending)$"
+         title="Status must be either: Available, Sold, or Pending.">
+</div>
+
+<!-- Phone Number -->
+<div class="form-group">
+  <label for="phone" class="form-label">Phone Number:</label>
+  <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number"
+         value="Seller phone number .." pattern="^[0-9]{8}$"
+         title="Phone number must be exactly 8 digits." required>
+  <small class="form-text text-muted">Include only numbers, e.g., 12345678</small>
+</div>
+
+<!-- Description -->
+<div class="mb-3">
+  <label for="itemDescription" class="form-label">Detailed Description</label>
+  <textarea class="form-control" id="itemDescription" placeholder="Enter detailed description..." rows="4"
+            pattern="^[\s\S]{10,1000}$"
+            title="Description should be between 10 and 1000 characters.">Detailed description...</textarea>
+</div>
+
         <!-- Action Buttons -->
         <div class="d-flex gap-2 flex-wrap">
           <button type="submit" class="btn btn-warning" id="editBtn" title="Edit"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
