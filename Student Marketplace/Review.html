@@ -87,17 +87,17 @@
     <div class="card shadow-lg">
       <div class="card-body">
         <h2 class="card-title text-center mb-4">Submit a Review</h2>
-        <form action="submit_review.php" method="POST">
+        <form action="ReviewAction.html">
           <!-- Reviewer ID -->  
           <div class="mb-3">
             <label for="reviewer_id" class="form-label">Your User ID</label>
-            <input type="number" id="reviewer_id" name="reviewer_id" class="form-control" required>
+            <input type="number" id="reviewer_id" name="reviewer_id" placeholder="Reviewer Id" value="Reviewer Id" class="form-control">
           </div>
 
           <!-- Reviewed User ID -->
           <div class="mb-3">
             <label for="reviewed_user_id" class="form-label">User ID of the Person You're Reviewing</label>
-            <input type="number" id="reviewed_user_id" name="reviewed_user_id" class="form-control" required>
+            <input type="number" id="reviewed_user_id" name="reviewed_user_id"  placeholder="Reviewed User Id" value="Reviewed User Id" class="form-control">
           </div>
 
           <!-- Rating -->
