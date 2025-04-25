@@ -18,12 +18,11 @@ setInterval(function () {
         day.textContent = i;
         day.onclick = () => selectDay(day);
         
-        // التحقق مما إذا كان اليوم يحتوي على حدث
         if (events[i]) {
             day.classList.add('event');
             let eventLabel = document.createElement('div');
             eventLabel.className = 'event-name';
-            eventLabel.textContent = events[i]; // عرض اسم الحدث تحت رقم اليوم
+            eventLabel.textContent = events[i];  
             day.appendChild(eventLabel);
         }
         calendar.appendChild(day);
