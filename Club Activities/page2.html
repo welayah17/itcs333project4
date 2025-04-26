@@ -1,52 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Add Activity - Campus Hub</title>
+    <title>Add Club Activity</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Campus Hub</header>
-    
-    <nav>
-        <ul>
-            <li><a href="page1.html" class="add-group">+ Search for Activity</a></li>
-        </ul>
-    </nav>
-    
+    <header>Campus Hub - Add Activity</header>
+
     <main>
-        <h1>Add New Activity</h1>
-        <form>
-            <label>Title*
-                <input type="text" required placeholder="e.g., Photo Exhibition">
-            </label>
-            
-            <label>Date*
-                <input type="date" required>
-            </label>
-            
-            <label>Club*
-                <select required>
-                    <option value="" disabled selected>Select club</option>
-                    <option>Photography Club</option>
-                    <option>Reading Club</option>
-                    <option>Spanish Club</option>
+        <form id="activityForm">
+            <h2>Add New Club Activity</h2>
+            <label>
+                Title:
+                <input type="text" id="title" required>
+            </label><br>
+            <label>
+                Club:
+                <select id="club" required>
+                    <option value="">Select Club</option>
+                    <option value="Photography Club">Photography Club</option>
+                    <option value="Reading Club">Reading Club</option>
+                    <option value="Spanish Club">Spanish Club</option>
                 </select>
-            </label>
-            
-            <label>Location
-                <input type="text" placeholder="e.g., Library Room 203">
-            </label>
-            
-            <label>Description*
-                <textarea required placeholder="Activity details..."></textarea>
-            </label>
-            
-            <div class="form-actions">
-                <button type="submit">Submit</button>
-                <a href="page1.html" class="secondary">Cancel</a>
-            </div>
+            </label><br>
+            <label>
+                Date:
+                <input type="date" id="date" required>
+            </label><br>
+            <label>
+                Description:
+                <textarea id="description" required></textarea>
+            </label><br>
+            <button type="submit">Add Activity</button>
         </form>
+        <div id="formMessage"></div>
+    </main>
+
+    <footer>Campus Hub &copy; 2025</footer>
+
+    <script>
+        const form = document.getElementById("activityForm");
+        const message = document.getElementById("formMessage");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById("title").value.trim();
+            const club = document.getElementById("club").value;
+            const date = document.getElementById("date").value;
+            const description = document.getElementById("description").value.trim();
+
+            if (!title || !club || !date || !description) {
+                message.textContent = "Please fill out all fields.";
+                message.style.color = "red";
+                return;
+            }
+
+            message.textContent = "Activity added successfully (not saved permanently).";
+            message.style.color = "green";
+            form.reset();
+        });
+    </script>
+</body>
+</html>
+                
     </main>
     
     <footer>Campus Hub &copy; 2025</footer>
