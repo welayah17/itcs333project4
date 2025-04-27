@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "subject": "Math",
+      "title": "Algebra Basics",
+      "members": 10,
+      "description": "Learn algebra fundamentals and prepare for exams.",
+      "link": "join-math.html"
+    },
+    {
+      "id": 2,
+      "subject": "Science",
+      "title": "Physics for Beginners",
+      "members": 8,
+      "description": "Introduction to Newtonian mechanics and more.",
+      "link": "join-science.html"
+    },
+    {
+      "id": 3,
+      "subject": "English",
+      "title": "Essay Writing Skills",
+      "members": 12,
+      "description": "Master the art of writing essays and reports.",
+      "link": "join-english.html"
+    },
+    {
+      "id": 4,
+      "subject": "History",
+      "title": "World War II Discussions",
+      "members": 7,
+      "description": "Analyze key events and strategies of WWII.",
+      "link": "join-history.html"
+    },
+    {
+      "id": 5,
+      "subject": "Computer Science",
+      "title": "Introduction to Programming",
+      "members": 15,
+      "description": "Learn the basics of coding with Python.",
+      "link": "join-cs.html"
+    },
+    {
+      "id": 6,
+      "subject": "Biology",
+      "title": "Human Anatomy Studies",
+      "members": 5,
+      "description": "Dive into the structure and function of the human body.",
+      "link": "join-biology.html"
+    }
+  ]
+  

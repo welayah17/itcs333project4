@@ -1,0 +1,229 @@
+<!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+         <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="../CSS/Main.css">
+        <link rel="stylesheet" href="../CSS/MLP.css">
+        <title>SM: Main Listing Page</title>
+</head>
+<body>
+     <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold fs-4" href="../index.html">Campus Hub</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="servicesDropdown">
+             <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+             <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+             <li><a class="dropdown-item" href="../Course Reviews/CourseReviews.html">Course Reviews</a></li>
+             <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
+             <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
+             <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+             <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About</a>
+          </li>
+  
+          <!-- Account Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="../Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="../Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="../Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+           <div class="search-bar">
+             <input type="text" placeholder="Search Campus Hub..." />
+             <button title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+         </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+      <div class="container">
+        <h1 class="display-4 text-center mb-4 mt-4"> Welcome to Students Marketplace </h1> <br>
+        <header class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-3">
+          <!-- Search and Filter -->
+          <div class="input-group search-bar-responsive">
+            <span class="input-group-text"><i class="search-icon fas fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search for items...">
+            <span class="input-group-text">
+              <div class="dropdown">
+                <button type="button" data-bs-toggle="dropdown" class="btn p-0 border-0 bg-transparent">
+                  <i class="filter-icon fas fa-filter"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item">Category 1</li>
+                  <li class="dropdown-item">Category 2</li>
+                  <li class="dropdown-item">Category 3</li>
+                </ul>
+              </div>
+            </span>
+            
+          </div>
+      
+          <!-- Sort Dropdown -->
+          <div class="sorting-controls">
+          <select class="form-select w-auto">
+            <option selected>Sort by Price</option>
+            <option value="date">Sort by Date</option>
+            <option value="popularity">Sort by Popularity</option>
+          </select>
+          </div>
+      
+          <!-- Add New Item -->
+          <a href="ItemCreationForm.html" class="btn btn-info text-white">Add New Item</a>
+          
+        </header>
+        
+            <h2>Items</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <div class="col">
+                <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+                  <img src="../Images/3902762.jpg" class="note-img img-fluid mb-3" alt="Textbook">
+                  <div class="note-meta">April 12, 2025 • Marketplace</div>
+                  <div class="note-title">Used Biology Textbook (BIO101)</div>
+                  <div class="note-price">$25.00</div>
+                  <div class="note-body mb-3">
+                    Lightly used. No markings inside. Great for first-year students taking intro to biology. Pick up on campus or request delivery.
+                  </div>
+                  <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                    <a href="../Student Marketplace/ItemDetailView.html" name="View" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                    <a href="MessagesTable.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col">
+                <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+                  <img src="../Images/2452376.jpg" class="note-img img-fluid mb-3" alt="Laptop for sale">
+                  <div class="note-meta">April 12, 2025 • Student Marketplace</div>
+                  <div class="note-title">Dell XPS 13 Laptop - Lightly Used</div>
+                  <div class="note-price">$550.00</div>
+                  <div class="note-body mb-3">
+                    11th Gen i7, 16GB RAM, 512GB SSD. Used for one semester, in excellent condition. Includes charger and protective sleeve.
+                  </div>
+                  <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                    <a href="../Student Marketplace/ItemDetailView.html" name="View" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                    <a href="../Student Marketplace/Messaging.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col">
+                <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+                  <img src="../Images/4163433.jpg" class="note-img img-fluid mb-3" alt="Dorm fridge">
+                  <div class="note-meta">April 11, 2025 • Student Marketplace</div>
+                  <div class="note-title">Mini Fridge - Perfect for Dorms</div>
+                  <div class="note-price">$60.00</div>
+                  <div class="note-body mb-3">
+                    Compact fridge with freezer compartment. Quiet and energy-efficient. Great for small dorm spaces. Pickup only.
+                  </div>
+                  <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                    <a href="../Student Marketplace/ItemDetailView.html" name="View" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                    <a href="../Student Marketplace/Messaging.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col">
+                <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+                  <img src="../Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="note-img img-fluid mb-3" alt="Bike for sale">
+                  <div class="note-meta">April 10, 2025 • Student Marketplace</div>
+                  <div class="note-title">Hybrid Bicycle - Great Condition</div>
+                  <div class="note-price">$120.00</div>
+                  <div class="note-body mb-3">
+                    Lightweight hybrid bike with 21 speeds and a comfy seat. Ideal for commuting around campus. Lock and helmet included.
+                  </div>
+                  <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                    <a href="../Student Marketplace/ItemDetailView.html" name="View" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                    <a href="../Student Marketplace/Messaging.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="col">
+                <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+                  <img src="../Images/56063.jpg" class="note-img img-fluid mb-3" alt="Calculator">
+                  <div class="note-meta">April 11, 2025 • Marketplace</div>
+                  <div class="note-title">TI-84 Plus Graphing Calculator</div>
+                  <div class="note-price">$45.00</div>
+                  <div class="note-body mb-3">
+                    Barely used and in perfect condition. Essential for most STEM classes. Battery included.
+                  </div>
+                  <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+                    <a href="../Student Marketplace/ItemDetailView.html" name="View" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+                    <a href="../Student Marketplace/Messaging.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          <!-- Pagination -->
+          <nav class="pagination-controls mt-4">
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="#"><i class="pagination fa-solid fa-backward"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item"><a class="page-link" href="#"><i class="pagination fa-solid fa-forward"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+           
+        
+    </div>
+
+    <!-- Bootstrap 5 Footer -->
+  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

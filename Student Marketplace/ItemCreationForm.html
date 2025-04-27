@@ -1,0 +1,198 @@
+<!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SM: Item Creation Form</title>
+         <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+         <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="../CSS/Main.css">
+         <style>
+   .form-container {
+  max-width: 800px;
+  width: 90%;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Optional: Adjust padding for smaller screens */
+@media (max-width: 576px) {
+  .form-container {
+    padding: 20px 15px;
+    margin: 30px auto;
+  }
+}
+
+         </style>
+</head>
+<body>
+     <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold fs-4" href="../index.html">Campus Hub</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="servicesDropdown">
+             <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+             <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+             <li><a class="dropdown-item" href="../Course Reviews/CourseReviews.html">Course Reviews</a></li>
+             <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
+             <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
+             <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+             <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About</a>
+          </li>
+  
+          <!-- Account Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="../Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="../Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="../Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+           <div class="search-bar">
+             <input type="text" placeholder="Search Campus Hub..." />
+             <button title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+         </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+       
+      <div class="container form-container"> <!-- Start of Container -->
+        <div class="row justify-content-center"> <!-- Start of row -->
+        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12"> <!-- Responsive width --> <!-- Start of col -->
+          <form id="AddItem" action="ItemCreationActions.html" enctype="multipart/form-data">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+              <h6 class="mb-0">Students Marketplace:</h6>
+              <h2 class="fw-bold mb-0">Add a New Item</h2>
+            </div>
+          
+            <!-- Title -->
+            <div class="form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input type="text" id="title" class="form-control" name="title" placeholder="Add a title" 
+                     pattern="^[A-Za-z0-9 ,.?!'-]{3,100}$" 
+                     title="Title should be 3-100 characters, letters/numbers and basic punctuation." required>
+            </div>
+          
+            <!-- Description -->
+            <div class="form-group">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" class="form-control" name="description" rows="2" 
+                        placeholder="Write a description... " 
+                        pattern="^[\s\S]{5,1000}$" 
+                        title="Description should be at least 5 characters long." required></textarea>
+            </div>
+          
+            <!-- Price -->
+            <div class="form-group">
+              <label for="price" class="form-label">Price:</label>
+              <input type="number" id="price" class="form-control" name="price" step="0.01" min="0" 
+                     placeholder="Add a price" title="Price must be a positive number." required>
+            </div>
+          
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number:</label>
+              <input type="tel" id="phone" class="form-control" name="phone" 
+                     placeholder="Enter your phone number" pattern="[0-9]{8}" 
+                     title="Phone number must be 8 digits only." required>
+              <small class="form-text text-muted">Include only numbers, e.g., 12345678</small>
+            </div>
+          
+            <!-- Category -->
+            <div class="form-group">
+              <label for="category" class="form-label">Category:</label>
+              <select id="category" name="category" class="form-control" required>
+                <option value="" disabled selected hidden>Select a category</option>
+                <option value="Books">Books</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          
+            <!-- Images -->
+            <div class="form-group">
+              <label for="images" class="form-label">Upload Images:</label>
+              <input type="file" id="images" class="form-control" name="images[]" multiple accept="image/*">
+            </div>
+          
+            <!-- Status -->
+            <div class="form-group">
+              <label for="status" class="form-label">Status:</label>
+              <select id="status" class="form-control" name="status" required>
+                <option value="" disabled selected hidden>Select a status</option>
+                <option value="Available">Available</option>
+                <option value="Sold">Sold</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </div>
+          
+            <br>
+          
+            <!-- Buttons -->
+            <div class="form-group d-flex">
+              <button type="submit" class="btn btn-info me-2 text-white">Add Item</button>
+              <button type="reset" class="btn btn-secondary me-2 cancel-btn">Cancel</button>
+              <button type="button" class="btn btn-dark back-btn" onclick="history.back()">Back</button>
+            </div>
+          </form>
+          
+      </div> <!-- End of col -->
+      </div> <!-- End of row -->
+    </div> <!-- End of Container -->
+
+  <!-- Bootstrap 5 Footer -->
+  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
+          
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

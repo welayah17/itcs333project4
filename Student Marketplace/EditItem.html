@@ -1,0 +1,206 @@
+<!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/Main.css">
+    <link rel="stylesheet" href="../CSS/EI.css">
+ 
+    <title>SM: Edit Item</title>
+</head>
+<body>
+     <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold fs-4" href="../index.html">Campus Hub</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="servicesDropdown">
+             <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+             <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+             <li><a class="dropdown-item" href="../Course Reviews/CourseReviews.html">Course Reviews</a></li>
+             <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
+             <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
+             <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+             <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About</a>
+          </li>
+  
+          <!-- Account Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="../Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="../Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="../Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+           <div class="search-bar">
+             <input type="text" placeholder="Search Campus Hub..." />
+             <button title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+         </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <form id="itemForm" class="container my-4 p-4 border rounded bg-light shadow" action="../Student Marketplace/EditItemAction.html">
+        <h2 class="mb-4">Item Details</h2>
+        <span>ID: 123456</span>
+        <div class="note-meta">April 12, 2025 • Marketplace</div>
+        <!-- rating -->
+        <div class="rating">
+            <a href="ReviewsTable.html">
+            87 rating 4.5 out of 5 <br>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i>
+            </a>
+        </div>
+      
+    <!-- Image Preview -->
+<div class="mb-4 text-center">
+  <img src="../Images/56063.jpg" class="img-thumbnail" alt="Item Image" id="itemImage" title="Item Image" style="max-width: 200px;">
+</div>
+
+<!-- Title -->
+<div class="mb-3">
+  <label for="itemTitle" class="form-label">Item Title</label>
+  <input type="text" class="form-control" id="itemTitle" placeholder="Item Title" value="Item Title"
+         pattern="^[A-Za-z0-9 ,.?!'-]{3,100}$"
+         title="Title should be 3–100 characters and can include letters, numbers, and basic punctuation.">
+</div>
+
+<!-- Price -->
+<div class="mb-3">
+  <label for="itemPrice" class="form-label">Price (BD)</label>
+  <input type="text" class="form-control" id="itemPrice" placeholder="itemPrice" value="49.99"
+         pattern="^\d+(\.\d{1,2})?$"
+         title="Enter a valid price (e.g., 10 or 49.99)">
+</div>
+
+<!-- Category -->
+<div class="mb-3">
+  <label for="itemCategory" class="form-label">Category</label>
+  <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics"
+         pattern="^[A-Za-z\s]{3,50}$"
+         title="Category should be 3–50 letters only.">
+</div>
+
+<!-- Status -->
+<div class="mb-3">
+  <label for="itemStatus" class="form-label">Status</label>
+  <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available"
+         pattern="^(Available|Sold|Pending)$"
+         title="Status must be either: Available, Sold, or Pending.">
+</div>
+
+<!-- Phone Number -->
+<div class="form-group">
+  <label for="phone" class="form-label">Phone Number:</label>
+  <input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter your phone number"
+         value="Seller phone number .." pattern="^[0-9]{8}$"
+         title="Phone number must be exactly 8 digits." required>
+  <small class="form-text text-muted">Include only numbers, e.g., 12345678</small>
+</div>
+
+<!-- Description -->
+<div class="mb-3">
+  <label for="itemDescription" class="form-label">Detailed Description</label>
+  <textarea class="form-control" id="itemDescription" placeholder="Enter detailed description..." rows="4"
+            pattern="^[\s\S]{10,1000}$"
+            title="Description should be between 10 and 1000 characters.">Detailed description...</textarea>
+</div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-2 flex-wrap">
+          <button type="submit" class="btn btn-warning" id="editBtn" title="Edit"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+          <a href="../Student Marketplace/DeleteItem.html"><button type="button" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i> Delete</button></a>
+          <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" title="Comments">
+            <i class="fa-solid fa-comments"></i> Comments
+          </button>
+          <a href="../Student Marketplace/Messaging.html" class="btn btn-info text-white" title="Contact Seller"><i class="fa-solid fa-users"></i> Contact</a>
+          <a href="MainListingPage.html" class="btn btn-dark" title="Back to Listing"><i class="fa-solid fa-list"></i> Back to Listing</a>
+        </div>
+        <!-- Comments display part -->
+        <!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start" id="demo">
+    <div class="offcanvas-header">
+      <h1 class="offcanvas-title"><i class="fa-solid fa-comment"></i> Comments</h1>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Display the comments from the dataset</p>
+      <button class="comment-btn" data-bs-toggle="modal" data-bs-target="#cartModal">Add your comment</button>
+    </div>
+  </div>
+  
+
+<!-- End of comments part-->
+</form>
+    </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-secondary"> <i class="fa-solid fa-comment"></i> Add your comment.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body fs-5">
+            <div class="comments-section">
+                <textarea placeholder="Add a comment..."></textarea> <br>
+                <button class="comment-btn mt-2 btn btn-info text-white">Submit Comment</button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+  <!-- Bootstrap 5 Footer -->
+  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+      
+</body>
+</html>

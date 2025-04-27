@@ -6,6 +6,7 @@
   <title>Add New Study Group</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="style.css" />
+  <script src="form-validation.js" defer></script>
 </head>
 <body>
 
@@ -28,7 +29,11 @@
 <section class="py-5">
   <div class="container">
     <h1 class="text-center mb-4">Add New Study Group</h1>
-    <form action="group-added.html" method="get" class="bg-light p-4 rounded shadow-sm">
+    <form id="add-group-form" action="group-added.html" method="get" class="bg-light p-4 rounded shadow-sm">
+      <div class="mb-3">
+        <label for="title" class="form-label">Group Title</label>
+        <input type="text" id="title" name="title" class="form-control" required />
+      </div>
       <div class="mb-3">
         <label for="subject" class="form-label">Subject</label>
         <select id="subject" name="subject" class="form-select" required>
@@ -41,17 +46,20 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="meeting" class="form-label">Meeting Time</label>
-        <input type="text" id="meeting" name="meeting" class="form-control" placeholder="e.g., Mondays at 5 PM" required />
+        <label for="members" class="form-label">Members Count</label>
+        <input type="number" id="members" name="members" class="form-control" required />
       </div>
       <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
-        <input type="text" id="location" name="location" class="form-control" placeholder="Building or Room" required />
+        <label for="description" class="form-label">Group Description</label>
+        <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
       </div>
       <div class="mb-3">
-        <label for="notes" class="form-label">Extra Notes</label>
-        <textarea id="notes" name="notes" class="form-control" rows="3" placeholder="Optional notes..."></textarea>
+        <label for="link" class="form-label">Link (Optional)</label>
+        <input type="text" id="link" name="link" class="form-control" />
       </div>
+
+      <div id="error-messages" style="color: red;"></div>
+
       <button type="submit" class="btn btn-success px-4">Submit Group</button>
     </form>
   </div>
@@ -63,6 +71,88 @@
     <p>&copy; 2025 - University of Bahrain</p>
   </div>
 </footer>
+
+<!-- Form Validation Script -->
+<script>
+  const form = document.getElementById('add-group-form');
+
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const title = document.getElementById('title').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const members = document.getElementById('members').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const link = document.getElementById('link').value.trim();
+
+      const errors = [];
+
+      // Validation checks
+      if (title === '') {
+        errors.push('Title is required.');
+      }
+      if (subject === '') {
+        errors.push('Subject is required.');
+      }
+      if (members === '' || isNaN(members) || members <= 0) {
+        errors.push('Members must be a positive number.');
+      }
+      if (description === '') {
+        errors.push('Description is required.');
+      }
+      if (link !== '' && !isValidURL(link)) {
+        errors.push('A valid link is required.');
+      }
+
+      // Display errors or success
+      const errorContainer = document.getElementById('error-messages');
+      if (errors.length > 0) {
+        errorContainer.innerHTML = errors.map(error => `<p>${error}</p>`).join('');
+      } else {
+        errorContainer.innerHTML = '<p style="color: green;">Form is valid! Ready to submit 🚀</p>';
+      }
+    });
+  }
+
+  function isValidURL(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+</script>
+<!-- Display Group Details -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const groupDetails = document.getElementById('group-details');
+    
+    // Retrieve data from localStorage
+    const title = localStorage.getItem('title');
+    const subject = localStorage.getItem('subject');
+    const members = localStorage.getItem('members');
+    const description = localStorage.getItem('description');
+    const link = localStorage.getItem('link');
+
+    if (title && subject && members && description && link) {
+      groupDetails.innerHTML = `
+        <h3>Group Title: ${title}</h3>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Number of Members:</strong> ${members}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Study Group Link:</strong> <a href="${link}" target="_blank">${link}</a></p>
+      `;
+    } else {
+      groupDetails.innerHTML = '<p>No group details available.</p>';
+    }
+  });
+</script>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

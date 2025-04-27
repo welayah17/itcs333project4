@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Club Activity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>Campus Hub - Add Activity</header>
+
+    <main>
+        <form id="activityForm">
+            <h2>Add New Club Activity</h2>
+            <label>
+                Title:
+                <input type="text" id="title" required>
+            </label><br>
+            <label>
+                Club:
+                <select id="club" required>
+                    <option value="">Select Club</option>
+                    <option value="Photography Club">Photography Club</option>
+                    <option value="Reading Club">Reading Club</option>
+                    <option value="Spanish Club">Spanish Club</option>
+                </select>
+            </label><br>
+            <label>
+                Date:
+                <input type="date" id="date" required>
+            </label><br>
+            <label>
+                Description:
+                <textarea id="description" required></textarea>
+            </label><br>
+            <button type="submit">Add Activity</button>
+        </form>
+        <div id="formMessage"></div>
+    </main>
+
+    <footer>Campus Hub &copy; 2025</footer>
+
+    <script>
+        const form = document.getElementById("activityForm");
+        const message = document.getElementById("formMessage");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById("title").value.trim();
+            const club = document.getElementById("club").value;
+            const date = document.getElementById("date").value;
+            const description = document.getElementById("description").value.trim();
+
+            if (!title || !club || !date || !description) {
+                message.textContent = "Please fill out all fields.";
+                message.style.color = "red";
+                return;
+            }
+
+            message.textContent = "Activity added successfully (not saved permanently).";
+            message.style.color = "green";
+            form.reset();
+        });
+    </script>
+</body>
+</html>
+                
+    </main>
+    
+    <footer>Campus Hub &copy; 2025</footer>
+</body>
+</html>

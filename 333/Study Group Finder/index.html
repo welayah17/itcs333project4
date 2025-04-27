@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+  <script src="form-validation.js"></script>
+
+
 </head>
 <body>
 
@@ -79,6 +83,11 @@
         <a href="add-group.html" class="btn btn-success px-4 py-2 rounded-pill">
           <i class="fas fa-plus me-2"></i> Add New Study Group
         </a>
+      </div>
+
+      <!-- Groups Container -->
+      <div id="groups-container" class="row g-4 justify-content-center">
+        <!-- The dynamic study groups will go here -->
       </div>
 
       <!-- Scheduled Study Groups -->
@@ -156,5 +165,30 @@
       }
     });
   </script>
+  <!-- Form Code -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('add-group-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const members = document.getElementById('members').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const link = document.getElementById('link').value.trim();
+
+      // Save data to localStorage
+      localStorage.setItem('title', title);
+      localStorage.setItem('subject', subject);
+      localStorage.setItem('members', members);
+      localStorage.setItem('description', description);
+      localStorage.setItem('link', link);
+
+      window.location.href = 'group-added.html'; // Redirect after form submission
+    });
+  });
+</script>
+
 </body>
 </html>
