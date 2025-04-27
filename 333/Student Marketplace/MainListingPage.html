@@ -1,0 +1,211 @@
+<!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+         <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../CSS/HeaderFooter.css">
+        <link rel="stylesheet" href="../CSS/MLP.css">
+        <title>SM: Main Listing Page</title>
+</head>
+<body>
+    <!-- Header -->
+       <!-- Navigation Bar-->
+   <!-- Bootstrap 5 Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campus Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../Homepage.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+              <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
+              <li><a class="dropdown-item" href="#">Course Reviews</a></li>
+              <li><a class="dropdown-item" href="#">Course Notes</a></li>
+              <li><a class="dropdown-item" href="#">Campus News</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+      <div class="container">
+    <div class="listing-container">
+        <header class="listing-header">
+          <div class="search-container">
+            <i class="search-icon fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="search-bar" placeholder="Search for items... ">
+            <i class="filter-icon fa-solid fa-filter"></i>
+        </div>
+
+        <div class="sorting-controls">
+          <select>
+            <option value="price">Sort by Price</option>
+            <option value="date">Sort by Date</option>
+            <option value="popularity">Sort by Popularity</option>
+          </select>
+        </div>
+
+        <a href="../Student Marketplace/ItemCreationForm.html"><button class="add-item-btn btn-info">Add New Item</button></a>
+        
+      </header>
+        
+            <h2>Items</h2>
+            <div class="row justify-content-center row-cols-md-3 ">
+                          <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/2452376.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/3902762.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title </h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/4163433.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/56063.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>  
+                          <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/freepik__background__12472.jpeg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>  <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>  <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/2452376.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>  <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                              <img src="../images/3902762.jpg" alt="Item image" height="200" width="200" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title"> Item title</h5>
+                                <p class="card-text"> Item Description </p>
+                                <p class="card-text"> Price  </p>
+                                <a href="../Student Marketplace/ItemDetailView.html" name="View"class="btn btn-info">View Details</a> 
+                              </div>
+                            </div>
+                          </div>
+            </div>
+           
+
+        <div class="pagination-controls mt-3">
+        <ul class="pagination pagination-sm">
+          <li class="page-item"><a class="page-link" href="#"> <i class="pagination fa-solid fa-backward"></i> </a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" href="#"> <i class="pagination fa-solid fa-forward"></i> </a></li>
+        </ul>
+        </div>
+      </div>
+
+    </div> <!-- End of Container -->
+
+
+               <!-- footer -->
+               <footer class="page-footer container-fluid" style="background: linear-gradient(90deg, #6a11cb, #2575fc);" >
+                <div class="row py-4 d-flex align-items-center">
+                  <div class="col-md-12 text-center">
+                    <a href="#"><i class="fa-solid fa-phone text-white mr-4"></i></a>
+                      <a href="#"><i class="fa-brands fa-facebook text-white mr-4"> </i></a>
+                      <a href="#"><i class="fa-brands fa-twitter text-white mr-4"> </i></a>
+                      <a href="#"><i class=" fa-brands fa-whatsapp text-white mr-4"> </i></a>
+                      <a href="#"><i class="fa-brands fa-instagram text-white mr-4"> </i></a>
+                      <a href="#"><i class="fa-regular fa-copyright"></i> copyright 2025 - All Rights Reserved. University of Bahrain</a>
+                  </div>
+               </div>
+            </footer>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

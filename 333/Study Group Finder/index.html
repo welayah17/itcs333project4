@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Group Finder</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Campus Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="../Homepage.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
+              <li><a class="dropdown-item" href="study-group.html">Study Group Finder</a></li>
+              <li><a class="dropdown-item" href="#">Course Reviews</a></li>
+              <li><a class="dropdown-item" href="#">Course Notes</a></li>
+              <li><a class="dropdown-item" href="#">Campus News</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Booking</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Account</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../Account/Profile/profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="../Account/signout.html">Sign out</a></li>
+              <li><a class="dropdown-item" href="../Account/login.html">Sign in</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="../Account/register.html">Register Now</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light me-2" title="Favorites"><i class="far fa-heart"></i></button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="#" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <section class="study-group-section py-5">
+    <div class="container custom-box">
+      <h1 class="main-title mb-4 text-center">Study Group Finder</h1>
+
+      <!-- Search Box -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-6 mb-2">
+          <input type="text" class="form-control" id="search-box" placeholder="Search study groups..." />
+        </div>
+        <div class="col-md-2 mb-2">
+          <button class="btn btn-primary w-100" id="search-btn">Search</button>
+        </div>
+      </div>
+
+      <!-- Add Group Button -->
+      <div class="text-center mb-5">
+        <a href="add-group.html" class="btn btn-success px-4 py-2 rounded-pill">
+          <i class="fas fa-plus me-2"></i> Add New Study Group
+        </a>
+      </div>
+
+      <!-- Scheduled Study Groups -->
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body bg-light rounded">
+              <h5 class="card-title text-primary fw-bold">📐 Math Study Group</h5>
+              <p class="card-text text-muted">Meeting Time: Mondays at 5 PM</p>
+              <a href="join-math.html" class="btn btn-outline-primary">Join</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body bg-light rounded">
+              <h5 class="card-title text-primary fw-bold">🔬 Science Study Group</h5>
+              <p class="card-text text-muted">Meeting Time: Wednesdays at 6 PM</p>
+              <a href="join-science.html" class="btn btn-outline-primary">Join</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body bg-light rounded">
+              <h5 class="card-title text-primary fw-bold">📖 History Study Group</h5>
+              <p class="card-text text-muted">Meeting Time: Fridays at 4 PM</p>
+              <a href="join-history.html" class="btn btn-outline-primary">Join</a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more cards here if needed -->
+      </div>
+
+      <!-- Message for Subjects without Pages -->
+      <div class="alert alert-info mt-5 text-center" id="subject-message" style="display: none;">
+        <strong>مادة [اسم المادة] لا توجد لها محاضرة حالياً!</strong><br />
+        الطالب يحتاج إلى مجموعة دراسة لهذه المادة قريبًا. سيتم إضافتها قريبًا.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-center py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div>
+        <i class="fa-regular fa-copyright"></i>
+        Copyright 2025 - All Rights Reserved. University of Bahrain
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Search functionality
+    document.getElementById("search-btn").addEventListener("click", function () {
+      var searchValue = document.getElementById("search-box").value.toLowerCase();
+      var availableSubjects = ["math", "science", "history", "computer-science", "english"];
+      
+      // Check if search value matches any of the available subjects
+      if (availableSubjects.includes(searchValue)) {
+        window.location.href = searchValue + ".html";
+      } else {
+        document.getElementById("subject-message").style.display = "block";
+        document.getElementById("subject-message").innerHTML = "<strong>مادة " + searchValue.charAt(0).toUpperCase() + searchValue.slice(1) + " لا توجد لها محاضرة حالياً!</strong><br /> الطالب يحتاج إلى مجموعة دراسة لهذه المادة قريبًا.";
+      }
+    });
+  </script>
+</body>
+</html>
