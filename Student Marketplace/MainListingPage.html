@@ -86,7 +86,7 @@
                 <button type="button" data-bs-toggle="dropdown" class="btn p-0 border-0 bg-transparent">
                   <i class="filter-icon fas fa-filter"></i>
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" id="categoryDropdown">
                   <li class="dropdown-item">Category 1</li>
                   <li class="dropdown-item">Category 2</li>
                   <li class="dropdown-item">Category 3</li>
@@ -116,7 +116,14 @@
         </header>
         
             <h2>Items</h2>
-            <div id="loading">Loading Listings...</div>
+
+            <div id="loading" class="text-center my-4" style="display: none;">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden"> Loading...</span>
+              </div>
+            </div>
+
+
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="studentList">
               
               <div class="col">
@@ -135,8 +142,8 @@
                   
                 </div>
               </div>
-
             </div>
+
           <!-- Pagination -->
           <nav class="pagination-controls mt-4">
             <ul class="pagination justify-content-center" id="pagination">
@@ -147,7 +154,16 @@
            
         
     </div>
-
+    <h2>Post Your Listing</h2>
+    <form id="studentForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="course" placeholder="Course" required />
+      <input type="number" id="price" placeholder="Price" required />
+      <textarea id="description" placeholder="Description"></textarea>
+      <button type="submit">Validate</button>
+    </form>
+    <div id="formErrors"></div>
     <!-- Bootstrap 5 Footer -->
   <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
     <div class="container">
@@ -161,7 +177,7 @@
   </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+    <script src="../Student Marketplace/app.js"></script>
 </body>
 
 </html>

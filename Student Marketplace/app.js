@@ -6,10 +6,16 @@ const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
 const studentForm = document.getElementById("studentForm");
 const formErrors = document.getElementById("formErrors");
+const categoryDropdown = document.getElementById("categoryDropdown");
+
 
 let listings = [];
 let currentPage = 1;
 const itemsPerPage = 6;
+let selectedCategory = null;
+function goToDetails(id) {
+  window.location.href = `ItemDetailView.html?id=${id}`;
+}
 
 // Fetch the listings data from the API
 async function fetchListings() {
@@ -20,6 +26,7 @@ async function fetchListings() {
     listings = await res.json();
     renderListings();
     renderPagination();
+    renderCategoryFilter(); 
   } catch (err) {
     studentListEl.innerHTML = `<p>Error: ${err.message}</p>`;
   } finally {
@@ -32,11 +39,14 @@ function renderListings() {
     const term = searchInput.value.toLowerCase();
     const sort = sortSelect.value;
   
-    // Step 1: Filter listings
-    let filteredListings = listings.filter(listing =>
-      (listing.title && listing.title.toLowerCase().includes(term)) ||
-      (listing.description && listing.description.toLowerCase().includes(term))
-    );
+    // Step 1: Filter listing
+    let filteredListings = listings.filter(listing => {
+      const matchesSearch = 
+        (listing.title && listing.title.toLowerCase().includes(term)) ||
+        (listing.description && listing.description.toLowerCase().includes(term));
+      const matchesCategory = !selectedCategory || listing.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
   
     // Step 2: Sort listings
     if (sort === "p.asc") {
@@ -62,13 +72,13 @@ function renderListings() {
     // Step 4: Render listings
     studentListEl.innerHTML = paginated.map(listing => `
       <div class="col">
-        <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
+        <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="goToDetails(${listing.id})">
           <img src="${listing.image}" class="note-img img-fluid mb-3" alt="${listing.title}">
-          <div class="note-meta">${new Date(listing.publishDate).toLocaleDateString()} • ${listing.service || 'Marketplace'}</div>
+          <div class="note-meta">${new Date(listing.publishDate).toLocaleDateString()} • ${listing.category}</div>
           <div class="note-title">${listing.title}</div>
           <div class="note-price">BD ${parseFloat(listing.price).toFixed(2)}</div>
           <div class="note-body mb-3">
-            ${listing.description?.substring(0, 100) || 'No description provided.'}
+            ${listing.description?.substring(0, 100)|| 'No description provided.'}
           </div>
           <div class="mt-auto d-flex flex-column flex-md-row gap-2">
             <a href="ItemDetailView.html?id=${listing.id}" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
@@ -82,6 +92,49 @@ function renderListings() {
     renderPagination(filteredListings.length);
   }
   
+// Render the category filter dropdown
+function renderCategoryFilter() {
+  const categories = [...new Set(listings.map(listing => listing.category))];
+
+  categoryDropdown.innerHTML = categories.map(category => `
+    <li><a class="dropdown-item" href="#" onclick="filterByCategory('${category}')">${category}</a></li>
+  `).join('');
+}
+
+
+// Filter listings by category
+function filterByCategory(category) {
+  const term = searchInput.value.toLowerCase();
+  const sort = sortSelect.value;
+
+  let filteredListings = listings.filter(listing =>
+    listing.category === category &&
+    ((listing.title && listing.title.toLowerCase().includes(term)) ||
+    (listing.description && listing.description.toLowerCase().includes(term)))
+  );
+
+  // Render the filtered listings
+  studentListEl.innerHTML = filteredListings.map(listing => `
+    <div class="col">
+      <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="goToDetails(${listing.id})">
+        <img src="${listing.image}" class="note-img img-fluid mb-3" alt="${listing.title}">
+        <div class="note-meta">${new Date(listing.publishDate).toLocaleDateString()} • ${listing.category}</div>
+        <div class="note-title">${listing.title}</div>
+        <div class="note-price">BD ${parseFloat(listing.price).toFixed(2)}</div>
+        <div class="note-body mb-3">
+          ${listing.description?.substring(0, 100)|| 'No description provided.'}
+        </div>
+        <div class="mt-auto d-flex flex-column flex-md-row gap-2">
+          <a href="ItemDetailView.html?id=${listing.id}" class="note-button w-100 w-md-auto flex-fill">📄 View Details</a>
+          <a href="MessagesTable.html" class="note-button note-button-secondary w-100">✉️ Contact Seller</a>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  selectedCategory = category;
+  currentPage = 1;
+  renderListings();
+}
 
 // Render pagination buttons
 function renderPagination() {
