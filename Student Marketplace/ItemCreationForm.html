@@ -31,6 +31,180 @@
 }
 
          </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("AddItem");
+    const categorySelect = document.getElementById("category");
+    const customCategoryWrapper = document.getElementById("customCategoryWrapper");
+    const customCategoryInput = document.getElementById("customCategory");
+    const cancelButton = document.querySelector(".cancel-btn");
+
+    function showError(input, message) {
+      clearFeedback(input);
+      input.classList.add("is-invalid");
+      const error = document.createElement("div");
+      error.className = "invalid-feedback";
+      error.textContent = message;
+      input.parentNode.appendChild(error);
+    }
+
+    function showValid(input) {
+      clearFeedback(input);
+      input.classList.add("is-valid");
+    }
+
+    function clearFeedback(input) {
+      input.classList.remove("is-invalid", "is-valid");
+      const existingError = input.parentNode.querySelector(".invalid-feedback");
+      if (existingError) existingError.remove();
+    }
+
+    function validateInput(input) {
+      const value = input.value.trim();
+
+      if (input.id === "title") {
+        const regex = /^[A-Za-z0-9 ,.?!'-]{3,100}$/;
+        if (!regex.test(value)) {
+          showError(input, "Title must be 3–100 valid characters.");
+          return false;
+        }
+      }
+
+      if (input.id === "description") {
+        if (value.length < 5) {
+          showError(input, "Description must be at least 5 characters.");
+          return false;
+        }
+      }
+
+      if (input.id === "price") {
+        if (value === "" || parseFloat(value) < 0) {
+          showError(input, "Price must be a positive number.");
+          return false;
+        }
+      }
+
+      if (input.id === "phone") {
+        if (!/^\d{8}$/.test(value)) {
+          showError(input, "Phone number must be exactly 8 digits.");
+          return false;
+        }
+      }
+
+      if (input.id === "category") {
+        if (!value) {
+          showError(input, "Please select a category.");
+          return false;
+        }
+      }
+
+      if (input.id === "status") {
+        if (!value) {
+          showError(input, "Please select a status.");
+          return false;
+        }
+      }
+
+      if (input.id === "customCategory") {
+        if (categorySelect.value === "Other") {
+          if (value.length < 3 || value.length > 50) {
+            showError(input, "Custom category must be 3–50 characters.");
+            return false;
+          }
+        }
+      }
+
+      showValid(input);
+      return true;
+    }
+
+    const fields = ["title", "description", "price", "phone", "category", "status", "customCategory"];
+
+    // Show/hide custom category input
+    categorySelect.addEventListener("change", function () {
+      if (categorySelect.value === "Other") {
+        customCategoryWrapper.classList.remove("d-none");
+        customCategoryInput.setAttribute("required", "required");
+      } else {
+        customCategoryWrapper.classList.add("d-none");
+        customCategoryInput.removeAttribute("required");
+        customCategoryInput.value = "";
+      }
+    });
+
+    // Field validation listeners
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      input.addEventListener("blur", () => validateInput(input));
+      input.addEventListener("input", () => {
+        if (input.classList.contains("is-invalid") || input.classList.contains("is-valid")) {
+          validateInput(input);
+        }
+      });
+    });
+
+    // Handle Cancel Button
+    cancelButton.addEventListener("click", function () {
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        clearFeedback(input);
+        input.value = "";
+      });
+
+      // Reset custom category visibility
+      customCategoryWrapper.classList.add("d-none");
+      customCategoryInput.removeAttribute("required");
+      customCategoryInput.value = "";
+
+      form.reset(); // Reset select fields, file inputs, etc.
+    });
+
+    // Handle Submit
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let isFormValid = true;
+
+      document.getElementById("successMessage").classList.add("d-none");
+      document.getElementById("errorMessage").classList.add("d-none");
+
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        const valid = validateInput(input);
+        if (!valid) isFormValid = false;
+      });
+
+      if (isFormValid) {
+        document.getElementById("successMessage").classList.remove("d-none");
+
+        setTimeout(() => {
+        successMessage.classList.add("d-none");
+      }, 5000);
+
+        fields.forEach(id => {
+          const input = document.getElementById(id);
+          clearFeedback(input);
+          input.value = "";
+        });
+
+        // Also hide custom category after success
+        customCategoryWrapper.classList.add("d-none");
+        customCategoryInput.removeAttribute("required");
+
+        form.reset();
+      } else {
+        document.getElementById("errorMessage").classList.remove("d-none");
+        
+        setTimeout(() => {
+        errorMessage.classList.add("d-none");
+      }, 5000);
+      }
+    });
+  });
+</script>
+
+
+
+
 </head>
 <body>
      <!-- Header -->
@@ -97,7 +271,24 @@
       <div class="container form-container"> <!-- Start of Container -->
         <div class="row justify-content-center"> <!-- Start of row -->
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12"> <!-- Responsive width --> <!-- Start of col -->
-          <form id="AddItem" action="ItemCreationActions.html" enctype="multipart/form-data">
+
+     <!-- Success Message -->
+<div id="successMessage" class="alert alert-success d-none mb-5">
+  <h1 class="mb-3 text-success">🎉 Item Added Successfully!</h1>
+  <p class="text-muted">Thanks for contributing! Your item has been successfully added to the marketplace.</p>
+  <a href="../Student Marketplace/MainListingPage.html" class="btn btn-outline-success mt-4">Back to Marketplace Listing Page</a>
+</div>
+
+<!-- Error Message -->
+<div id="errorMessage" class="alert alert-danger d-none mb-5">
+  <h1 class="mb-3 text-danger">⚠️ Something Went Wrong</h1>
+  <p class="text-muted">Oops! There was a problem submitting your item. Please try again or check your form for missing details.</p>
+  <a href="../Student Marketplace/ItemCreationForm.html" class="btn btn-outline-danger mt-4">Return to Form</a>
+</div>
+
+      
+          <form id="AddItem" action="../Student Marketplace/ItemCreationActions.html" enctype="multipart/form-data" novalidate>
+
             <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
               <h6 class="mb-0">Students Marketplace:</h6>
               <h2 class="fw-bold mb-0">Add a New Item</h2>
@@ -137,17 +328,25 @@
             </div>
           
             <!-- Category -->
-            <div class="form-group">
-              <label for="category" class="form-label">Category:</label>
-              <select id="category" name="category" class="form-control" required>
-                <option value="" disabled selected hidden>Select a category</option>
-                <option value="Books">Books</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+<div class="form-group">
+  <label for="category" class="form-label">Category:</label>
+  <select id="category" name="category" class="form-control" required>
+    <option value="" disabled selected hidden>Select a category</option>
+    <option value="Books">Books</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+<!-- Custom Category (Initially Hidden) -->
+<div id="customCategoryWrapper" class="form-group d-none mt-2">
+  <label for="customCategory" class="form-label">Enter Custom Category:</label>
+  <input type="text" id="customCategory" class="form-control" name="customCategory" placeholder="Type your category">
+</div>
+
+
           
             <!-- Images -->
             <div class="form-group">

@@ -1,3 +1,4 @@
+//20198132 FATEMA EBRAHIM ALI SALMAN
 const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listings"; // Replace with actual API URL
 const itemDetailsEl = document.getElementById("itemDetails");
 const loadingEl = document.getElementById("loading");
@@ -44,4 +45,3 @@ function showLoading(state) {
 
 // Initialize the page
 fetchItemDetails();
-

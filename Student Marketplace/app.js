@@ -1,3 +1,4 @@
+//20198132 FATEMA EBRAHIM ALI SALMAN
 const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listings";
 const loadingEl = document.getElementById("loading");
 const studentListEl = document.getElementById("studentList");
@@ -16,6 +17,11 @@ let selectedCategory = null;
 function goToDetails(id) {
   window.location.href = `ItemDetailView.html?id=${id}`;
 }
+async function handleCardClick(id) {
+  await incrementPopularity(id);
+  goToDetails(id);
+}
+
 
 // Fetch the listings data from the API
 async function fetchListings() {
@@ -24,6 +30,12 @@ async function fetchListings() {
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error("Failed to load listings.");
     listings = await res.json();
+
+       // Read category and page from the URL
+       const urlParams = new URLSearchParams(window.location.search);
+       selectedCategory = urlParams.get('category') || null;
+       currentPage = parseInt(urlParams.get('page')) || 1;
+
     renderListings();
     renderPagination();
     renderCategoryFilter(); 
@@ -33,6 +45,49 @@ async function fetchListings() {
     showLoading(false);
   }
 }
+
+// Increment the popularity count of an item when clicked
+async function incrementPopularity(id) {
+  console.log("Current listings:", listings);
+  console.log("Trying to increment popularity for ID:", id);
+
+  if (!Array.isArray(listings) || listings.length === 0) {
+    console.error("Listings array is empty or not loaded yet.");
+    return;
+  }
+
+  const listing = listings.find(item => item.id === String(id));
+  if (!listing) {
+    console.error("Listing not found.");
+    return;
+  }
+
+  const newPopularity = (listing.popularity || 0) + 1;
+
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ popularity: newPopularity }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
+
+    console.log("Popularity updated");
+  } catch (error) {
+    console.error("Error during update:", error);
+  }
+}
+
+
+
+
+
+
+
+
 
 // Render the listings to the page
 function renderListings() {
@@ -61,6 +116,8 @@ function renderListings() {
         filteredListings.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
       } else if (sort === "d.old") {
         filteredListings.sort((a, b) => new Date(a.publishDate) - new Date(b.publishDate));
+      } else if (sort === "popularity") {
+        filteredListings.sort((a, b) => b.popularity - a.popularity);
       }
       
       
@@ -72,7 +129,7 @@ function renderListings() {
     // Step 4: Render listings
     studentListEl.innerHTML = paginated.map(listing => `
       <div class="col">
-        <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="goToDetails(${listing.id})">
+        <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="handleCardClick(${listing.id})">
           <img src="${listing.image}" class="note-img img-fluid mb-3" alt="${listing.title}">
           <div class="note-meta">${new Date(listing.publishDate).toLocaleDateString()} • ${listing.category}</div>
           <div class="note-title">${listing.title}</div>
@@ -96,10 +153,14 @@ function renderListings() {
 function renderCategoryFilter() {
   const categories = [...new Set(listings.map(listing => listing.category))];
 
-  categoryDropdown.innerHTML = categories.map(category => `
-    <li><a class="dropdown-item" href="#" onclick="filterByCategory('${category}')">${category}</a></li>
-  `).join('');
+  categoryDropdown.innerHTML = `
+    <li><a class="dropdown-item" href="#" onclick="filterByCategory(null)">All Categories</a></li>
+    ${categories.map(category => `
+      <li><a class="dropdown-item" href="#" onclick="filterByCategory('${category}')">${category}</a></li>
+    `).join('')}
+  `;
 }
+
 
 
 // Filter listings by category
@@ -116,7 +177,7 @@ function filterByCategory(category) {
   // Render the filtered listings
   studentListEl.innerHTML = filteredListings.map(listing => `
     <div class="col">
-      <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="goToDetails(${listing.id})">
+      <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" onclick="handleCardClick(${listing.id})">
         <img src="${listing.image}" class="note-img img-fluid mb-3" alt="${listing.title}">
         <div class="note-meta">${new Date(listing.publishDate).toLocaleDateString()} • ${listing.category}</div>
         <div class="note-title">${listing.title}</div>
@@ -131,15 +192,29 @@ function filterByCategory(category) {
       </div>
     </div>
   `).join("");
-  selectedCategory = category;
-  currentPage = 1;
-  renderListings();
+  
+   // Set selected category
+   selectedCategory = category;
+
+   // Set current page to 1 when category changes
+   currentPage = 1;
+ 
+   // Update the URL with the category and page number
+   const url = new URL(window.location);
+   url.searchParams.set('category', category);
+   url.searchParams.set('page', currentPage);
+   window.history.pushState({}, '', url);
+ 
+   renderListings();
 }
 
 // Render pagination buttons
-function renderPagination() {
-    const totalPages = Math.ceil(listings.length / itemsPerPage);
-    paginationEl.innerHTML = "";
+function renderPagination(filteredCount) {
+ const totalAllPages = Math.ceil(listings.length / itemsPerPage); 
+ const totalFilteredPages = Math.ceil(filteredCount / itemsPerPage);
+   // Set total pages depending on whether we're showing all listings or filtered listings
+   const totalPages = filteredCount ? totalFilteredPages : totalAllPages;
+  paginationEl.innerHTML = "";
   
     // Previous button
     const prevBtn = document.createElement("li");
@@ -152,8 +227,9 @@ function renderPagination() {
       e.preventDefault();
       if (currentPage > 1) {
         currentPage--;
+        updatePageInURL();
         renderListings();       // refresh items
-        renderPagination();     // refresh pagination UI
+        renderPagination(filteredCount);     // refresh pagination UI
       }
     });
     prevBtn.appendChild(prevLink);
@@ -161,6 +237,7 @@ function renderPagination() {
   
     // Page number buttons
     for (let i = 1; i <= totalPages; i++) {
+
       const li = document.createElement("li");
       li.className = `page-item ${currentPage === i ? "active" : ""}`;
       const a = document.createElement("a");
@@ -170,8 +247,9 @@ function renderPagination() {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         currentPage = i;
+        updatePageInURL();
         renderListings();
-        renderPagination();
+        renderPagination(filteredCount);
       });
       li.appendChild(a);
       paginationEl.appendChild(li);
@@ -188,15 +266,21 @@ function renderPagination() {
       e.preventDefault();
       if (currentPage < totalPages) {
         currentPage++;
+        updatePageInURL();
         renderListings();
-        renderPagination();
+        renderPagination(filteredCount);
       }
     });
     nextBtn.appendChild(nextLink);
     paginationEl.appendChild(nextBtn);
   }
   
-  
+  // Update the page number in the URL
+function updatePageInURL() {
+  const url = new URL(window.location);
+  url.searchParams.set('page', currentPage);
+  window.history.pushState({}, '', url);
+}
 
 // Show loading indicator
 function showLoading(state) {
@@ -215,10 +299,15 @@ function showDetail(id) {
 }
 
 // Search and Sort functionality
+const searchHint = document.getElementById("searchHint");
+
 searchInput.addEventListener("input", () => {
+  const term = searchInput.value.trim();
   currentPage = 1;
   renderListings();
+  searchHint.textContent = term ? `Searching for "${term}"` : "";
 });
+
 
 sortSelect.addEventListener("change", () => {
   currentPage = 1;
