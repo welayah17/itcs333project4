@@ -31,12 +31,19 @@ async function fetchItemDetails() {
     document.getElementById("itemPhone").textContent = `Phone Number: ${item.phoneNumber || "Not provided"}`;
     document.getElementById("itemImage").src = item.image || "../Images/placeholder.jpg"; // Default placeholder image
 
-  } catch (err) {
-    itemDetailsEl.innerHTML = `<p>Error: ${err.message}</p>`;
-  } finally {
-    showLoading(false);
-  }
+ // ✅ Set dynamic Edit button link
+ const editButton = document.querySelector('a[href^="../Student Marketplace/EditItem.html"]');
+ if (editButton) {
+   editButton.href = `../Student Marketplace/EditItem.html?id=${item.id}`;
+ }
+
+} catch (err) {
+ itemDetailsEl.innerHTML = `<p>Error: ${err.message}</p>`;
+} finally {
+ showLoading(false);
 }
+}
+
 
 // Show the loading indicator
 function showLoading(state) {

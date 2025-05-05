@@ -314,28 +314,5 @@ sortSelect.addEventListener("change", () => {
   renderListings();
 });
 
-// Form Validation
-studentForm.addEventListener("submit", e => {
-  e.preventDefault();
-  formErrors.innerHTML = "";
-
-  const title = document.getElementById("title").value.trim();
-  const phoneNumber = document.getElementById("phoneNumber").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const price = parseFloat(document.getElementById("price").value.trim());
-
-  const errors = [];
-  if (title.length < 3) errors.push("Title must be at least 3 characters.");
-  if (!/^\d{1}-\d{3}-\d{3}-\d{4}$/.test(phoneNumber)) errors.push("Invalid phone number format.");
-  if (!description) errors.push("Description is required.");
-  if (isNaN(price) || price < 1) errors.push("Price must be a positive number.");
-
-  if (errors.length) {
-    formErrors.innerHTML = errors.map(e => `<p>${e}</p>`).join("");
-  } else {
-    alert("Form validated. Listing ready to post.");
-  }
-});
-
 // Initialize
 fetchListings();
