@@ -1,4 +1,6 @@
-const API_URL = "https://7evvax.replit.app/api.php?path=clubs";
+const BASE_URL = "https://7evvax.replit.app";
+const API_PATH = "/api.php?path=clubs";
+const API_URL = `${BASE_URL}${API_PATH}`;
 
 let clubsData = [];
 let currentPage = 1;
