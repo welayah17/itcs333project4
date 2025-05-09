@@ -16,9 +16,17 @@ async function fetchActivities() {
     loading.style.display = "block";
     error.style.display = "none";
     try {
+        // Fetch from data.json
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("Failed to fetch");
-        activities = await res.json();
+        if (!res.ok) throw new Error("Failed to fetch data.json");
+        const jsonData = await res.json();
+
+        // Load from localStorage
+        const localData = JSON.parse(localStorage.getItem("activities") || "[]");
+
+        // Merge both sources
+        activities = [...jsonData, ...localData];
+
         renderActivities();
     } catch (err) {
         console.error(err);
