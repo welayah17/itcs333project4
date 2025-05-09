@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Add Club Activity</title>
@@ -15,7 +15,6 @@
                 Title:
                 <input type="text" id="title" required>
             </label><br>
-
             <label>
                 Club:
                 <select id="club" required>
@@ -25,21 +24,17 @@
                     <option value="Spanish Club">Spanish Club</option>
                 </select>
             </label><br>
-
             <label>
                 Date:
                 <input type="date" id="date" required>
             </label><br>
-
             <label>
                 Description:
                 <textarea id="description" required></textarea>
             </label><br>
-
             <button type="submit">Add Activity</button>
         </form>
-
-        <div id="formMessage" style="margin-top: 10px;"></div>
+        <div id="formMessage"></div>
     </main>
 
     <footer>Campus Hub &copy; 2025</footer>
@@ -62,28 +57,23 @@
                 return;
             }
 
-            const saved = localStorage.getItem("activities");
-            const activities = saved ? JSON.parse(saved) : [];
+        
+            const newActivity = { title, club, date, description };
 
             
-            activities.push({ title, club, date, description });
+            const stored = JSON.parse(localStorage.getItem("activities") || "[]");
 
-        
-            localStorage.setItem("activities", JSON.stringify(activities));
+            // Add new activity to list
+            stored.push(newActivity);
 
-          
+            // Save updated list back to localStorage
+            localStorage.setItem("activities", JSON.stringify(stored));
+
+            
             message.textContent = "Activity added successfully!";
             message.style.color = "green";
-
-           
             form.reset();
-
-        
-            setTimeout(() => {
-                window.location.href = "page1.html";
-            }, 1500);
         });
     </script>
 </body>
 </html>
-
