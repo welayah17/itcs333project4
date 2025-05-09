@@ -57,19 +57,13 @@
                 return;
             }
 
-        
             const newActivity = { title, club, date, description };
 
-            
-            const stored = JSON.parse(localStorage.getItem("activities") || "[]");
+            // Save to localStorage
+            const existing = JSON.parse(localStorage.getItem("activities") || "[]");
+            existing.push(newActivity);
+            localStorage.setItem("activities", JSON.stringify(existing));
 
-            // Add new activity to list
-            stored.push(newActivity);
-
-            // Save updated list back to localStorage
-            localStorage.setItem("activities", JSON.stringify(stored));
-
-            
             message.textContent = "Activity added successfully!";
             message.style.color = "green";
             form.reset();
