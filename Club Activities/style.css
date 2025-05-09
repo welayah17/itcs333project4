@@ -16,7 +16,7 @@ header {
     background: linear-gradient(90deg, #6a11cb, #2575fc);
     color: white;
     padding: 20px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-transform: uppercase;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -25,7 +25,7 @@ header {
 
 main {
     padding: 20px;
-    max-width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -72,10 +72,17 @@ main {
     border-radius: 6px;
     border: 1px solid #bbb;
     font-size: 1rem;
-    width: 100%; 
-    max-width: 300px; 
+    width: 100%;
+    max-width: 300px;
 }
 
+.search-filter button {
+    background: #6a11cb;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
 
 .search-filter button:hover {
     background: #4a0c8a;
@@ -84,7 +91,7 @@ main {
 
 .group-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust grid for smaller devices */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     padding: 25px;
 }
@@ -228,21 +235,22 @@ footer {
     text-align: center;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
     .container {
-        width: 90%;
+        flex-direction: row;
+        justify-content: space-between;
     }
+}
 
-    .group-list {
-        padding: 15px;
+@media (min-width: 1024px) {
+    .container {
+        width: 80%;
     }
 }
 
 @media (max-width: 768px) {
     header {
-        font-size: 1.6rem;
-        padding: 15px;
+        font-size: 1.4rem;
     }
 
     .search-filter {
@@ -259,22 +267,15 @@ footer {
     }
 
     button[type="submit"] {
-        font-size: 1rem;
-    }
-
-    .group h2 {
-        font-size: 1.2rem;
-    }
-
-    .search-filter input {
-        width: 100%;
+        font-size: 0.95rem;
+        padding: 12px 16px;
     }
 }
 
 @media (max-width: 480px) {
     header {
-        font-size: 1.4rem;
-        padding: 12px;
+        font-size: 1.2rem;
+        padding: 15px;
     }
 
     main {
@@ -285,15 +286,14 @@ footer {
         font-size: 1.2rem;
     }
 
-    .search-filter input,
-    .search-filter select,
-    .search-filter button {
-        font-size: 0.9rem;
-        padding: 10px;
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 0.95rem;
     }
 
     button[type="submit"] {
         font-size: 0.9rem;
     }
 }
-
