@@ -7,51 +7,47 @@
 </head>
 <body>
     <header>Campus Hub</header>
-    
+
     <nav>
         <ul>
             <li><a href="page2.html" class="add-group">+ Add Activity</a></li>
         </ul>
     </nav>
-    
+
     <main>
         <h1>Club Activities</h1>
-        
+
         <div class="search-filter">
-            <input type="text" placeholder="Search activities...">
-            <select>
-                <option>All Clubs</option>
-                <option>Photography Club</option>
-                <option>Reading Club</option>
-                <option>Spanish Club</option>
+            <input type="text" id="searchInput" placeholder="Search activities...">
+            <select id="clubFilter">
+                <option value="">All Clubs</option>
+                <option value="Photography Club">Photography Club</option>
+                <option value="Reading Club">Reading Club</option>
+                <option value="Spanish Club">Spanish Club</option>
             </select>
-            <button>Search</button>
+            <select id="sortOption">
+                <option value="">Sort By</option>
+                <option value="date">Date</option>
+                <option value="club">Club</option>
+            </select>
         </div>
-        
-        <div class="group-list">
-            <article class="group">
-                <h2>Photo Walk</h2>
-                <p><strong>Club:</strong> Photography Club</p>
-                <p><strong>Date:</strong> June 5, 2025</p>
-                <p>Urban photography tour downtown.</p>
-                <button>View Details</button>
-            </article>
-            
-            <article class="group">
-                <h2>Book Discussion</h2>
-                <p><strong>Club:</strong> Reading Club</p>
-                <p><strong>Date:</strong> June 12, 2025</p>
-                <p>Discussion on "100 Years of Solitude".</p>
-                <button>View Details</button>
-            </article>
-        </div>
-        
+
+       
+        <div id="activityList" class="group-list"></div>
+
+       
         <div class="pag">
-            <button disabled>Previous</button>
-            <button>Next</button>
+            <button id="prevPage">Previous</button>
+            <button id="nextPage">Next</button>
         </div>
+
+        
+        <div id="loading" style="display: none;">Loading...</div>
+        <div id="error" style="display: none; color: red;">Failed to load activities.</div>
     </main>
-    
+
     <footer>Campus Hub &copy; 2025</footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
