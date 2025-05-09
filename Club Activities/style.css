@@ -72,17 +72,10 @@ main {
     border-radius: 6px;
     border: 1px solid #bbb;
     font-size: 1rem;
-    width: 100%; /* Ensure all elements stretch to the container width */
-    max-width: 300px;
+    width: 100%; 
+    max-width: 300px; 
 }
 
-.search-filter button {
-    background: #6a11cb;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-}
 
 .search-filter button:hover {
     background: #4a0c8a;
@@ -303,3 +296,4 @@ footer {
         font-size: 0.9rem;
     }
 }
+
