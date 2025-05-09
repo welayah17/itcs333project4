@@ -1,95 +1,99 @@
-const API_URL = "data.json";
-const activityList = document.getElementById("activityList");
-const loading = document.getElementById("loading");
-const error = document.getElementById("error");
-const searchInput = document.getElementById("searchInput");
-const clubFilter = document.getElementById("clubFilter");
-const sortOption = document.getElementById("sortOption");
-const prevPage = document.getElementById("prevPage");
-const nextPage = document.getElementById("nextPage");
+const API_URL = "https://7evvax.replit.app/api.php?path=clubs";
 
-let activities = [];
+let clubsData = [];
 let currentPage = 1;
-const itemsPerPage = 3;
+const itemsPerPage = 6;
 
-async function fetchActivities() {
-    loading.style.display = "block";
-    error.style.display = "none";
+// Fetch data from PHP API
+async function fetchClubs() {
     try {
-        // Fetch from data.json
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("Failed to fetch data.json");
-        const jsonData = await res.json();
-
-        // Load from localStorage
-        const localData = JSON.parse(localStorage.getItem("activities") || "[]");
-
-        // Merge both sources
-        activities = [...jsonData, ...localData];
-
-        renderActivities();
+        if (!res.ok) throw new Error("Failed to fetch data");
+        clubsData = await res.json();
+        renderClubs();
+        renderPagination();
     } catch (err) {
-        console.error(err);
-        error.style.display = "block";
-    } finally {
-        loading.style.display = "none";
+        console.error("Error loading data:", err);
+        document.querySelector(".group-list").innerHTML = "<p>Error loading club data.</p>";
     }
 }
 
-function renderActivities() {
-    let filtered = activities.filter(activity => {
-        const matchesSearch = activity.title.toLowerCase().includes(searchInput.value.toLowerCase());
-        const matchesClub = !clubFilter.value || activity.club === clubFilter.value;
-        return matchesSearch && matchesClub;
-    });
 
-    if (sortOption.value === "date") {
-        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if (sortOption.value === "club") {
-        filtered.sort((a, b) => a.club.localeCompare(b.club));
-    }
-
+function renderClubs(data = clubsData) {
     const start = (currentPage - 1) * itemsPerPage;
-    const paginated = filtered.slice(start, start + itemsPerPage);
+    const end = start + itemsPerPage;
+    const currentItems = data.slice(start, end);
 
-    activityList.innerHTML = "";
-    if (paginated.length === 0) {
-        activityList.innerHTML = "<p>No activities found.</p>";
+    const groupList = document.querySelector(".group-list");
+    groupList.innerHTML = "";
+
+    if (currentItems.length === 0) {
+        groupList.innerHTML = "<p>No clubs found.</p>";
         return;
     }
 
-    paginated.forEach(activity => {
-        const article = document.createElement("article");
-        article.className = "group";
-        article.innerHTML = `
-            <h2>${activity.title}</h2>
-            <p><strong>Club:</strong> ${activity.club}</p>
-            <p><strong>Date:</strong> ${activity.date}</p>
-            <p>${activity.description}</p>
-            <button onclick="alert('Details for: ${activity.title}')">View Details</button>
+    currentItems.forEach(club => {
+        const div = document.createElement("div");
+        div.className = "group";
+        div.innerHTML = `
+            <h2>${club.name}</h2>
+            <p><strong>Category:</strong> ${club.category}</p>
+            <p><strong>Description:</strong> ${club.description}</p>
+            <p><strong>Leader:</strong> ${club.leader}</p>
+            <button onclick="alert('More info about ${club.name}')">View Details</button>
         `;
-        activityList.appendChild(article);
+        groupList.appendChild(div);
     });
 }
 
-searchInput.addEventListener("input", () => {
-    currentPage = 1;
-    renderActivities();
-});
-clubFilter.addEventListener("change", () => {
-    currentPage = 1;
-    renderActivities();
-});
-sortOption.addEventListener("change", renderActivities);
-prevPage.addEventListener("click", () => {
-    if (currentPage > 1) {
-        currentPage--;
-        renderActivities();
-    }
-});
-nextPage.addEventListener("click", () => {
-    currentPage++;
-    renderActivities();
-});
 
-fetchActivities();
+function applyFilters() {
+    const searchValue = document.getElementById("search").value.toLowerCase();
+    const categoryValue = document.getElementById("category").value;
+
+    const filtered = clubsData.filter(club => {
+        const matchSearch = club.name.toLowerCase().includes(searchValue);
+        const matchCategory = categoryValue ? club.category === categoryValue : true;
+        return matchSearch && matchCategory;
+    });
+
+    currentPage = 1;
+    renderClubs(filtered);
+    renderPagination(filtered);
+}
+
+
+function renderPagination(data = clubsData) {
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const pagContainer = document.querySelector(".pag");
+    pagContainer.innerHTML = "";
+
+    const prevBtn = document.createElement("button");
+    prevBtn.textContent = "Prev";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.onclick = () => {
+        currentPage--;
+        renderClubs(data);
+        renderPagination(data);
+    };
+
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "Next";
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.onclick = () => {
+        currentPage++;
+        renderClubs(data);
+        renderPagination(data);
+    };
+
+    pagContainer.appendChild(prevBtn);
+    pagContainer.appendChild(document.createTextNode(` Page ${currentPage} of ${totalPages} `));
+    pagContainer.appendChild(nextBtn);
+}
+
+// Event listeners
+document.getElementById("search").addEventListener("input", applyFilters);
+document.getElementById("category").addEventListener("change", applyFilters);
+
+fetchClubs();
+
