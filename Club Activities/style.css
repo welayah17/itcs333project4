@@ -72,10 +72,7 @@ main {
     border-radius: 6px;
     border: 1px solid #bbb;
     font-size: 1rem;
-}
-
-.search-filter input {
-    width: 100%;
+    width: 100%; /* Ensure all elements stretch to the container width */
     max-width: 300px;
 }
 
@@ -94,7 +91,7 @@ main {
 
 .group-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust grid for smaller devices */
     gap: 25px;
     padding: 25px;
 }
