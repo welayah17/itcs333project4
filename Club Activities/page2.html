@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add Club Activity</title>
@@ -15,6 +15,7 @@
                 Title:
                 <input type="text" id="title" required>
             </label><br>
+
             <label>
                 Club:
                 <select id="club" required>
@@ -24,17 +25,21 @@
                     <option value="Spanish Club">Spanish Club</option>
                 </select>
             </label><br>
+
             <label>
                 Date:
                 <input type="date" id="date" required>
             </label><br>
+
             <label>
                 Description:
                 <textarea id="description" required></textarea>
             </label><br>
+
             <button type="submit">Add Activity</button>
         </form>
-        <div id="formMessage"></div>
+
+        <div id="formMessage" style="margin-top: 10px;"></div>
     </main>
 
     <footer>Campus Hub &copy; 2025</footer>
@@ -57,16 +62,28 @@
                 return;
             }
 
-            message.textContent = "Activity added successfully (not saved permanently).";
+            const saved = localStorage.getItem("activities");
+            const activities = saved ? JSON.parse(saved) : [];
+
+            
+            activities.push({ title, club, date, description });
+
+        
+            localStorage.setItem("activities", JSON.stringify(activities));
+
+          
+            message.textContent = "Activity added successfully!";
             message.style.color = "green";
+
+           
             form.reset();
+
+        
+            setTimeout(() => {
+                window.location.href = "page1.html";
+            }, 1500);
         });
     </script>
 </body>
 </html>
-                
-    </main>
-    
-    <footer>Campus Hub &copy; 2025</footer>
-</body>
-</html>
+
