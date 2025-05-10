@@ -13,8 +13,8 @@ async function fetchClubs() {
         if (!res.ok) throw new Error("Failed to fetch data");
         clubsData = await res.json();
         applyFilters(); 
-    } catch (error) {
-        console.error("Error fetching clubs:", error);
+    } catch (err) {
+        console.error("Error fetching clubs:", err);
         document.getElementById("error").style.display = "block";
     }
 }
