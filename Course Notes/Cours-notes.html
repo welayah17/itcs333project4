@@ -1,0 +1,101 @@
+<!-- 202004468 NOOR AHMED MOHAMED ALMARAAJ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cours-note.css">
+    <title>Course Notes</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Course Notes</h1>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="add-item.html">Add New Item</a>
+        <a href="events-calendar.html">Events Calendar</a>
+        <a href="study-group-finder.html">Study Group Finder</a>
+        <a href="course-reviews.html">Course Reviews</a>
+        <a href="course-notes.html">Course Notes</a>
+        <a href="campus-news.html">Campus News</a>
+        <a href="club-activities.html">Club Activities</a>
+        <a href="student-marketplace.html">Student Marketplace</a>
+    </nav>
+
+
+    <main class="container">
+        <!-- Main Listing Page -->
+        <section id="listing">
+            <h2>Course Notes Listing</h2>
+            <div class="search-bar">
+                <label for="search">Search:</label>
+                <input type="text" id="search" placeholder="Search..." aria-label="Search">
+                <label for="filter">Filter by:</label>
+                <select id="filter">
+                    <option>Filter by...</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+                <button type="button">Sort</button>
+            </div>
+            <button class="add-button" onclick="window.location.href='add-item.html';">Add New Item</button>
+            <div class="grid">
+                <!-- Example of Course Note Item -->
+                <article class="card">
+                    <h3>Course Note Title</h3>
+                    <p>Brief description of the course note.</p>
+                    <a href="detail-view.html" class="view-button">View Details</a>
+                </article>
+                <!-- Repeat for more items -->
+                <article class="card">
+                    <h3>Another Course Note</h3>
+                    <p>Brief description of another course note.</p>
+                    <a href="detail-view.html" class="view-button">View Details</a>
+                </article>
+            </div>
+            <nav class="pagination">
+                <a href="previous-page.html">Previous</a>
+                <a href="page-1.html">1</a>
+                <a href="page-2.html">2</a>
+                <a href="next-page.html">Next</a>
+            </nav>
+        </section>
+
+        <!-- Item Creation Form -->
+        <section id="creation-form" class="form-section">
+            <h2>Create New Course Note</h2>
+            <form action="submit-url" method="POST">
+                <div class="form-group">
+                    <label for="title">Title <span class="required">*</span></label>
+                    <input type="text" id="title" placeholder="Enter title" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content <span class="required">*</span></label>
+                    <textarea id="content" rows="5" placeholder="Enter content" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+                <button type="button" class="cancel-button" onclick="window.location.href='index.html';">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Item Detail View -->
+        <section id="detail-view" class="detail-section">
+            <h2>Course Note Title</h2>
+            <p>Complete display of all item information goes here.</p>
+            <button class="edit-button" onclick="window.location.href='edit-item.html';">Edit</button>
+            <button class="delete-button" onclick="confirm('Are you sure you want to delete this item?');">Delete</button>
+            <h3>Comments</h3>
+            <div class="comments-section">
+                <p>No comments yet.</p>
+            </div>
+            <a href="index.html" class="back-button">Back to Listing</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 Course Notes. All rights reserved.</p>
+    </footer>
+</body>
+</html>

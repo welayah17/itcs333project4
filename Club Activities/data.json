@@ -1,0 +1,38 @@
+[
+    {
+      "title": "Photo Walk",
+      "club": "Photography Club",
+      "date": "2025-06-05",
+      "description": "Urban photography tour downtown."
+    },
+    {
+      "title": "Book Discussion",
+      "club": "Reading Club",
+      "date": "2025-06-12",
+      "description": "Discussion on '100 Years of Solitude'."
+    },
+    {
+      "title": "Spanish Conversation",
+      "club": "Spanish Club",
+      "date": "2025-06-15",
+      "description": "Beginner-friendly language practice."
+    },
+    {
+      "title": "Night Sky Shoot",
+      "club": "Photography Club",
+      "date": "2025-06-20",
+      "description": "Astrophotography at the observatory."
+    },
+    {
+      "title": "Short Story Club",
+      "club": "Reading Club",
+      "date": "2025-06-25",
+      "description": "Read and discuss short stories."
+    },
+    {
+      "title": "Intermediate Spanish",
+      "club": "Spanish Club",
+      "date": "2025-06-30",
+      "description": "Group conversations for intermediate learners."
+    }
+  ]

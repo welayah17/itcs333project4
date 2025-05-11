@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listings";
+const form = document.getElementById("itemForm");
+const editSaveBtn = document.getElementById("editSaveBtn");
+const categorySelect = document.getElementById("category");
+const customCategoryWrapper = document.getElementById("customCategoryWrapper");
+const customCategoryInput = document.getElementById("customCategory");
+const successMessage = document.getElementById("successMessage");
+const errorMessage = document.getElementById("errorMessage");
+
+let isEditing = false;
+let itemId = null;
+
+// Fetch and display item details
+async function fetchItemDetails() {
+  const urlParams = new URLSearchParams(window.location.search);
+  itemId = urlParams.get("id");
+
+  if (!itemId) {
+    alert("No item ID provided.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/${itemId}`);
+    if (!res.ok) throw new Error("Failed to load item details.");
+    const item = await res.json();
+
+    // Populate form fields
+    document.getElementById("title").value = item.title || "";
+    document.getElementById("description").value = item.description || "";
+    document.getElementById("price").value = item.price || "";
+    document.getElementById("phone").value = item.phoneNumber || "";
+    document.getElementById("category").value = item.category || "";
+    document.getElementById("status").value = item.status || "";
+
+    // Show custom category input if needed
+    if (item.category === "Other") {
+      customCategoryWrapper.classList.remove("d-none");
+      customCategoryInput.value = item.customCategory || "";
+    }
+
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+// Toggle form fields between editable and read-only
+function toggleFormFields(enable) {
+  const fields = form.querySelectorAll("input, textarea, select");
+  fields.forEach(field => {
+    field.disabled = !enable;
+  });
+
+  // Always keep the custom category input disabled unless "Other" is selected
+  if (categorySelect.value !== "Other") {
+    customCategoryInput.disabled = true;
+  }
+}
+
+// Validate form inputs
+function validateForm() {
+  let isValid = true;
+
+  // Clear previous error messages
+  const errorElements = form.querySelectorAll(".error");
+  errorElements.forEach(el => el.remove());
+
+  const title = document.getElementById("title");
+  if (title.value.trim().length < 3) {
+    showError(title, "Title must be at least 3 characters.");
+    isValid = false;
+  }
+
+  const description = document.getElementById("description");
+  if (description.value.trim().length < 5) {
+    showError(description, "Description must be at least 5 characters.");
+    isValid = false;
+  }
+
+  const price = document.getElementById("price");
+  if (parseFloat(price.value) < 0 || price.value.trim() === "") {
+    showError(price, "Price must be a positive number.");
+    isValid = false;
+  }
+
+  const phone = document.getElementById("phone");
+  if (!/^\d{8}$/.test(phone.value.trim())) {
+    showError(phone, "Phone number must be exactly 8 digits.");
+    isValid = false;
+  }
+
+  const category = document.getElementById("category");
+  if (category.value === "") {
+    showError(category, "Please select a category.");
+    isValid = false;
+  }
+
+  if (category.value === "Other") {
+    if (customCategoryInput.value.trim().length < 3) {
+      showError(customCategoryInput, "Custom category must be at least 3 characters.");
+      isValid = false;
+    }
+  }
+
+  const status = document.getElementById("status");
+  if (status.value === "") {
+    showError(status, "Please select a status.");
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+// Show error message for a specific input
+function showError(input, message) {
+  const error = document.createElement("div");
+  error.className = "error";
+  error.style.color = "red";
+  error.textContent = message;
+  input.parentNode.appendChild(error);
+}
+
+// Handle Edit/Save button click
+editSaveBtn.addEventListener("click", async () => {
+  if (!isEditing) {
+    // Switch to edit mode
+    isEditing = true;
+    toggleFormFields(true);
+    editSaveBtn.textContent = "Save";
+  } else {
+    // Attempt to save changes
+    if (!validateForm()) return;
+
+    const updatedItem = {
+      title: document.getElementById("title").value.trim(),
+      description: document.getElementById("description").value.trim(),
+      price: document.getElementById("price").value.trim(),
+      phoneNumber: document.getElementById("phone").value.trim(),
+      category: categorySelect.value,
+      status: document.getElementById("status").value,
+    };
+
+    if (categorySelect.value === "Other") {
+      updatedItem.customCategory = customCategoryInput.value.trim();
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/${itemId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedItem)
+      });
+
+      if (!res.ok) throw new Error("Failed to update item.");
+
+      // Success
+      isEditing = false;
+      toggleFormFields(false);
+      editSaveBtn.textContent = "Edit";
+      successMessage.classList.remove("d-none");
+      errorMessage.classList.add("d-none");
+
+      setTimeout(() => {
+        successMessage.classList.add("d-none");
+      }, 5000);
+
+    } catch (err) {
+      // Error
+      errorMessage.classList.remove("d-none");
+      successMessage.classList.add("d-none");
+
+      setTimeout(() => {
+        errorMessage.classList.add("d-none");
+      }, 5000);
+    }
+  }
+});
+
+// Show/hide custom category input based on selection
+categorySelect.addEventListener("change", () => {
+  if (categorySelect.value === "Other") {
+    customCategoryWrapper.classList.remove("d-none");
+    customCategoryInput.disabled = false;
+  } else {
+    customCategoryWrapper.classList.add("d-none");
+    customCategoryInput.disabled = true;
+    customCategoryInput.value = "";
+  }
+});
+
+// Initialize the page
+document.addEventListener("DOMContentLoaded", () => {
+  fetchItemDetails();
+});
+
+    </script>
+</head>
+<body>
+    <form id="itemForm">
+  <input type="text" id="title" disabled />
+  <textarea id="description" disabled></textarea>
+  <input type="number" id="price" disabled />
+  <input type="text" id="phone" disabled />
+  
+  <select id="category" disabled>
+    <option value="">Select Category</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Books">Books</option>
+    <option value="Other">Other</option>
+  </select>
+  
+  <div id="customCategoryWrapper" class="d-none">
+    <input type="text" id="customCategory" placeholder="Enter custom category" disabled />
+  </div>
+  
+  <select id="status" disabled>
+    <option value="">Select Status</option>
+    <option value="Available">Available</option>
+    <option value="Sold">Sold</option>
+  </select>
+  
+  <button type="button" id="editSaveBtn">Edit</button>
+</form>
+
+<div id="successMessage" class="d-none">Item updated successfully!</div>
+<div id="errorMessage" class="d-none">Failed to update item. Please try again.</div>
+
+</body>
+</html>

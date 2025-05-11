@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add News | Campus News</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="title">Add New News</h1>
+    </header>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="campusNews.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="news-detail">
+        <form id="newsForm">
+            <div>
+                <label for="title">News Title</label><br>
+                <input type="text" id="title" name="title" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0;">
+            </div>
+
+            <div>
+                <label for="summary">Summary</label><br>
+                <textarea id="summary" name="summary" rows="3" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0;"></textarea>
+            </div>
+
+            <div>
+                <label for="content">Full Content</label><br>
+                <textarea id="content" name="content" rows="6" required style="width: 100%; padding: 0.5rem; margin: 0.5rem 0;"></textarea>
+            </div>
+
+            <div>
+                <label for="date">Publish Date</label><br>
+                <input type="date" id="date" name="date" required style="padding: 0.5rem; margin: 0.5rem 0;">
+            </div>
+
+            <button type="submit" class="read-more-btn">Submit News</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Campus News. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('newsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('News submitted successfully (form functionality pending backend)');
+        });
+    </script>
+
+</body>
+</html>
