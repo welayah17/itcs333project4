@@ -1,14 +1,53 @@
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<?php
+session_start();
+include '../db.php';
+$errors = [];
+$username = $password = "";
+
+function test_input($data) {
+  return htmlspecialchars(stripslashes(trim($data)));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["username"])) {
+      $errors['userRequired'] = "User name is required!";
+  } else {
+    $user = test_input($_POST["username"]);
+  }
+
+  if (empty($_POST["password"])) {
+      $errors['passwordRequired'] = "Password is required!";
+  } else {
+    $password = test_input($_POST["password"]);
+  }
+
+  if (empty($errors)) {
+    $prepare = $db->prepare("SELECT * FROM `user` WHERE username=?");
+    $prepare->execute([$user]);
+
+    if ($prepare->rowCount() > 0) {
+      $data = $prepare->fetch();
+      if (password_verify($password, $data['password'])) {
+        $_SESSION['user_id'] = $data['id'];
+        $_SESSION['username'] = $data['username'];
+
+         header('Location: ../index.html');
+      } else {
+        $errors['ErrorUserOrPass'] = 'Incorrect username or password';
+      }
+    } else {
+      $errors['NoResult'] = 'The entered data does not exist';
+    }
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../CSS/Main.css">
     
     <style>
            .form-container {
@@ -33,53 +72,57 @@
     </style>
 </head>
 <body>
-    <div class="container form-container my-5">
-        <div class="row justify-content-center">
-          <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
-            <h2 class="text-center mb-4">User Login</h2>
-            <form action="#" method="POST">
-      
-              <!-- Email -->
-              <div class="form-group mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                  title="Please enter a valid email address.">
-              </div>
-      
-              <!-- Password -->
-              <div class="form-group mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Password must be at least 8 characters long, include a number, uppercase and lowercase letter.">
-              </div>
-      
-              <!-- Submit Button -->
-              <div class="d-grid">
-                <button type="submit" class="btn btn-info text-white">Login</button>
-              </div>
-      
-              <!-- Optional: Forgot Password Link -->
-              <div class="text-center mt-3">
-                <a href="#" class="text-decoration-none text-muted">Forgot your password?</a>
-              </div>
-            </form>
-          </div>
+  <?php 
+  include '../../Header.html';
+?>
+  <!-- START OF LOGIN FORM HTML -->
+<div class="container form-container my-5">
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
+      <h2 class="text-center mb-4">User Login</h2>
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+
+        <!-- Username -->
+        <div class="form-group mb-3">
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username"
+            value="<?php echo htmlspecialchars($user); ?>" required>
+          <small class="text-danger">
+            <?php
+              if (isset($errors['userRequired'])) echo $errors['userRequired'];
+              if (isset($errors['ErrorUserOrPass'])) echo "<br>" . $errors['ErrorUserOrPass'];
+              if (isset($errors['NoResult'])) echo "<br>" . $errors['NoResult'];
+            ?>
+          </small>
         </div>
-      </div>
-         <!-- Bootstrap 5 Footer -->
-  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-    <div class="container">
-      <div class="mb-3">
-        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
-        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
-        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
-      </div>
+
+        <!-- Password -->
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+          <small class="text-danger">
+            <?php
+              if (isset($errors['passwordRequired'])) echo $errors['passwordRequired'];
+            ?>
+          </small>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" name="Loginbtn" class="btn btn-info text-white">Login</button>
+        </div>
+
+        <!-- Links -->
+        <div class="text-center mt-3">
+          <p>If you don't have an account? <a href="register.php">Sign up</a></p>
+        </div>
+      </form>
     </div>
-  </footer>
-          
+  </div>
+</div>
+
+<?php
+include '../../Footer.html'; ?>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>  
 </body>
 </html>
