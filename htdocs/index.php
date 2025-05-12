@@ -122,28 +122,28 @@ require 'db.php';
     <!-- Slides -->
     <div class="carousel-inner rounded shadow-sm">
       <div class="carousel-item active">
-        <img src="Images/3902762.jpg" class="d-block carousel-img" alt="Campus Life">
+        <img src="../Images/3902762.jpg" class="d-block carousel-img" alt="Campus Life">
         <div class="carousel-caption d-none d-md-block">
           <h1 class="fw-bold">Explore Campus Life</h1>
           <p>Stay up-to-date with our Events Calendar and never miss a moment.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="Images/4163433.jpg" class="d-block carousel-img" alt="Study Group Finder">
+        <img src="../Images/4163433.jpg" class="d-block carousel-img" alt="Study Group Finder">
         <div class="carousel-caption d-none d-md-block">
           <h1 class="fw-bold">Study Smarter Together</h1>
           <p>Connect with peers through our Study Group Finder and boost your grades.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="Images/2452376.jpg" class="d-block carousel-img" alt="Course Reviews">
+        <img src="../Images/2452376.jpg" class="d-block carousel-img" alt="Course Reviews">
         <div class="carousel-caption d-none d-md-block">
           <h1 class="fw-bold">Learn from Experience</h1>
           <p>Read and share real student insights through Course Reviews and Notes.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="Images/56063.jpg" class="d-block carousel-img" alt="Student Marketplace">
+        <img src="../Images/56063.jpg" class="d-block carousel-img" alt="Student Marketplace">
         <div class="carousel-caption d-none d-md-block">
           <h1 class="fw-bold">Buy & Sell on Campus</h1>
           <p>Browse the Student Marketplace for textbooks, tech, and more.</p>
@@ -179,7 +179,7 @@ require 'db.php';
           </div>
         </div>
         <div class="col-lg-6 col-md-12 text-center">
-          <img src="Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="img-fluid rounded shadow" alt="Campus Hub Services" style="width:80%;">
+          <img src="../Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="img-fluid rounded shadow" alt="Campus Hub Services" style="width:80%;">
         </div>
       </div>
 
@@ -345,7 +345,7 @@ require 'db.php';
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
-              <img src="Images/3902762.jpg" class="note-img img-fluid mb-3" alt="Textbook">
+              <img src="../Images/3902762.jpg" class="note-img img-fluid mb-3" alt="Textbook">
               <div class="note-meta">April 12, 2025 • Marketplace</div>
               <div class="note-title">Used Biology Textbook (BIO101)</div>
               <div class="note-price">$25.00</div>
@@ -361,7 +361,7 @@ require 'db.php';
           </div>
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
-              <img src="Images/2452376.jpg" class="note-img img-fluid mb-3" alt="Library photo">
+              <img src="../Images/2452376.jpg" class="note-img img-fluid mb-3" alt="Library photo">
               <div class="note-meta">April 12, 2025 • Campus News</div>
               <div class="note-title">New Study Spaces Open in Library</div>
               <div class="note-price">$45.00</div>
@@ -378,7 +378,7 @@ require 'db.php';
 
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
-              <img src="Images/4163433.jpg" class="note-img img-fluid mb-3" alt="Earth Week">
+              <img src="../Images/4163433.jpg" class="note-img img-fluid mb-3" alt="Earth Week">
               <div class="note-meta">April 11, 2025 • Events</div>
               <div class="note-title">Earth Week Festival This Weekend</div>
               <div class="note-price">$45.00</div>
@@ -394,7 +394,7 @@ require 'db.php';
 
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
-              <img src="Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="note-img img-fluid mb-3" alt="Earth Week">
+              <img src="../Images/freepik__isometric-university-illustration-with-students-st__37349.jpeg" class="note-img img-fluid mb-3" alt="Earth Week">
               <div class="note-meta">April 10, 2025 • Course Reviews</div>
               <div class="note-title">Top-Rated Spring Courses by Students</div>
               <div class="note-price">$45.00</div>
@@ -410,7 +410,7 @@ require 'db.php';
 
           <div class="col">
             <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column">
-              <img src="Images/56063.jpg" class="note-img img-fluid mb-3" alt="Calculator">
+              <img src="../Images/56063.jpg" class="note-img img-fluid mb-3" alt="Calculator">
               <div class="note-meta">April 11, 2025 • Marketplace</div>
               <div class="note-title">TI-84 Plus Graphing Calculator</div>
               <div class="note-price">$45.00</div>
