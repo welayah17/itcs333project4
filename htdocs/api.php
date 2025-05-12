@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 try {
       session_start();
-    include 'db.php';
+    require 'db.php';
     // Handle the endpoint path (e.g. ?path=clubs)
     $path = $_GET['path'] ?? '';
 
