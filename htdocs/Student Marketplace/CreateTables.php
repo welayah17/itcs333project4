@@ -11,35 +11,37 @@ try {
     // 1. User Table
     $db->exec("
         CREATE TABLE IF NOT EXISTS User (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            firstName VARCHAR(100),
-            lastName VARCHAR(100),
-            universityEmail VARCHAR(100) UNIQUE,
-            phoneNumber VARCHAR(20),
-            dateOfBirth DATE,
-            registrationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-            studentUniversityId VARCHAR(50),
-            universityName VARCHAR(100)
-        );
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(150),
+    username VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    universityEmail VARCHAR(100) UNIQUE,
+    phoneNumber VARCHAR(20),
+    dateOfBirth DATE,
+    registrationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    studentUniversityId VARCHAR(50),
+    universityName VARCHAR(100),
+    image VARCHAR(255)
+);
     ");
 
     // 2. StudentMarketplaceItem Table
     $db->exec("
-        CREATE TABLE IF NOT EXISTS StudentMarketplaceItem (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            title VARCHAR(255),
-            description TEXT,
-            price DECIMAL(10, 2),
-            category VARCHAR(100),
-            status BOOLEAN DEFAULT TRUE,
-            phoneNumber VARCHAR(20),
-            publishDate DATETIME,
-            service VARCHAR(100),
-            image VARCHAR(255),
-            popularity INT,
-            userId INT,
-            FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE
-        );
+    CREATE TABLE IF NOT EXISTS StudentMarketplaceItem (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    price DECIMAL(10, 2),
+    category VARCHAR(100),
+    status ENUM('Available', 'Sold', 'Pending') NOT NULL DEFAULT 'Available',
+    phoneNumber VARCHAR(20),
+    publishDate DATETIME,
+    service ENUM('Student Marketplace') NOT NULL DEFAULT 'Student Marketplace',
+    image VARCHAR(255),
+    popularity INT DEFAULT 0,
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE
+);
     ");
 
     // 3. StudentMarketplaceMessages Table

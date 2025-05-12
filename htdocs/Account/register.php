@@ -1,14 +1,54 @@
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+<?php
+require '../db.php'; 
+
+function test_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+      $fullName = test_input($_POST['full_name']);
+      $username = test_input($_POST['username']);
+      $email = test_input($_POST['email']);
+      $password = test_input($_POST['password']);
+      $university = test_input($_POST['university']);
+      $phoneNumber = test_input($_POST['phone_number']);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      $imagePath = "";
+
+      if (!empty($_FILES['profile_picture']['name'])) {
+          $targetDir = "../uploads/";
+          $filename = time() . "_" . basename($_FILES['profile_picture']['name']);
+          $targetFile = $targetDir . $filename;
+
+          if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $targetFile)) {
+              $imagePath = $targetFile;
+          }
+      }
+
+      try {
+          $stmt = $db->prepare("INSERT INTO User (fullName, username, universityEmail, password, universityName, image, phoneNumber)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)");
+          $stmt->execute([$fullName, $username, $email, $hashedPassword, $university, $imagePath, $phoneNumber]);
+
+          if ($stmt->rowCount() === 1) {
+              header("Location: ../Login.php");
+              exit();
+          } else {
+              echo "Something went wrong while inserting data.";
+          }
+      } catch (PDOException $e) {
+          die("Error: " . $e->getMessage());
+      }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../CSS/Main.css">
     
     <style>
            .form-container {
@@ -33,66 +73,9 @@
     </style>
 </head>
 <body>
-       <!-- Header -->
-       <!-- Navigation Bar-->
-   <!-- Bootstrap 5 Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-    <div class="container-fluid px-4">
-      <a class="navbar-brand fw-bold fs-4" href="../index.html">Campus Hub</a>
-  
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto align-items-center gap-2">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-          </li>
-  
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Services
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="servicesDropdown">
-             <li><a class="dropdown-item" href="../Events Calendar/EventsCalendar.html">Events Calendar</a></li>
-             <li><a class="dropdown-item" href="../Study Group Finder/index.html">Study Group Finder</a></li>
-             <li><a class="dropdown-item" href="../Course Reviews/CourseReviews.html">Course Reviews</a></li>
-             <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
-             <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
-             <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
-             <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.html">Student Marketplace</a></li>
-            </ul>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" href="#About">About</a>
-          </li>
-  
-          <!-- Account Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-user"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
-              <li><a class="dropdown-item" href="../Account/Profile/profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="../Account/signout.html">Sign out</a></li>
-              <li><a class="dropdown-item" href="../Account/login.html">Sign in</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../Account/register.html">Register Now</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-           <div class="search-bar">
-             <input type="text" placeholder="Search Campus Hub..." />
-             <button title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-         </div>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
+<?php 
+  include '../../Header.html';
+?>
 
     <div class="container form-container my-5">
   <div class="row justify-content-center">
@@ -105,6 +88,13 @@
           <label for="full_name" class="form-label">Full Name:</label>
           <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Enter your full name" required
             pattern="[A-Za-z\s]{2,50}" title="Please enter 2-50 alphabetic characters only.">
+        </div>
+
+        <!-- Username -->
+        <div class="form-group mb-3">
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Enter a username" required
+            pattern="[A-Za-z0-9_]{4,30}" title="Username must be 4-30 characters and can contain letters, numbers, and underscores.">
         </div>
 
         <!-- Email -->
