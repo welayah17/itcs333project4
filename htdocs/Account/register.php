@@ -73,15 +73,13 @@ function test_input($data) {
     </style>
 </head>
 <body>
-<?php 
-  include '../../Header.html';
-?>
+  <?php include '../Header.php'; ?>
 
     <div class="container form-container my-5">
   <div class="row justify-content-center">
     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
       <h2 class="text-center mb-4">User Registration</h2>
-      <form action="#" method="POST" enctype="multipart/form-data">
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
 
         <!-- Full Name -->
         <div class="form-group mb-3">
@@ -139,18 +137,6 @@ function test_input($data) {
   </div>
 </div>
 
-      <!-- Bootstrap 5 Footer -->
-  <footer class="text-white text-center sticky-bottom py-4 mt-5" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-    <div class="container">
-      <div class="mb-3">
-        <a href="#" class="text-white me-4"><i class="fa-solid fa-phone"></i></a>
-        <a href="#" class="text-white me-4"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#" class="text-white me-4"><i class="fa-brands fa-instagram"></i></a>
-        <i class="fa-regular fa-copyright"></i> Copyright 2025 - All Rights Reserved. University of Bahrain
-      </div>
-    </div>
-  </footer>
-          
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<?php include '../Footer.php'; ?>
 </body>
 </html>

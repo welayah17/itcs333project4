@@ -2,18 +2,16 @@
 <?php 
 session_start();
 require 'db.php';
-  include '../Header.html'; ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="CSS/MLP.css">
+
     <title>Home Page</title>
     <style>
-        html {
-  scroll-behavior: smooth;
-}
+        html { scroll-behavior: smooth; }
 
         a, h1{
             text-decoration: none;
@@ -109,7 +107,7 @@ require 'db.php';
     </style>
 </head>
 <body>
-
+ <?php include 'Header.php'; ?>
   <div id="campusHubCarousel" class="carousel slide container mt-4" data-bs-ride="carousel">
     <!-- Indicators -->
     <div class="carousel-indicators">
@@ -268,8 +266,8 @@ require 'db.php';
                    <p>Discover and join student clubs and activities.</p>
                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseSix"><button>Explore</button></a>
                    <div id="collapseSix" class="collapse collapse-content" data-bs-parent="#Services">
-                    <a href="Club Activities/page1.html"> 📌 Club Activities </a>
-                    <a href="Club Activities/page2.html"> ➕ Add new activity</a>
+                    <a href="../../Club Activities/page1.html"> 📌 Club Activities </a>
+                    <a href="../../Club Activities/page2.html"> ➕ Add new activity</a>
                    </div>
                 </div>
             </div>
@@ -281,9 +279,9 @@ require 'db.php';
                    <p>Buy, sell, and exchange items with fellow students.</p>
                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseSeven"><button>Explore</button></a>
                    <div id="collapseSeven" class="collapse collapse-content" data-bs-parent="#Services">
-                    <a href="Student Marketplace/MainListingPage.html"> 🛒 Student Marketplace Listing</a>
-                    <a href="Student Marketplace/ItemCreationForm.html"> ➕ Add Item</a>
-                    <a href="Student Marketplace/EditItem.html"> ✏️ Edit Item </a>
+                    <a href="Student Marketplace/MainListingPage.php"> 🛒 Student Marketplace Listing</a>
+                    <a href="Student Marketplace/ItemCreationForm.php"> ➕ Add Item</a>
+                    <a href="Student Marketplace/EditItem.php"> ✏️ Edit Item </a>
                    </div>
             </div>
             </div>
@@ -441,7 +439,7 @@ require 'db.php';
 
   </div> <!-- End of Container -->
 
-<?php include '../Footer.html'; ?>
+<?php include 'Footer.php'; ?>
 </body>
 </html>
 

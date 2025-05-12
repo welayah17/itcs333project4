@@ -1,0 +1,104 @@
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center; 
+            background: linear-gradient(135deg, #4b0082, #4169e1);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            background: #4169e1;
+            color: white;
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .weekday {
+    padding: 15px;
+    background: #004aad;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 18px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+    
+        }
+        .day {
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        .day:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+        .event {
+            background-color: #6a0dad;
+            color: white;
+            box-shadow: 0 3px 6px rgba(106, 13, 173, 0.5);
+        }
+        #eventForm {
+            margin-top: 20px; 
+            display: none;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+          .event-name {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+
+        input, button {
+            padding: 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            width: 65%;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #6a0dad;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #570ba0;
+            transform: scale(1.05);
+        }
+  

@@ -1,7 +1,9 @@
 <?php
-session_start();
 require '../db.php';
-include '../../Header.html';
+session_start();
+include '../Header.php';
+
+
 ?>
 <div class="container form-container"> <!-- Start of Container -->
         <div class="row justify-content-center"> <!-- Start of row -->
@@ -133,4 +135,4 @@ include '../../Header.html';
 
 </script>
 
-<?php include '../../Footer.html'; ?>
+<?php include '../Footer.php'; ?>
