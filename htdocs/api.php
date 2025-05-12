@@ -1,16 +1,9 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection using secrets
-$host = '127.0.0.1';
-$dbname = getenv("db_name");
-$user = getenv("db_user");
-$pass = getenv("db_pass");
-
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+      session_start();
+    include 'db.php';
     // Handle the endpoint path (e.g. ?path=clubs)
     $path = $_GET['path'] ?? '';
 
