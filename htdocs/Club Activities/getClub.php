@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require 'db.php';
+require '../db.php';
 
 try {
     $stmt = $db->query("SELECT * FROM clubs ORDER BY id DESC");
