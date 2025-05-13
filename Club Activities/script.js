@@ -1,4 +1,4 @@
-const API_URL = "api.php";
+const API_URL = "htdocs/Club Activities/api.php";
 const activityList = document.getElementById("activityList");
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
