@@ -13,8 +13,8 @@
   <script src="https://kit.fontawesome.com/76f78292cc.js" crossorigin="anonymous"></script>
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="CSS/Main.css" />
-  <link rel="stylesheet" href="CSS/MLP.css" />
+  <link rel="stylesheet" href="../CSS/Main.css" />
+  <link rel="stylesheet" href="../CSS/MLP.css" />
 </head>
 <body>
   <!-- Navbar -->

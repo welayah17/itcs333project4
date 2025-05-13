@@ -17,7 +17,7 @@ function test_input($data) {
       $imagePath = "";
 
       if (!empty($_FILES['profile_picture']['name'])) {
-          $targetDir = "../uploads/";
+          $targetDir = "../Images/Profile/";
           $filename = time() . "_" . basename($_FILES['profile_picture']['name']);
           $targetFile = $targetDir . $filename;
 
