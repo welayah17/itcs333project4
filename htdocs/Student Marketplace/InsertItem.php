@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Image upload
     if (!empty($_FILES['images']['name'][0])) {
-        $uploadDir = "../uploads/";
+        $uploadDir = "../Images/";
         $filename = time() . "_" . basename($_FILES['images']['name'][0]);
         $targetPath = $uploadDir . $filename;
 
