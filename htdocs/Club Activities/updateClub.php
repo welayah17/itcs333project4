@@ -1,11 +1,21 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 require '../db.php';
 
-$data = json_decode(file_get_contents("php://input"), true);
 
-if (!$data || !isset($data['id'], $data['name'], $data['category'], $data['description'], $data['leader'])) {
-    echo json_encode(['error' => 'Missing fields']);
+$raw = file_get_contents("php://input");
+$data = json_decode($raw, true);
+
+// Validate data
+if (
+    !$data ||
+    !isset($data['id'], $data['name'], $data['category'], $data['description'], $data['leader'])
+) {
+    echo json_encode([
+        'error' => 'Missing ID or fields',
+        'raw' => $raw
+    ]);
     exit;
 }
 
@@ -21,6 +31,7 @@ try {
 
     echo json_encode(['success' => true, 'message' => 'Club updated successfully']);
 } catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
+    http_response_code(500);
+    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
 ?>

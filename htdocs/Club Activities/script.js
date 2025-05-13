@@ -1,4 +1,4 @@
-const API_URL = "htdocs/Club Activities/api.php";
+const API_URL = "api.php";
 const activityList = document.getElementById("activityList");
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
@@ -7,6 +7,8 @@ const clubFilter = document.getElementById("clubFilter");
 const sortOption = document.getElementById("sortOption");
 const prevPage = document.getElementById("prevPage");
 const nextPage = document.getElementById("nextPage");
+const updateModal = document.getElementById("updateModal");
+const updateForm = document.getElementById("updateForm");
 
 let activities = [];
 let currentPage = 1;
@@ -59,6 +61,8 @@ function renderActivities() {
             <p><strong>Category:</strong> ${club.category}</p>
             <p><strong>Leader:</strong> ${club.leader}</p>
             <p>${club.description}</p>
+            <button onclick="deleteClub(${club.id})">Delete</button>
+            <button onclick='openUpdateModal(${JSON.stringify(club)})'>Update</button>
         `;
         activityList.appendChild(article);
     });
@@ -90,4 +94,79 @@ nextPage.addEventListener("click", () => {
     renderActivities();
 });
 
+async function deleteClub(id) {
+    if (!confirm("Are you sure you want to delete this club?")) return;
+
+    try {
+        const res = await fetch("deleteClub.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id })
+        });
+
+        const result = await res.json();
+        if (res.ok && result.success) {
+            alert("Club deleted.");
+            fetchActivities();
+        } else {
+            alert("Error deleting: " + result.error);
+        }
+    } catch (err) {
+        alert("Network error.");
+    }
+}
+
+function openUpdateModal(club) {
+    updateModal.style.display = "block";
+    updateForm.id.value = club.id;
+    updateForm.name.value = club.name;
+    updateForm.category.value = club.category;
+    updateForm.description.value = club.description;
+    updateForm.leader.value = club.leader;
+}
+
+async function updateClub() {
+    const clubData = {
+        id: updateForm.id.value,
+        name: updateForm.name.value,
+        category: updateForm.category.value,
+        description: updateForm.description.value,
+        leader: updateForm.leader.value
+    };
+
+    try {
+        const res = await fetch("updateClub.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(clubData)
+        });
+
+        const result = await res.json();
+        if (res.ok && result.success) {
+            alert("Club updated successfully.");
+            updateModal.style.display = "none";
+            fetchActivities();
+        } else {
+            alert("Error updating: " + result.error);
+        }
+    } catch (err) {
+        alert("Network error.");
+    }
+}
+
+document.getElementById("closeModal").onclick = () => {
+    updateModal.style.display = "none";
+};
+
+window.onclick = function (event) {
+    if (event.target === updateModal) {
+        updateModal.style.display = "none";
+    }
+};
+
 fetchActivities();
+
