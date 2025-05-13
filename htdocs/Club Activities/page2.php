@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +14,7 @@
     </header>
 
     <main>
-        <form id="clubForm">
+        <form id="clubForm" action="insertClub.php" method="POST" >
             <label for="name">Club Name:</label>
             <input type="text" id="name" name="name" required>
 
