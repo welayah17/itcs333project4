@@ -1,6 +1,7 @@
+<?php 
 // get_groups.php
 header('Content-Type: application/json');
-require 'db.php';
+require '../db.php';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $limit = 10;
@@ -13,3 +14,4 @@ $stmt->execute();
 $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($groups);
+?>

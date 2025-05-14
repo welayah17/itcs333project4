@@ -1,7 +1,7 @@
 <?php
 // search_groups.php
 header('Content-Type: application/json');
-require 'db.php';
+require '../db.php';
 
 $query = isset($_GET['q']) ? '%' . $_GET['q'] . '%' : '';
 

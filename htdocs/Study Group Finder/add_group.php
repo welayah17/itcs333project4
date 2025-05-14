@@ -1,6 +1,6 @@
-// add_group.php
+<?php // add_group.php
 header('Content-Type: application/json');
-require 'db.php';
+require '../db.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -19,3 +19,4 @@ $stmt->execute([
 ]);
 
 echo json_encode(['message' => 'Study group added successfully']);
+?>

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const API_BASE = "/api/Student Marketplace/"; // Adjust if necessary
+  const API_BASE = "/api/Student Marketplace/";
   const form = document.getElementById("EditItem");
   const categorySelect = document.getElementById("itemCategory");
   const customCategoryWrapper = document.getElementById("customCategoryWrapper");
