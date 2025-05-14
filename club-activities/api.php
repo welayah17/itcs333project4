@@ -5,6 +5,9 @@
  * This file provides API endpoints to interact with club activities data.
  */
 
+echo "API is working!";
+exit;
+
 // Set headers for JSON API
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

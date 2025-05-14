@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Group Comments</title>
+    <style>
+        /* Styling the comment section */
+        .comment-section {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        #comments-list {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #comment-text {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="comment-section">
+        <h3>Comments</h3>
+        <div id="comments-list"></div>
+
+        <textarea id="comment-text" placeholder="Add a comment..."></textarea>
+        <button id="submit-comment">Submit</button>
+    </div>
+
+    <script>
+        // Function to display the comments
+        function displayComments() {
+            const commentsList = document.getElementById('comments-list');
+            commentsList.innerHTML = ''; // Clear previous comments
+
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `<strong>${comment.username}</strong> (just now):<p>${comment.text}</p>`;
+                commentsList.appendChild(commentDiv);
+            });
+        }
+
+        // Function to handle the comment submission
+        function submitComment() {
+            const commentText = document.getElementById('comment-text').value;
+            const username = 'User'; // You can replace this with actual user data if available
+
+            if (commentText.trim() !== '') {
+                const newComment = {
+                    username: username,
+                    text: commentText,
+                };
+
+                // Get existing comments from localStorage
+                const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+                // Add the new comment
+                comments.push(newComment);
+
+                // Save the updated comments to localStorage
+                localStorage.setItem('comments', JSON.stringify(comments));
+
+                // Clear the textarea
+                document.getElementById('comment-text').value = '';
+
+                // Refresh the comments list
+                displayComments();
+            }
+        }
+
+        // Add event listener to submit button
+        document.getElementById('submit-comment').addEventListener('click', submitComment);
+
+        // Display comments on page load
+        window.onload = function() {
+            displayComments();
+        };
+    </script>
+</body>
+</html>
