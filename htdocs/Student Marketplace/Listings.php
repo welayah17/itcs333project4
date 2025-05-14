@@ -16,13 +16,13 @@
     <!-- Search and Filter -->
     <form id="filterForm" class="d-flex gap-5 align-items-center mb-4">
       <div class="input-group search-bar-responsive">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <span class="input-group-text"><i class="search-icon fas fa-search"></i></span>
         <input type="text" class="form-control" name="search" id="searchInput" placeholder="Search for items...">
 
         <span class="input-group-text">
           <div class="dropdown">
             <button type="button" class="btn p-0 border-0 bg-transparent" data-bs-toggle="dropdown">
-              <i class="fas fa-filter" id="filterIcon"></i>
+              <i class="filter-icon fas fa-filter" id="filterIcon"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" id="categoryMenu">
               <li><a class="dropdown-item" data-value="">All Categories</a></li>

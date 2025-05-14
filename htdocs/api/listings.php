@@ -1,6 +1,7 @@
 <?php 
-require '../db.php';
 header('Content-Type: application/json');
+require '../db.php';
+
 
 // Collect query parameters
 $search = $_GET['search'] ?? '';
