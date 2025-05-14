@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: linear-gradient(135deg, #f4f4f9, #e0e0f0);
+  color: #333;
+  line-height: 1.6;
+}
+
+
+header {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 12px 12px;
+}
+
+
+main {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+button, .add-note {
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 5px;
+}
+
+button:hover, .add-note:hover {
+  background: #4a0c8a;
+  transform: scale(1.05);
+}
+
+
+#noteDetails {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+
+#formStatus {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+
+footer {
+  background: #333;
+  padding: 18px;
+  font-size: 0.9rem;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 12px 12px 0 0;
+  margin-top: 40px;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  header {
+      font-size: 1.4rem;
+  }
+
+  main {
+      padding: 15px;
+  }
+
+  button, .add-note {
+      font-size: 0.95rem;
+      padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+      font-size: 1.2rem;
+      padding: 15px;
+  }
+
+  main {
+      padding: 10px;
+  }
+
+  button, .add-note {
+      font-size: 0.9rem;
+      padding: 8px 14px;
+  }
+}
