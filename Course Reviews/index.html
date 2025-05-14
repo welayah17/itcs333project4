@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Data View</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #ffcf9d;
+      padding: 20px;
+    }
+    .sort-container {
+      margin: 20px auto;
+      width: 300px;
+    }
+    #sortSelect {
+      padding: 8px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 10px auto;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <h1>Users Data View</h1>
+  
+  <div class="sort-container">
+    <select id="sortSelect" onchange="handleSort()">
+      <option value="default">Default Order</option>
+      <option value="name_asc">Name (A-Z)</option>
+      <option value="name_desc">Name (Z-A)</option>
+      <option value="id_asc">ID (Ascending)</option>
+      <option value="id_desc">ID (Descending)</option>
+    </select>
+  </div>
+
+  <div id="cards-container"></div>
+
+  <script>
+    const endpoint = 'users';
+    let originalData = [];
+
+    // Sorting function
+    function handleSort() {
+      const sortType = document.getElementById('sortSelect').value;
+      let sortedData = [...originalData];
+
+      switch(sortType) {
+        case 'name_asc':
+          sortedData.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case 'name_desc':
+          sortedData.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case 'id_asc':
+          sortedData.sort((a, b) => Number(a.id) - Number(b.id));
+          break;
+        case 'id_desc':
+          sortedData.sort((a, b) => Number(b.id) - Number(a.id));
+          break;
+        default:
+          sortedData = [...originalData];
+      }
+
+      renderCards(sortedData);
+    }
+
+    // Render cards function
+    function renderCards(data) {
+      const container = document.getElementById('cards-container');
+      container.innerHTML = '';
+
+      if (data.length === 0) {
+        container.innerHTML = '<p>No data to display.</p>';
+        return;
+      }
+
+      data.forEach(user => {
+        const { id, name, text } = user;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${name}</h3>
+          <p>ID: ${id}</p>
+          <p>${text || 'No text'}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Fetch data function
+    async function fetchData() {
+      try {
+        const response = await fetch(`https://680d366ac47cb8074d8fe614.mockapi.io/api/v1/${endpoint}`);
+        originalData = await response.json();
+        
+        if (originalData.length === 0) {
+          renderCards([]);
+          return;
+        }
+
+        handleSort(); // Apply default sorting
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('cards-container').innerHTML = '<p>Error loading data.</p>';
+      }
+    }
+
+    // Initialize application
+    fetchData();
+  </script>
+</body>
+</html>
