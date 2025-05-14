@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Course Note - Campus Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Note</h1>
+    </header>
+
+    <main>
+        <form id="noteForm">
+            <input type="hidden" id="noteId" name="noteId">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" required></textarea>
+
+            <label for="course_id">Course ID:</label>
+            <input type="number" id="course_id" name="course_id" required>
+
+            <button type="submit">Update Note</button>
+        </form>
+
+        <p id="formStatus"></p>
+    </main>
+
+    <footer>
+        <p>Campus Hub &copy; 2025</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('noteForm');
+        const formStatus = document.getElementById('formStatus');
+        const noteId = new URLSearchParams(window.location.search).get('id'); // Get note ID from URL
+
+        // Fetch the note details for editing
+        async function fetchNote() {
+            if (!noteId) {
+                formStatus.textContent = 'Note ID is missing in the URL.';
+                return;
+            }
+
+            try {
+                const response = await fetch(`edit_note.php?id=${noteId}`);
+                if (!response.ok) throw new Error('Failed to fetch note');
+                const note = await response.json();
+                if (note.error) {
+                    formStatus.textContent = note.error;
+                    return;
+                }
+                document.getElementById('noteId').value = note.id;
+                document.getElementById('title').value = note.title;
+                document.getElementById('content').value = note.content;
+                document.getElementById('course_id').value = note.course_id;
+            } catch (error) {
+                console.error('Error:', error);
+                formStatus.textContent = 'Failed to load note. Please try again later.';
+            }
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const idInput = document.getElementById('noteId');
+            const titleInput = document.getElementById('title');
+            const contentInput = document.getElementById('content');
+            const courseIdInput = document.getElementById('course_id');
+
+            const updatedNote = {
+                id: idInput.value,
+                title: titleInput.value,
+                content: contentInput.value,
+                course_id: parseInt(courseIdInput.value)
+            };
+
+            try {
+                const response = await fetch('edit_note.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedNote)
+                });
+
+                if (!response.ok) throw new Error('Failed to update note');
+                const result = await response.json();
+                formStatus.textContent = result.message;
+            } catch (error) {
+                console.error('Error:', error);
+                formStatus.textContent = 'Failed to update note. Please try again later.';
+            }
+        });
+
+        // Fetch the note details when the page loads
+        document.addEventListener('DOMContentLoaded', fetchNote);
+    </script>
+    <script>
+  fetch('../Header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('afterbegin', data);
+    });
+</script>
+</body>
+</html>
