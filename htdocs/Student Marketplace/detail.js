@@ -1,6 +1,5 @@
 //20198132 FATEMA EBRAHIM ALI SALMAN
-
-const API_URL = "/api/Student Marketplace/"; // Replace with actual API URL
+const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listings"; // Replace with actual API URL
 const itemDetailsEl = document.getElementById("itemDetails");
 const loadingEl = document.getElementById("loading");
 
@@ -17,7 +16,7 @@ async function fetchItemDetails() {
   showLoading(true);
 
   try {
-    const res = await fetch(`${API_URL}Read.php${itemId}`);
+    const res = await fetch(`${API_URL}/${itemId}`);
     if (!res.ok) throw new Error("Failed to load item details.");
     const item = await res.json();
 
