@@ -2,7 +2,7 @@
 session_start();
 require '../db.php';
 
-// Ensure the request is POST
+// Set content type to JSON
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
