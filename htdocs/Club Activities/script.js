@@ -187,6 +187,12 @@ async function updateClub() {
     }
 }
 
+// Attach update function
+updateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    updateClub();
+});
+
 // Attach cancel function
 document.querySelector("#updateForm button[type='button']").addEventListener("click", cancelEdit);
 

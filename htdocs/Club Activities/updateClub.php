@@ -1,47 +1,48 @@
-    <?php
-    session_start();
-    require '../db.php';
+<?php
+session_start();
+require '../db.php';
 
-    header('Content-Type: application/json');
+// Ensure the request is POST
+header('Content-Type: application/json');
 
-    $input = file_get_contents('php://input');
-    $data = json_decode($input, true);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'error' => 'Invalid request method']);
+    exit;
+}
 
-    if (!is_array($data)) {
-        echo json_encode(['success' => false, 'error' => 'Invalid JSON']);
-        exit;
-    }
+// Read and decode JSON input
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
 
-    if (
-        empty($data['id']) ||
-        empty($data['name']) ||
-        empty($data['category']) ||
-        empty($data['description']) ||
-        empty($data['leader'])
-    ) {
-        echo json_encode(['success' => false, 'error' => 'Missing required fields']);
-        exit;
-    }
+if (!is_array($data)) {
+    echo json_encode(['success' => false, 'error' => 'Invalid JSON']);
+    exit;
+}
 
-    $id = (int) $data['id'];
-    $name = trim($data['name']);
-    $category = trim($data['category']);
-    $description = trim($data['description']);
-    $leader = trim($data['leader']);
+// Validate required fields
+if (
+    empty($data['id']) ||
+    empty($data['name']) ||
+    empty($data['category']) ||
+    empty($data['description']) ||
+    empty($data['leader'])
+) {
+    echo json_encode(['success' => false, 'error' => 'All fields are required']);
+    exit;
+}
 
-    try {
-        $stmt = $db->prepare("UPDATE clubs SET name = :name, category = :category, description = :description, leader = :leader WHERE id = :id");
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':category', $category);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':leader', $leader);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+try {
+    $stmt = $db->prepare("UPDATE clubs SET name = :name, category = :category, description = :description, leader = :leader WHERE id = :id");
+    $stmt->execute([
+        ':name' => $data['name'],
+        ':category' => $data['category'],
+        ':description' => $data['description'],
+        ':leader' => $data['leader'],
+        ':id' => $data['id']
+    ]);
 
-        $stmt->execute();
-
-        echo json_encode(['success' => true]);
-    } catch (PDOException $e) {
-        echo json_encode(['success' => false, 'error' => 'Update failed: ' . $e->getMessage()]);
-    }
-    ?>
-
+    echo json_encode(['success' => true]);
+} catch (PDOException $e) {
+    echo json_encode(['success' => false, 'error' => 'Update failed: ' . $e->getMessage()]);
+}
+?>
