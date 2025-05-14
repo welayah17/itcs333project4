@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/courseReview.css">
-  <title>Course Reviews</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/courseReview.css">
+    <title>Course Reviews</title>
 </head>
 <body>
 
-  <header>
-    <h1>Course Reviews</h1>
-  </header>
+    <header>
+        <h1>Course Reviews</h1>
+    </header>
 
-  <main>
-    <section class="search-section">
-      <input type="search" placeholder="Search courses...">
-      <select>
-        <option>Filter by Collages</option>
-        <option>Collage of Information Technology</option>
-        <option>Collage of Art</option>
-        <option>Collage of Law</option>
-        <option>Collage of Engineering</option>
-      </select>
-      <select>
-        <option>Sort by Rating</option>
-        <option>Newest First</option>
-        <option>Oldest First</option>
-      </select>
-      <button class="btn-add">+ Add Review</button>
+    <main>
+        <section class="search-section">
+            <input type="search" placeholder="Search courses...">
+            <select>
+                <option>Filter by Collages</option>
+                <option>Collage of Information Technology</option>
+                <option>Collage of Art</option>
+                <option>Collage of Law</option>
+                <option>Collage of Engineering</option>
+            </select>
+            <select>
+                <option>Sort by Rating</option>
+                <option value="Newest First">Highest Rating</option>
+                <option value="Oldest First">Lowest Rating</option>
+            </select>
+            <button class="btn-add">+ Add Review</button>
+        </section>
+
+        <section class="section-grid"></section>
+
+        <div class="pagination"></div>
+    </main>
+
+    <section class="form-container">
+        <h2>Add New Course Review</h2>
+        <form>
+            <div class="form-group">
+                <label>Course Name <span style="color: red;">*</span></label>
+                <input type="text" required placeholder="e.g., Data Structures">
+            </div>
+            <div class="form-group">
+                <label>Instructor <span style="color: red;">*</span></label>
+                <input type="text" required placeholder="e.g., Prof. Johnson">
+            </div>
+            <div class="form-group">
+                <label>Rating (1–5) <span style="color: red;">*</span></label>
+                <input type="number" required min="1" max="5">
+            </div>
+            <div class="form-group">
+                <label>Your Review <span style="color: red;">*</span></label>
+                <textarea required rows="4" placeholder="Share your experience..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>College <span style="color: red;">*</span></label>
+                <input type="text" required placeholder="e.g., Collage of Science">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="button" class="btn-cancel">Cancel</button>
+            </div>
+        </form>
     </section>
 
-    <section class="section-grid"></section>
+    <section class="detail-container"></section>
 
-    <div class="pagination"></div>
-  </main>
+    <footer>
+        <p>&copy; 2025 Campus Hub</p>
+    </footer>
 
-  <section class="form-container">
-    <h2>Add New Course Review</h2>
-    <form>
-      <div class="form-group">
-        <label>Course Name <span style="color: red;">*</span></label>
-        <input type="text" required placeholder="e.g., Data Structures">
-      </div>
-      <div class="form-group">
-        <label>Instructor <span style="color: red;">*</span></label>
-        <input type="text" required placeholder="e.g., Prof. Johnson">
-      </div>
-      <div class="form-group">
-        <label>Rating (1–5) <span style="color: red;">*</span></label>
-        <input type="number" required min="1" max="5">
-      </div>
-      <div class="form-group">
-        <label>Your Review <span style="color: red;">*</span></label>
-        <textarea required rows="4" placeholder="Share your experience..."></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn-submit">Submit</button>
-        <button type="button" class="btn-cancel">Cancel</button>
-      </div>
-    </form>
-  </section>
-
-  <section class="detail-container"></section>
-
-  <footer>
-    <p>&copy; 2025 Campus Hub</p>
-  </footer>
-
-  <!-- Linking the JS file -->
-  <script src="assets/js/courseReviews.js" defer></script>
+    <script src="assets/js/courseReviews.js" defer></script>
 
 </body>
+    <script src="assets/js/courseReviews.js" defer></script>
 </html>
