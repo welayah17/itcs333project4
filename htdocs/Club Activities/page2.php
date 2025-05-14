@@ -33,9 +33,7 @@ include '../Header.php';
         <p id="formStatus"></p>
     </main>
 
-    <footer>
-        <p>Campus Hub &copy; 2025</p>
-    </footer>
+    <?php include '../Footer.php'; ?>
 
     <script src="addClub.js"></script>
 </body>

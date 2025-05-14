@@ -268,8 +268,8 @@ require 'db.php';
                    <p>Discover and join student clubs and activities.</p>
                    <a class="card-btn" data-bs-toggle="collapse" href="#collapseSix"><button>Explore</button></a>
                    <div id="collapseSix" class="collapse collapse-content" data-bs-parent="#Services">
-                    <a href="../../Club Activities/page1.html"> 📌 Club Activities </a>
-                    <a href="../../Club Activities/page2.html"> ➕ Add new activity</a>
+                    <a href="Club Activities/page1.php"> 📌 Club Activities </a>
+                    <a href="Club Activities/page2.php"> ➕ Add new activity</a>
                    </div>
                 </div>
             </div>
@@ -336,7 +336,7 @@ require 'db.php';
                     <li><a class="dropdown-item" href="Course Reviews/CourseReviews.html">Add New Course Reviews</a></li>
                     <li><a class="dropdown-item" href="Course Notes/Cours-notes.html">Add New Course Note</a></li>
                     <li><a class="dropdown-item" href="Campus News/phase1/add-news.html">Add New Campus News</a></li>
-                    <li><a class="dropdown-item" href="Club Activities/page2.html">Add New Club Activities</a></li>
+                    <li><a class="dropdown-item" href="Club Activities/page2.php">Add New Club Activities</a></li>
                     <li><a class="dropdown-item" href="Student Marketplace/ItemCreationForm.html">Add New Item in Student Marketplace</a></li>
                 </ul>
               </div>

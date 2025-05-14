@@ -62,11 +62,8 @@ include '../Header.php';
     </div>
 </div>
 
-<footer>
-    <p>Campus Hub &copy; 2025</p>
-</footer>
+    <?php include '../Footer.php'; ?>
 
 <script src="script.js"></script>
 </body>
 </html>
-
