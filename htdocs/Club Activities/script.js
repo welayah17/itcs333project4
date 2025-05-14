@@ -7,8 +7,10 @@ const clubFilter = document.getElementById("clubFilter");
 const sortOption = document.getElementById("sortOption");
 const prevPage = document.getElementById("prevPage");
 const nextPage = document.getElementById("nextPage");
+
 const updateModal = document.getElementById("updateModal");
 const updateForm = document.getElementById("updateForm");
+const updateIdInput = document.getElementById("update-id");
 
 let activities = [];
 let currentPage = 1;
@@ -17,6 +19,7 @@ const itemsPerPage = 3;
 async function fetchActivities() {
     loading.style.display = "block";
     error.style.display = "none";
+
     try {
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error("Failed to fetch");
@@ -54,44 +57,54 @@ function renderActivities() {
     }
 
     paginated.forEach(club => {
-        const article = document.createElement("article");
-        article.className = "group";
-        article.innerHTML = `
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "group";
+        groupDiv.innerHTML = `
             <h2>${club.name}</h2>
             <p><strong>Category:</strong> ${club.category}</p>
+            <p><strong>Description:</strong> ${club.description}</p>
             <p><strong>Leader:</strong> ${club.leader}</p>
-            <p>${club.description}</p>
-            <button onclick="deleteClub(${club.id})">Delete</button>
-            <button onclick='openUpdateModal(${JSON.stringify(club)})'>Update</button>
+            <div class="action-buttons">
+                <button class="add-group" onclick="editClub('${club.id}')">Edit</button>
+                <button class="add-group" onclick="deleteClub('${club.id}')">Delete</button>
+            </div>
         `;
-        activityList.appendChild(article);
+        activityList.appendChild(groupDiv);
     });
 }
 
 function populateClubFilter() {
     const clubNames = [...new Set(activities.map(c => c.name))];
-    clubFilter.innerHTML = `<option value="">All Clubs</option>` + 
+    clubFilter.innerHTML = `<option value="">Filter by Club</option>` +
         clubNames.map(name => `<option value="${name}">${name}</option>`).join('');
 }
 
+// Event Listeners
 searchInput.addEventListener("input", () => {
     currentPage = 1;
     renderActivities();
 });
+
 clubFilter.addEventListener("change", () => {
     currentPage = 1;
     renderActivities();
 });
+
 sortOption.addEventListener("change", renderActivities);
+
 prevPage.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
         renderActivities();
     }
 });
+
 nextPage.addEventListener("click", () => {
-    currentPage++;
-    renderActivities();
+    const maxPages = Math.ceil(activities.length / itemsPerPage);
+    if (currentPage < maxPages) {
+        currentPage++;
+        renderActivities();
+    }
 });
 
 async function deleteClub(id) {
@@ -100,9 +113,7 @@ async function deleteClub(id) {
     try {
         const res = await fetch("deleteClub.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id })
         });
 
@@ -114,59 +125,71 @@ async function deleteClub(id) {
             alert("Error deleting: " + result.error);
         }
     } catch (err) {
+        console.error("Delete error:", err);
         alert("Network error.");
     }
 }
 
-function openUpdateModal(club) {
-    updateModal.style.display = "block";
-    updateForm.id.value = club.id;
+// Edit Club
+window.editClub = function (id) {
+    const club = activities.find(c => String(c.id) === String(id));
+    if (!club) {
+        alert("Club not found.");
+        return;
+    }
+
+    updateIdInput.value = club.id;
     updateForm.name.value = club.name;
     updateForm.category.value = club.category;
     updateForm.description.value = club.description;
     updateForm.leader.value = club.leader;
+
+    updateModal.style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+};
+
+function cancelEdit() {
+    updateForm.reset();
+    updateModal.style.display = "none";
 }
 
 async function updateClub() {
-    const clubData = {
-        id: updateForm.id.value,
-        name: updateForm.name.value,
-        category: updateForm.category.value,
-        description: updateForm.description.value,
-        leader: updateForm.leader.value
-    };
+    const id = updateIdInput.value;
+    const name = updateForm.name.value.trim();
+    const category = updateForm.category.value.trim();
+    const description = updateForm.description.value.trim();
+    const leader = updateForm.leader.value.trim();
+
+    if (!id || !name || !category || !description || !leader) {
+        alert("All fields are required!");
+        return;
+    }
 
     try {
         const res = await fetch("updateClub.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(clubData)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, name, category, description, leader })
         });
 
         const result = await res.json();
+
         if (res.ok && result.success) {
-            alert("Club updated successfully.");
-            updateModal.style.display = "none";
+            alert("Club updated successfully!");
+            cancelEdit();
             fetchActivities();
         } else {
-            alert("Error updating: " + result.error);
+            alert("Error updating: " + (result.error || "Unknown error"));
         }
-    } catch (err) {
-        alert("Network error.");
+    } catch (error) {
+        console.error("Update error:", error);
+        alert("Network error occurred.");
     }
 }
 
-document.getElementById("closeModal").onclick = () => {
-    updateModal.style.display = "none";
-};
+// Attach cancel function
+document.querySelector("#updateForm button[type='button']").addEventListener("click", cancelEdit);
 
-window.onclick = function (event) {
-    if (event.target === updateModal) {
-        updateModal.style.display = "none";
-    }
-};
-
+// Initial fetch
 fetchActivities();
 

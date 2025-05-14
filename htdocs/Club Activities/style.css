@@ -32,8 +32,7 @@ main {
 .container {
     width: 90%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+
 }
 
 .add-group {
@@ -296,4 +295,35 @@ footer {
     button[type="submit"] {
         font-size: 0.9rem;
     }
+}
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+#updateModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+}
+
+#updateForm button {
+    margin-top: 10px;
+    width: 100%;
 }

@@ -1,37 +1,47 @@
-<?php
-session_start();
-header('Content-Type: application/json');
-require '../db.php';
+    <?php
+    session_start();
+    require '../db.php';
 
+    header('Content-Type: application/json');
 
-$raw = file_get_contents("php://input");
-$data = json_decode($raw, true);
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
 
-// Validate data
-if (
-    !$data ||
-    !isset($data['id'], $data['name'], $data['category'], $data['description'], $data['leader'])
-) {
-    echo json_encode([
-        'error' => 'Missing ID or fields',
-        'raw' => $raw
-    ]);
-    exit;
-}
+    if (!is_array($data)) {
+        echo json_encode(['success' => false, 'error' => 'Invalid JSON']);
+        exit;
+    }
 
-try {
-    $stmt = $db->prepare("UPDATE clubs SET name = ?, category = ?, description = ?, leader = ? WHERE id = ?");
-    $stmt->execute([
-        $data['name'],
-        $data['category'],
-        $data['description'],
-        $data['leader'],
-        $data['id']
-    ]);
+    if (
+        empty($data['id']) ||
+        empty($data['name']) ||
+        empty($data['category']) ||
+        empty($data['description']) ||
+        empty($data['leader'])
+    ) {
+        echo json_encode(['success' => false, 'error' => 'Missing required fields']);
+        exit;
+    }
 
-    echo json_encode(['success' => true, 'message' => 'Club updated successfully']);
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
-}
-?>
+    $id = (int) $data['id'];
+    $name = trim($data['name']);
+    $category = trim($data['category']);
+    $description = trim($data['description']);
+    $leader = trim($data['leader']);
+
+    try {
+        $stmt = $db->prepare("UPDATE clubs SET name = :name, category = :category, description = :description, leader = :leader WHERE id = :id");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':leader', $leader);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        echo json_encode(['success' => true]);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'error' => 'Update failed: ' . $e->getMessage()]);
+    }
+    ?>
+
