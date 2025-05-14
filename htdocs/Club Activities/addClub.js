@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 message.textContent = "Club added successfully!";
                 message.style.color = "green";
                 form.reset();
-                setTimeout(() => window.location.href = "page1.html", 1500);
+                setTimeout(() => window.location.href = "page1.php", 1500);
             } else {
                 message.textContent = "Error: " + (result.error || "Something went wrong");
                 message.style.color = "red";

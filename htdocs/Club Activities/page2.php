@@ -1,5 +1,5 @@
 <?php 
-session_start();
+include '../Header.php';
 ?>
 <!DOCTYPE html>
 <html>
