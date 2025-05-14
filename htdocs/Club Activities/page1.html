@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Hub-Club Activities</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Club Activities</h1>
+    </header>
+
+    <main>
+        <div>
+            <input type="text" id="searchInput" placeholder="Search for clubs...">
+            <select id="clubFilter">
+                <option value="">Filter by Club</option>
+            </select>
+            <select id="sortOption">
+                <option value="name">Sort by Name</option>
+                <option value="category">Sort by Category</option>
+            </select>
+        </div>
+
+        <div id="loading" style="display: none;">Loading...</div>
+        <div id="error" style="display: none; color: red;">Error fetching data.</div>
+
+        <br>
+        <div id="activityList"></div>
+            <br>
+        <div class="pag">
+            <button id="prevPage">Previous</button>
+            <button id="nextPage">Next</button>
+        </div>
+
+        <div id="updateModal">
+            <div class="modal-content">
+                <div class="pag">
+                 <button id="closeModal">X</button>
+                    </div>
+                <h2>Add or Edit Club</h2>
+                <form id="updateForm">
+                    <input type="hidden" id="update-id">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required><br>
+
+                    <label for="category">Category:</label>
+                    <input type="text" name="category" required><br>
+
+                    <label for="description">Description:</label>
+                    <textarea name="description" required></textarea><br>
+
+                    <label for="leader">Leader:</label>
+                    <input type="text" name="leader" required><br>
+
+                    <button type="button" onclick="updateClub()">Update</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="group-list">
+            <div class="group">
+                <h2>Example Club</h2>
+                <p>Category: Sports</p>
+                <p>Description: A club for all sports enthusiasts.</p>
+                <p>Leader: John Doe</p>
+
+            
+                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                    <button class="updateBtn" onclick="showUpdateModal(1)">Update</button>
+                    <button class="deleteBtn" onclick="deleteClub(1)">Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Campus Hub &copy; 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
