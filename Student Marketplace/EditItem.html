@@ -114,36 +114,31 @@
 </div>
 
 <!-- Category -->
-<div class="mb-3">
-  <label for="itemCategory" class="form-label">Category</label>
-  <input type="text" class="form-control" id="itemCategory" placeholder="Electronics" value="Electronics"
-         pattern="^[A-Za-z\s]{3,50}$"
-         title="Category should be 3–50 letters only.">
-</div>
-            <!-- Category -->
 <div class="form-group">
   <label for="category" class="form-label">Category:</label>
   <select id="itemCategory" name="itemCategory" class="form-control" required>
-    <option value="" disabled selected hidden>Select a category</option>
-    <option value="Books">Books</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Clothing">Clothing</option>
-    <option value="Furniture">Furniture</option>
-    <option value="Other">Other</option>
+    <option value="" disabled selected hidden> Select a category</option>
+    <!-- Dynamic category options will be inserted here -->
   </select>
 </div>
+
 <!-- Custom Category (Initially Hidden) -->
 <div id="customCategoryWrapper" class="form-group d-none mt-2">
   <label for="customCategory" class="form-label">Enter Custom Category:</label>
-  <input type="text" id="customCategory" class="form-control" name="customCategory" placeholder="Type your category">
+  <input type="text" id="customCategory" class="form-control" name="customCategory"  pattern="^[A-Za-z\s]{3,50}$"
+         title="Category should be 3–50 letters only." placeholder="Type your category">
 </div>
 
-<!-- Status -->
+
+<!-- Status Field -->
 <div class="mb-3">
-  <label for="status" class="form-label">Status</label>
-  <input type="text" class="form-control" id="itemStatus" placeholder="Available" value="Available"
-         pattern="^(Available|Sold|Pending)$"
-         title="Status must be either: Available, Sold, or Pending.">
+  <label for="itemStatus" class="form-label">Status</label>
+  <select id="itemStatus" class="form-select" required>
+    <option value="">Select status</option>
+    <option value="Available">Available</option>
+    <option value="Sold">Sold</option>
+    <option value="Pending">Pending</option>
+  </select>
 </div>
 
 <!-- Phone Number -->
@@ -222,7 +217,7 @@
       </div>
     </div>
   </footer>
- <script src="../Student Marketplace/r.js"></script>
+ <script src="../Student Marketplace/EditItem.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
       
 </body>
