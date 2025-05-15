@@ -46,7 +46,7 @@
               <li><a class="dropdown-item" href="../Course Reviews/CourseReviews.html">Course Reviews</a></li>
               <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
               <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
-              <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
+              <li><a class="dropdown-item" href="../Club Activities/page1.php">Club Activities</a></li>
               <li><a class="dropdown-item" href="../Student Marketplace/Listings.php">Student Marketplace</a></li>
             </ul>
           </li>
