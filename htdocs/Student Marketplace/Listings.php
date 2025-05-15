@@ -65,7 +65,7 @@
 
 <script>
   function fetchCategories() {
-    $.getJSON("../api/Student MarketPlace/listings.php", function(data) {
+    $.getJSON("../api/Student Marketplace/listings.php", function(data) {
       const categories = [...new Set(data.data.map(item => item.category))];
       categories.forEach(cat => {
         $("#categoryMenu").append(`<li><a class='dropdown-item' data-value='${cat}'>${cat}</a></li>`);
@@ -78,7 +78,7 @@
     $("#loading").show();
     $("#studentList").hide();
 
-    $.getJSON("../api/listings.php?" + params, function(response) {
+    $.getJSON("../api/Student Marketplace/listings.php?" + params, function(response) {
       const listings = response.data;
       const pagination = response.pagination;
       $("#studentList").empty();

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,7 @@
               <li><a class="dropdown-item" href="../Course Notes/Cours-notes.html">Course Notes</a></li>
               <li><a class="dropdown-item" href="../Campus News/phase1/campusNews.html">Campus News</a></li>
               <li><a class="dropdown-item" href="../Club Activities/page1.html">Club Activities</a></li>
-              <li><a class="dropdown-item" href="../Student Marketplace/MainListingPage.php">Student Marketplace</a></li>
+              <li><a class="dropdown-item" href="../Student Marketplace/Listings.php">Student Marketplace</a></li>
             </ul>
           </li>
 
@@ -61,7 +62,7 @@
               <i class="fa-solid fa-user"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="accountDropdown">
-              <?php if (isset($_SESSION['username'])): ?>
+               <?php if (isset($_SESSION['username'])): ?>
                 <li><a class="dropdown-item" href="../Account/profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="../Account/signout.php">Sign out</a></li>
               <?php else: ?>
