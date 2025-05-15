@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Check user authentication
-if (!isset($_SESSION['id'])) {
-    http_response_code(401); // Unauthorized
-    echo json_encode(["error" => "User not authenticated."]);
-    exit;
-}
+// if (!isset($_SESSION['id'])) {
+ //    http_response_code(401); // Unauthorized
+ //   echo json_encode(["error" => "User not authenticated."]);
+ //   exit;
+//}
 
 $userId = $_SESSION['id'];
 
