@@ -134,7 +134,7 @@ $listings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach ($listings as $listing): ?>
   <div class="col">
     <div class="note-card p-3 p-sm-4 h-100 d-flex flex-column" style="cursor: pointer;" onclick="window.location.href='ItemDetailsView.php?id=<?= $listing['id'] ?>'">
-      <img src="<?= htmlspecialchars($listing['image']) ?>" class="note-img img-fluid mb-3" alt="<?= htmlspecialchars($listing['title']) ?>">
+      <img src="../Images/<?=htmlspecialchars($listing['image']) ?>" class="note-img img-fluid mb-3" alt="<?= htmlspecialchars($listing['title']) ?>">
       <div class="note-meta"><?= date("F j, Y", strtotime($listing['publishDate'])) ?> • <?= htmlspecialchars($listing['category']) ?></div>
       <div class="note-title"><?= htmlspecialchars($listing['title']) ?></div>
       <div class="note-price">BD <?= number_format($listing['price'], 2) ?></div>
@@ -179,7 +179,7 @@ $listings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         </div>
-
+  <?php include '../Footer.php'; ?>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const searchInput = document.getElementById("searchInput");

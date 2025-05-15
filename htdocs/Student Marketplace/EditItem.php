@@ -1,44 +1,50 @@
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
-  <script>
-  document.getElementById('deleteBtn').addEventListener('click', async function () {
-    // Get item ID from URL params dynamically
-    const urlParams = new URLSearchParams(window.location.search);
-    const itemId = urlParams.get("id");
-
-    if (!itemId) {
-      alert("No item ID provided for deletion.");
-      return;
-    }
-
-    if (!confirm("Are you sure you want to delete this item?")) return;
-
-    try {
-      const response = await fetch('/api/Student Marketplace/Delete.php', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `id=${encodeURIComponent(itemId)}`
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        alert("Item deleted successfully!");
-        window.location.href = "../Student Marketplace/MainListingPage.php"; 
-      } else {
-        alert("Error deleting item: " + data.error);
-      }
-    } catch (error) {
-      alert("Fetch error: " + error.message);
-    }
-  });
-</script>
 <?php 
 session_start();
 require '../db.php';
 
 ?>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const deleteBtn = document.getElementById('deleteBtn');
+    if (!deleteBtn) return;
+
+    deleteBtn.addEventListener('click', async function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const itemId = urlParams.get("id");
+
+      if (!itemId) {
+        alert("Missing item ID.");
+        return;
+      }
+
+      if (!confirm("Are you sure you want to delete this item?")) return;
+
+      try {
+        const response = await fetch(`/api/Student Marketplace/Delete.php?id=${itemId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `id=${encodeURIComponent(itemId)}`
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert("Item deleted successfully!");
+          window.location.href = "../Student Marketplace/MainListingPage.php";
+        } else {
+          alert("Error deleting item: " + data.error);
+        }
+      } catch (error) {
+        alert("Fetch error: " + error.message);
+      }
+    });
+  });
+
+
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>

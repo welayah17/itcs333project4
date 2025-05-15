@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require '../db.php';
+require '../../db.php';
 
 // Allow only DELETE method
 if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {

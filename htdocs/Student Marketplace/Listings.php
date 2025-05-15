@@ -65,7 +65,7 @@
 
 <script>
   function fetchCategories() {
-    $.getJSON("../api/listings.php", function(data) {
+    $.getJSON("../api/Student MarketPlace/listings.php", function(data) {
       const categories = [...new Set(data.data.map(item => item.category))];
       categories.forEach(cat => {
         $("#categoryMenu").append(`<li><a class='dropdown-item' data-value='${cat}'>${cat}</a></li>`);

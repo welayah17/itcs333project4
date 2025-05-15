@@ -24,7 +24,7 @@ include '../Header.php';
 </div>
 
 
-          <form id="AddItem" method="POST" action="InsertItem.php" enctype="multipart/form-data" novalidate>
+          <form id="AddItem" method="POST" enctype="multipart/form-data" novalidate>
 
             <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
               <h6 class="mb-0">Students Marketplace:</h6>
@@ -115,6 +115,7 @@ include '../Header.php';
       </div> <!-- End of col -->
       </div> <!-- End of row -->
     </div> <!-- End of Container -->
+<script src="add.js"> </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
       const categorySelect = document.getElementById("category");

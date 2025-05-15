@@ -121,7 +121,7 @@
         <button class="btn-style" title="Edit">Edit</button>
       </a>      
       <button id="deleteBtn" class="btn-style delete-btn" title="Delete">Delete</button>
-      <a href="../Student Marketplace/Messaging.html"><button class="btn-style" title="Contact Seller">✉️ Contact Seller</button></a>
+      <a href="../Student Marketplace/Messaging.php"><button class="btn-style" title="Contact Seller">✉️ Contact Seller</button></a>
     </div>
 
     <div class="mt-4">
@@ -137,37 +137,42 @@
 </section>
   
   <script>
-    document.getElementById('deleteBtn').addEventListener('click', async function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const itemId = urlParams.get("id");
+    document.addEventListener("DOMContentLoaded", function () {
+      const deleteBtn = document.getElementById('deleteBtn');
+      if (!deleteBtn) return;
 
-      if (!itemId) {
-        alert("Missing item ID.");
-        return;
-      }
+      deleteBtn.addEventListener('click', async function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get("id");
 
-      if (!confirm("Are you sure you want to delete this item?")) return;
-
-      try {
-        const response = await fetch('/api/StudentMarketplace/Delete.php', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: `id=${encodeURIComponent(itemId)}`
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          alert("Item deleted successfully!");
-          window.location.href = "../Student Marketplace/Listing.html";
-        } else {
-          alert("Error deleting item: " + data.error);
+        if (!itemId) {
+          alert("Missing item ID.");
+          return;
         }
-      } catch (error) {
-        alert("Fetch error: " + error.message);
-      }
+
+        if (!confirm("Are you sure you want to delete this item?")) return;
+
+        try {
+          const response = await fetch(`/api/Student Marketplace/Delete.php?id=${itemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `id=${encodeURIComponent(itemId)}`
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            alert("Item deleted successfully!");
+            window.location.href = "../Student Marketplace/MainListingPage.php";
+          } else {
+            alert("Error deleting item: " + data.error);
+          }
+        } catch (error) {
+          alert("Fetch error: " + error.message);
+        }
+      });
     });
 
 
