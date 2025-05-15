@@ -33,9 +33,9 @@ async function fetchItemDetails() {
     document.getElementById("itemImage").src = item.image || "../Images/placeholder.jpg"; // Default placeholder image
 
  // ✅ Set dynamic Edit button link
- const editButton = document.querySelector('a[href^="../Student Marketplace/EditItem.html"]');
+ const editButton = document.querySelector('a[href^="../Student Marketplace/EditItem.php"]');
  if (editButton) {
-   editButton.href = `../Student Marketplace/EditItem.html?id=${item.id}`;
+   editButton.href = `../Student Marketplace/EditItem.php?id=${item.id}`;
  }
 
 } catch (err) {

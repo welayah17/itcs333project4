@@ -6,7 +6,7 @@ header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Include DB connection (returns $db as PDO)
-require '../db.php';
+require '../../db.php';
 
 // --- JWT Placeholder ---
 // If implementing JWT later, uncomment the following lines:

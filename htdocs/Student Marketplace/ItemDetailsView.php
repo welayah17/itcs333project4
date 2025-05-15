@@ -1,3 +1,4 @@
+
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
 <?php require '../db.php'; ?>
 <!DOCTYPE html>
@@ -134,6 +135,43 @@
     </a>    
   </div>
 </section>
+  
+  <script>
+    document.getElementById('deleteBtn').addEventListener('click', async function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const itemId = urlParams.get("id");
+
+      if (!itemId) {
+        alert("Missing item ID.");
+        return;
+      }
+
+      if (!confirm("Are you sure you want to delete this item?")) return;
+
+      try {
+        const response = await fetch('/api/StudentMarketplace/Delete.php', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `id=${encodeURIComponent(itemId)}`
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert("Item deleted successfully!");
+          window.location.href = "../Student Marketplace/Listing.html";
+        } else {
+          alert("Error deleting item: " + data.error);
+        }
+      } catch (error) {
+        alert("Fetch error: " + error.message);
+      }
+    });
+
+
+  </script>
 
 
     <!-- Bootstrap 5 Footer -->

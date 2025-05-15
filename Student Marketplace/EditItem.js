@@ -1,5 +1,5 @@
   document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listings"; 
+    const API_URL = "https://6816bea826a599ae7c3885bb.mockapi.io/listing"; 
     const form = document.getElementById("EditItem");
     const categorySelect = document.getElementById("itemCategory");
     const customCategoryWrapper = document.getElementById("customCategoryWrapper");

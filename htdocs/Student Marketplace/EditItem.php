@@ -1,8 +1,43 @@
 <!-- 20198132 FATEMA EBRAHIM ALI SALMAN -->
+  <script>
+  document.getElementById('deleteBtn').addEventListener('click', async function () {
+    // Get item ID from URL params dynamically
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemId = urlParams.get("id");
+
+    if (!itemId) {
+      alert("No item ID provided for deletion.");
+      return;
+    }
+
+    if (!confirm("Are you sure you want to delete this item?")) return;
+
+    try {
+      const response = await fetch('/api/Student Marketplace/Delete.php', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `id=${encodeURIComponent(itemId)}`
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Item deleted successfully!");
+        window.location.href = "../Student Marketplace/MainListingPage.php"; 
+      } else {
+        alert("Error deleting item: " + data.error);
+      }
+    } catch (error) {
+      alert("Fetch error: " + error.message);
+    }
+  });
+</script>
 <?php 
 session_start();
 require '../db.php';
-include '../Header.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +50,7 @@ include '../Header.php';
     <title>SM: Edit Item</title>
 </head>
 <body>
- 
+ <?php include '../Header.php'; ?>
 <div id="successMessage" class="alert alert-success mt-3 d-none" role="alert">
   Changes saved successfully!
 </div>
@@ -104,7 +139,9 @@ include '../Header.php';
         <!-- Action Buttons -->
         <div class="d-flex gap-2 flex-wrap">
           <button type="submit" class="btn btn-success" id="saveBtn" title="save"><i class="fa-solid fa-floppy-disk"></i> Save</button>
-          <a href="../Student Marketplace/DeleteItem.html"><button type="button" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i> Delete</button></a>
+          <button id="deleteBtn" type="button" class="btn btn-danger" title="Delete">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
           <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" title="Comments">
             <i class="fa-solid fa-comments"></i> Comments
           </button>
@@ -162,6 +199,7 @@ include '../Header.php';
   </footer>
  <script src="../Student Marketplace/EditItem.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
       
 </body>
 </html>

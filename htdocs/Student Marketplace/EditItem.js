@@ -1,217 +1,294 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const API_BASE = "/api/Student Marketplace/";
+  const API_URL = "/api/Student%20Marketplace/";
   const form = document.getElementById("EditItem");
+  const fields = ["itemTitle", "itemDescription", "itemPrice", "itemPhone", "itemCategory", "customCategory", "itemStatus"];
+
   const categorySelect = document.getElementById("itemCategory");
   const customCategoryWrapper = document.getElementById("customCategoryWrapper");
   const customCategoryInput = document.getElementById("customCategory");
-  const cancelButton = document.querySelector(".cancel-btn");
-  const saveBtn = document.getElementById("saveBtn");
-  const itemDetailsEl = document.getElementById("itemDetails");
-  const loadingEl = document.getElementById("loading");
+
   const successMessage = document.getElementById("successMessage");
   const errorMessage = document.getElementById("errorMessage");
+  const loadingEl = document.getElementById("loading");
+  const toggleButton = document.getElementById("saveBtn");
 
-  const fields = ["title", "description", "price", "phone", "category", "status", "customCategory"];
+  let isEditing = false;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const itemId = urlParams.get("id");
+  // Enable or disable form inputs
+  function setFieldsDisabled(disabled) {
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      if (input) input.disabled = disabled;
+    });
+  }
 
-  // Show/hide custom category input
+  function clearValidationStates() {
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.classList.remove("is-valid", "is-invalid");
+        const feedback = input.parentNode.querySelector(".invalid-feedback");
+        if (feedback) feedback.remove();
+      }
+    });
+  }
+
   categorySelect.addEventListener("change", function () {
-    if (categorySelect.value === "Other") {
+    if (this.value === "Other") {
       customCategoryWrapper.classList.remove("d-none");
-      customCategoryInput.setAttribute("required", "required");
+      customCategoryInput.required = true;
     } else {
       customCategoryWrapper.classList.add("d-none");
-      customCategoryInput.removeAttribute("required");
+      customCategoryInput.required = false;
       customCategoryInput.value = "";
     }
   });
 
-  function showError(input, message) {
-    clearFeedback(input);
-    input.classList.add("is-invalid");
-    const error = document.createElement("div");
-    error.className = "invalid-feedback";
-    error.textContent = message;
-    input.parentNode.appendChild(error);
-  }
-
-  function showValid(input) {
-    clearFeedback(input);
-    input.classList.add("is-valid");
-  }
-
-  function clearFeedback(input) {
-    input.classList.remove("is-invalid", "is-valid");
-    const existingError = input.parentNode.querySelector(".invalid-feedback");
-    if (existingError) existingError.remove();
-  }
-
   function validateInput(input) {
     const value = input.value.trim();
+    let valid = true;
+
     switch (input.id) {
-      case "itemTitle":
-        const titleRegex = /^[A-Za-z0-9 ,.?!'-]{3,100}$/;
-        if (!titleRegex.test(value)) {
-          showError(input, "Title must be 3–100 valid characters.");
-          return false;
-        }
-        break;
-      case "itemDescription":
-        if (value.length < 5) {
-          showError(input, "Description must be at least 5 characters.");
-          return false;
-        }
-        break;
-      case "itemPrice":
-        if (value === "" || parseFloat(value) < 0) {
-          showError(input, "Price must be a positive number.");
-          return false;
-        }
-        break;
-      case "itemPhone":
-        if (!/^\d{8}$/.test(value)) {
-          showError(input, "Phone number must be exactly 8 digits.");
-          return false;
-        }
-        break;
-      case "itemCategory":
-        if (!value) {
-          showError(input, "Please select a category.");
-          return false;
-        }
-        break;
-      case "itemStatus":
-        if (!value) {
-          showError(input, "Please select a status.");
-          return false;
-        }
-        break;
-      case "customCategory":
-        if (categorySelect.value === "Other") {
-          if (value.length < 3 || value.length > 50) {
-            showError(input, "Custom category must be 3–50 characters.");
-            return false;
-          }
-        }
-        break;
+   // Validate itemTitle
+case "itemTitle":
+  valid = /^[A-Za-z0-9 ,.?!'-]{3,100}$/.test(value);
+  break;
+
+// Validate itemDescription
+case "itemDescription":
+  valid = value.length >= 5;
+  break;
+
+// Validate itemPrice
+case "itemPrice":
+  valid = value !== "" && parseFloat(value) >= 0;
+  break;
+
+// Validate itemPhone
+case "itemPhone":
+  valid = /^\d{8}$/.test(value);
+  break;
+
+// Validate itemCategory (must not be empty)
+case "itemCategory":
+case "itemStatus":
+  valid = value !== "";
+  break;
+
+// Validate customCategory (only required if "Other" is selected)
+case "customCategory":
+  if (categorySelect.value === "Other") {
+    valid = value.length >= 3 && value.length <= 50;
+  }
+  break;
+
     }
-    showValid(input);
-    return true;
+
+    input.classList.remove("is-valid", "is-invalid");
+    const feedback = input.parentNode.querySelector(".invalid-feedback");
+    if (feedback) feedback.remove();
+
+    if (!valid) {
+      input.classList.add("is-invalid");
+      const error = document.createElement("div");
+      error.className = "invalid-feedback";
+      error.textContent = "Please enter a valid value.";
+      input.parentNode.appendChild(error);
+    } else {
+      input.classList.add("is-valid");
+    }
+
+    return valid;
   }
 
-  fields.forEach(id => {
-    const input = document.getElementById(id);
-    if (input) {
-      input.addEventListener("blur", () => validateInput(input));
-      input.addEventListener("input", () => {
-        if (input.classList.contains("is-invalid") || input.classList.contains("is-valid")) {
-          validateInput(input);
-        }
+  toggleButton.addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    if (!isEditing) {
+      isEditing = true;
+      setFieldsDisabled(false);
+      clearValidationStates();
+
+      categorySelect.classList.remove("d-none");
+      customCategoryWrapper.classList.add("d-none");
+
+      toggleButton.innerHTML = `<i class="bi bi-save"></i> Save`;
+      toggleButton.classList.remove("btn-warning");
+      toggleButton.classList.add("btn-success");
+      return;
+    }
+
+    let isValid = true;
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      if (input && !validateInput(input)) isValid = false;
+    });
+
+    if (!isValid) {
+      errorMessage.textContent = "Please correct the errors in the form.";
+      errorMessage.classList.remove("d-none");
+      return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemId = urlParams.get("id");
+    if (!itemId) {
+      errorMessage.textContent = "Missing item ID.";
+      errorMessage.classList.remove("d-none");
+      return;
+    }
+
+    const categoryValue = categorySelect.value === "Other"
+      ? customCategoryInput.value.trim()
+      : categorySelect.value;
+
+    const updatedData = {
+      title: document.getElementById("itemTitle").value.trim(),
+      description: document.getElementById("itemDescription").value.trim(),
+      price: parseFloat(document.getElementById("itemPrice").value),
+      phoneNumber: document.getElementById("itemPhone").value.trim(),
+      status: document.getElementById("itemStatus").value,
+      image: "",
+      category: categoryValue,
+    };
+
+    try {
+      const res = await fetch(`${API_URL}Update.php?id=${itemId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData),
       });
+
+      if (!res.ok) throw new Error("Failed to update item.");
+
+      successMessage.textContent = "Item updated successfully!";
+      successMessage.classList.remove("d-none");
+      setTimeout(() => successMessage.classList.add("d-none"), 4000);
+
+      isEditing = false;
+      setFieldsDisabled(true);
+      clearValidationStates();
+
+      // Show appropriate category input
+      if (updatedData.category === "Other") {
+        categorySelect.classList.add("d-none");
+        customCategoryWrapper.classList.remove("d-none");
+        customCategoryInput.value = updatedData.category;
+        categorySelect.value = updatedData.category;
+        customCategoryInput.disabled = true;
+      } else {
+        categorySelect.classList.remove("d-none");
+        customCategoryWrapper.classList.add("d-none");
+        categorySelect.value = updatedData.category;
+        customCategoryInput.value = updatedData.category;
+        categorySelect.disabled = true;
+      }
+
+      toggleButton.innerHTML = `<i class="bi bi-pencil-square"></i> Edit`;
+      toggleButton.classList.remove("btn-success");
+      toggleButton.classList.add("btn-warning");
+    } catch (err) {
+      errorMessage.textContent = err.message;
+      errorMessage.classList.remove("d-none");
+      setTimeout(() => errorMessage.classList.add("d-none"), 5000);
     }
   });
 
-  if (cancelButton) {
-    cancelButton.addEventListener("click", function () {
-      fields.forEach(id => {
-        const input = document.getElementById(id);
-        if (input) {
-          clearFeedback(input);
-          input.value = "";
-        }
-      });
-      customCategoryWrapper.classList.add("d-none");
-      customCategoryInput.removeAttribute("required");
-      form.reset();
-    });
-  }
+  async function loadCategories() {
+    try {
+      const res = await fetch(`${API_URL}CategoryList.php?id=${itemId}`);
+      if (!res.ok) throw new Error("Failed to fetch listings.");
+      const listings = await res.json();
 
-  if (form) {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      let isFormValid = true;
-
-      successMessage.classList.add("d-none");
-      errorMessage.classList.add("d-none");
-
-      fields.forEach(id => {
-        const input = document.getElementById(id);
-        if (input && !validateInput(input)) {
-          isFormValid = false;
+      const uniqueCategories = new Set();
+      listings.forEach(item => {
+        if (item.category && item.category !== "Other") {
+          uniqueCategories.add(item.category);
         }
       });
 
-      if (!isFormValid) {
-        errorMessage.classList.remove("d-none");
-        return;
-      }
+      categorySelect.innerHTML = '<option value="" disabled selected hidden> </option>';
 
-      // Gather form data
-      const data = {
-        title: document.getElementById("itemTitle").value.trim(),
-        description: document.getElementById("itemDescription").value.trim(),
-        price: parseFloat(document.getElementById("itemPrice").value),
-        phoneNumber: document.getElementById("itemPhone").value.trim(),
-        category: categorySelect.value === "Other" ? document.getElementById("customCategory").value.trim() : categorySelect.value,
-        status: document.getElementById("itemStatus").value.trim()
-      };
+      uniqueCategories.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        categorySelect.appendChild(option);
+      });
 
-      try {
-        const response = await fetch(`${API_BASE}/Update.php?id=${itemId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          successMessage.textContent = result.success;
-          successMessage.classList.remove("d-none");
-          form.reset();
-          customCategoryWrapper.classList.add("d-none");
-        } else {
-          throw new Error(result.error || "Update failed.");
-        }
-      } catch (err) {
-        errorMessage.textContent = err.message;
-        errorMessage.classList.remove("d-none");
-      }
-    });
+      const otherOption = document.createElement("option");
+      otherOption.value = "Other";
+      otherOption.textContent = "Other";
+      categorySelect.appendChild(otherOption);
+    } catch (err) {
+      console.error("Error loading categories:", err);
+    }
   }
 
   async function fetchItemDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemId = urlParams.get("id");
+
     if (!itemId) {
       alert("No item ID provided.");
       return;
     }
 
     showLoading(true);
+
     try {
-      const res = await fetch(`${API_BASE}/Read.php?id=${itemId}`);
-      if (!res.ok) throw new Error("Failed to load item details.");
+      const res = await fetch(`${API_URL}Read.php?id=${itemId}`);
+      if (!res.ok) throw new Error("Failed to load item.");
       const item = await res.json();
 
+      // Now that item is loaded, check if the category exists in select options
+      const categoryOptions = Array.from(categorySelect.options).map(opt => opt.value);
+      if (!categoryOptions.includes(item.category)) {
+        // Add missing category option dynamically
+        const newOption = document.createElement("option");
+        newOption.value = item.category;
+        newOption.textContent = item.category;
+        categorySelect.appendChild(newOption);
+      }
+
+      // Set form fields values
       document.getElementById("itemTitle").value = item.title;
-      document.getElementById("itemPrice").value = item.price;
       document.getElementById("itemDescription").value = item.description;
-      document.getElementById("itemCategory").value = item.category;
-      document.getElementById("itemStatus").value = item.status;
+      document.getElementById("itemPrice").value = item.price;
       document.getElementById("itemPhone").value = item.phoneNumber;
+      document.getElementById("itemStatus").value = item.status;
+
+      // Set category value
+      if (item.category === "Other") {
+        categorySelect.classList.add("d-none");
+        customCategoryWrapper.classList.remove("d-none");
+        customCategoryInput.value = item.category;
+        customCategoryInput.disabled = true;
+      } else {
+        categorySelect.classList.remove("d-none");
+        customCategoryWrapper.classList.add("d-none");
+        categorySelect.value = item.category;
+        categorySelect.disabled = true;
+      }
+
+      setFieldsDisabled(true);
+
+      toggleButton.innerHTML = `<i class="bi bi-pencil-square"></i> Edit`;
+      toggleButton.classList.add("btn-warning");
+
     } catch (err) {
-      if (itemDetailsEl) itemDetailsEl.innerHTML = `<p>Error: ${err.message}</p>`;
+      document.getElementById("itemDetails").innerHTML = `<p>Error: ${err.message}</p>`;
     } finally {
       showLoading(false);
     }
   }
 
+
   function showLoading(state) {
-    if (loadingEl) {
-      loadingEl.style.display = state ? "block" : "none";
-    }
+    if (loadingEl) loadingEl.style.display = state ? "block" : "none";
   }
 
+  // Init
+  loadCategories();
   fetchItemDetails();
 });
